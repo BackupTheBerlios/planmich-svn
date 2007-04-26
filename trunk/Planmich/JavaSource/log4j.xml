@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
+  
+  <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+    <param name="threshold" value="DEBUG"/>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d %p [%c] - %m%n"/>
+    </layout>
+  </appender>
+  
+  <logger name="org.schorpp">
+    <level value="debug"/>
+  </logger>
+  
+  <!-- spring -->
+  <logger name="org.springframework">
+    <level value="ERROR"/>
+  </logger>
+
+  <!-- hibernate -->
+  <logger name="org.hibernate">
+    <level value="DEBUG"/>
+  </logger>
+  
+  <!-- log SQL statements (same as show_sql=true) -->
+  <logger name="org.hibernate.SQL">
+    <level value="debug"/>
+  </logger>
+  
+  <!-- log parameter binding -->
+  <logger name="org.hibernate.type">
+    <level value="warn"/>
+  </logger>
+  
+  <!-- log ddl statements -->
+  <logger name="org.hibernate.tool.hbm2ddl">
+    <level value="ERROR"/>
+  </logger>
+  
+  <logger name="org.apache">
+  	<level value="ERROR"/>
+  </logger>
+
+  
+  <!--
+    Alle Logmeldungen werden an den Appender STDOUT geschickt.
+    Es gibt ein zusaetzliches Threshold im Appender STDOUT
+  -->
+  <root>
+    <appender-ref ref="STDOUT"/>
+  </root>
+  
+</log4j:configuration>

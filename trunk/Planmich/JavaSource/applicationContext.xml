@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd"
+	default-autowire="byType">
+
+	<import resource="transactionContext.xml"/>
+
+	<!-- hibernate template -->
+	<bean id="hibernateTemplate"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<!-- property name="cacheQueries" value="true" /-->
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="annotatedClasses">
+			<list>
+				<value>org.schorpp.planmich.domain.Mandant</value>
+				<value>org.schorpp.planmich.domain.Plandatum</value>
+				<value>org.schorpp.planmich.domain.Kategorie</value>
+			</list>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.hsqldb.jdbcDriver" />
+		<property name="jdbcUrl" value="jdbc:hsqldb:c:/tmp/musicShop"/>
+		<property name="user" value="sa" />
+		<property name="password" value="" />
+	</bean>
+
+	<bean id="mandantDAO"
+		class="org.schorpp.planmich.dao.MandantDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="mandantService"
+		class="org.schorpp.planmich.service.MandantServiceImpl">
+		<property name="mandantDAO" ref="mandantDAO" />
+	</bean>
+
+	<bean id="kategorieDAO"
+		class="org.schorpp.planmich.dao.KategorieDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="kategorieService"
+		class="org.schorpp.planmich.service.KategorieServiceImpl">
+		<property name="kategorieDAO" ref="kategorieDAO" />
+	</bean>
+
+	<!-- Testklassen -->
+	<bean id="mandantTest" class="PersistenceTest">
+		<property name="mandantSevice" ref="mandantService"/>
+	</bean>
+
+</beans>
