@@ -6,8 +6,8 @@
 
 	<t:div id="menue" forceId="true">
 
-		<t:panelNavigation2 id="nav" layout="list" itemClass="menu"
-			activeItemClass="selected" styleClass="navigation">
+		<t:panelNavigation2 id="nav" layout="list" itemClass="menuepunkt"
+			activeItemClass="aktiv" styleClass="menue">
 			<t:navigationMenuItems id="navitems" value="#{menu.menuItems}" />
 		</t:panelNavigation2>
 

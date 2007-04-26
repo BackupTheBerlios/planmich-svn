@@ -27,10 +27,10 @@
 				</h:inputText>
 
 				<h:outputText value="#{messages.kommentar}" />
-				<h:inputText id="Kommentar" value="#{mandantBakingBean.kommentar}"
-					required="true" maxlength="255">
+				<h:inputTextarea id="Kommentar" value="#{mandantBakingBean.kommentar}"
+					required="true">
 					<f:validateLength minimum="1" maximum="255" />
-				</h:inputText>
+				</h:inputTextarea>
 
 			</h:panelGrid>
 
