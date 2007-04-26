@@ -40,7 +40,7 @@
 				<br>
 			</f:verbatim>
 
-			<h:commandButton id="submit" value="#{messages.mandanthinzufuegen}"
+			<h:commandButton id="submit" value="#{messages.neuermandant}"
 				action="#{mandantBakingBean.addMandant}" />
 
 		</h:form>

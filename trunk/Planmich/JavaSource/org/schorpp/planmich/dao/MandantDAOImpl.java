@@ -35,8 +35,8 @@ public class MandantDAOImpl extends HibernateDaoSupport implements MandantDAO {
 		getHibernateTemplate().delete(m);
 	}
 	
-	public void update(Mandant m) {
-		getHibernateTemplate().update(m);
+	public void save(Mandant m) {
+		getHibernateTemplate().saveOrUpdate(m);
 	}
 
 }

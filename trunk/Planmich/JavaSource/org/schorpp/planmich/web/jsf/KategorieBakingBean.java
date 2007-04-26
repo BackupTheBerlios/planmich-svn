@@ -58,7 +58,7 @@ public class KategorieBakingBean extends BaseBean {
 		
 		Mandant m = service.getMandantById(mandantId);
 		m.addKategorie(k);
-		mandantDAO.update(m);
+		mandantDAO.save(m);
 	}
 
 }
