@@ -1,7 +1,14 @@
 package org.schorpp.planmich.web.jsf;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.faces.model.SelectItem;
+
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Kategorie;
+import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.service.MandantService;
 
@@ -11,7 +18,7 @@ public class KategorieBakingBean extends BaseBean {
 	private MandantDAO mandantDAO;
 	private String name;
 	private String kommentar;
-	private boolean soll = true;
+	private KategorieTyp typ = KategorieTyp.Ausgabe;
 	private Integer mandantId;
 	
 	public KategorieBakingBean() {
@@ -34,12 +41,12 @@ public class KategorieBakingBean extends BaseBean {
 		this.kommentar = kommentar;
 	}
 
-	public boolean getSoll() {
-		return soll;
+	public KategorieTyp getKategorieTyp() {
+		return typ;
 	}
 
-	public void setSoll(boolean soll) {
-		this.soll = soll;
+	public void setKategorieTyp(KategorieTyp t) {
+		this.typ = t;
 	}
 
 	public void setService(MandantService service) {
@@ -50,15 +57,29 @@ public class KategorieBakingBean extends BaseBean {
 		this.mandantDAO = mandantDAO;
 	}
 	
+	public List getTypListe() {
+		KategorieTyp[] values = KategorieTyp.values();
+		
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		
+		for(int i=0; i<values.length; i++) {
+			items.add(new SelectItem(values[i]));
+		}
+		return items;
+	}
+	
 	public void addKategorie() {
 		Kategorie k = new Kategorie();
 		k.setName(name);
 		k.setKommentar(kommentar);
-		k.setSoll(soll);
+		k.setKategorieTyp(typ);
 		
 		Mandant m = service.getMandantById(mandantId);
 		m.addKategorie(k);
 		mandantDAO.save(m);
+		
+		displayInfo("Kategorie " + name + " wurde hinzugefügt.");
+		
 	}
 
 }

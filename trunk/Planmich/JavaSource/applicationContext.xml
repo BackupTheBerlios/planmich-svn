@@ -59,12 +59,12 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		class="org.schorpp.planmich.dao.KategorieDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+<!--  
 	<bean id="kategorieService"
 		class="org.schorpp.planmich.service.KategorieServiceImpl">
 		<property name="kategorieDAO" ref="kategorieDAO" />
 	</bean>
-
+-->
 	<!-- Testklassen -->
 	<bean id="mandantTest" class="PersistenceTest">
 		<property name="mandantSevice" ref="mandantService"/>

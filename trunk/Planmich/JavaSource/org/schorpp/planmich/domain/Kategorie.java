@@ -18,7 +18,7 @@ public class Kategorie {
 	
 	private String kommentar;
 
-	private boolean soll;
+	private KategorieTyp typ;
 	
 	/* Default-Konstruktor */
 	public Kategorie() {
@@ -82,12 +82,12 @@ public class Kategorie {
 		this.kommentar = kommentar;
 	}
 
-	public boolean isSoll() {
-		return soll;
+	public KategorieTyp getKategorieTyp() {
+		return typ;
 	}
 
-	public void setSoll(boolean soll) {
-		this.soll = soll;
+	public void setKategorieTyp(KategorieTyp t) {
+		this.typ = t;
 	}
 
 	

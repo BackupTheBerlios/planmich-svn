@@ -52,6 +52,7 @@
    <navigation-case>
    <from-outcome>mandantUebersicht</from-outcome>
    <to-view-id>/pages/mandant/uebersicht.jsp</to-view-id>
+   <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>neuerMandant</from-outcome>
@@ -68,6 +69,15 @@
    <redirect/>
   </navigation-case>
  </navigation-rule>
+ 
+ 
+ <converter>
+  
+  <converter-for-class>org.schorpp.planmich.domain.KategorieTyp</converter-for-class>
+  <converter-class>org.schorpp.planmich.web.jsf.konverter.KategorieTypConverter</converter-class>
+      
+</converter>
+ 
  <application>
   <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
   <message-bundle>org.schorpp.planmich.web.resources</message-bundle>

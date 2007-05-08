@@ -167,6 +167,12 @@ a:hover {
 	color: #FF0000;
 }
 
+.info {
+	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: black;
+}
+
 .sortLink {
 	color: #333366;
 	text-decoration: none;
@@ -178,7 +184,7 @@ a:hover {
 }
 
 .pageHeader {
-	background-color: #6392C6;
+	background-color: #dedede;
 	text-align: center;
 	vertical-align: middle;
 	height: 30px;
@@ -201,12 +207,13 @@ a:hover {
 }
 
 .pageNavigation {
+	background-color: #dedede;
 	text-align: left;
 	vertical-align: top;
-	background-color: #ffffff;
 	border: 1px solid #ffffff;
-	padding-left: 10px;
-	width: 200px;
+	width: 150px;
+	margin: 0;
+	padding-right: 0;
 }
 
 .pageBody {
@@ -220,14 +227,64 @@ a:hover {
 .navigation {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 12px;
+	padding: 0;
 }
 
-.menue {
-	width: 200px;
+#hauptmenue {
+	width: 200px; 
+	margin-top : 50px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color: #d;;
+	text-decoration: none;
+}
+
+#hauptmenue ul {
 	list-style-type: none;
+	padding-left: 5px;
+	margin: 0px;
 }
 
-.menuepunkt ul {
+#hauptmenue ul li {
 	padding: 5px;
-	padding: 2px 20px 2px 20px;
+}
+
+#hauptmenue ul li a {
+		text-decoration: none;
+}
+
+#hauptmenue ul.menue ul li a {
+	padding: 2px 20px 0px 25px;
+	margin: 0px;
+	background-color: #dedede;
+	width: 100%;
+}
+
+#hauptmenue ul.menue ul li {
+	padding: 5px; 
+	background-color: #dedede;;
+	margin: 0px;
+}
+
+#hauptmenue ul.menue ul li a {
+	margin: 0px;
+}
+
+
+.aktivmenuepunkt {
+	padding: 0px; 
+	white-space: nowrap;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFFFFF;;
+	white-space: nowrap;
+	background-color: #ffffff;
+}
+
+.menuepunkt {
+	white-space: nowrap;
+	text-decoration: none;
+	background-color: #dddddd;
+	color: #black;
+	padding: 0px;
 }

@@ -21,17 +21,17 @@
 
   <!-- hibernate -->
   <logger name="org.hibernate">
-    <level value="DEBUG"/>
+    <level value="ERROR"/>
   </logger>
   
   <!-- log SQL statements (same as show_sql=true) -->
   <logger name="org.hibernate.SQL">
-    <level value="debug"/>
+    <level value="ERROR"/>
   </logger>
   
   <!-- log parameter binding -->
   <logger name="org.hibernate.type">
-    <level value="warn"/>
+    <level value="ERROR"/>
   </logger>
   
   <!-- log ddl statements -->
@@ -43,6 +43,14 @@
   	<level value="ERROR"/>
   </logger>
 
+  
+  <logger name="com.mchange">
+  	<level value="ERROR"/>
+  </logger>
+  
+   <logger name="javax.faces">
+  	<level value="ERROR"/>
+  </logger>
   
   <!--
     Alle Logmeldungen werden an den Appender STDOUT geschickt.

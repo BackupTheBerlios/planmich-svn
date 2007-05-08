@@ -27,8 +27,8 @@ public class BaseBean {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR, error, error));
 	}
 	
-	protected void displayInfo(String error) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( FacesMessage.SEVERITY_INFO, error, error));
+	protected void displayInfo(String info) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( FacesMessage.SEVERITY_INFO, info, info));
 	}
 	
 }

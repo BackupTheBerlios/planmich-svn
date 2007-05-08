@@ -10,7 +10,7 @@
 
 		<h:form>
 
-			<d:Headline headline="#{messages.addcategorie}" />
+			<d:Headline headline="#{messages.neueKategorie}" />
 
 			<h:panelGrid columns="2" styleClass="inputTable"
 				headerClass="standardTable_Header"
@@ -27,23 +27,25 @@
 				</h:inputText>
 
 				<h:outputText value="#{messages.kommentar}" />
-				<h:inputTextarea id="Kommentar" value="#{kategorieBakingBean.kommentar}"
-					required="true">
+				<h:inputTextarea id="Kommentar" value="#{kategorieBakingBean.kommentar}">
 					<f:validateLength minimum="1" maximum="255" />
 				</h:inputTextarea>
 				
 				<h:outputText value="#{messages.sollhaben}" />	
+				<h:selectOneListbox value="#{kategorieBakingBean.kategorieTyp}">
+					<f:selectItems value="#{kategorieBakingBean.typListe}" />
+				</h:selectOneListbox>
 	
 			</h:panelGrid>
 
-<h:messages showSummary="false" showDetail="true" styleClass="error" />
+			<h:messages showSummary="false" showDetail="true" errorClass="error" infoClass="info"/>
 
 			<f:verbatim>
 				<br>
 			</f:verbatim>
 
 			<h:commandButton id="submit" value="#{messages.addcategory}"
-				action="#{kategorieBakingBean.addKategorie}" />
+				action="#{kategorieBakingBean.neueKategorie}" />
 
 		</h:form>
 	</f:facet>

@@ -4,14 +4,15 @@
 
 <h:form>
 
-	<t:div id="menue" forceId="true">
+				<h:form>
+					<t:jscookMenu id="hiz" layout="vbr" theme="ThemeOffice"
+						styleLocation="/Planmich/css/jscookmenu">
+						<t:navigationMenuItems value="#{menu.menuItems}" />
+					</t:jscookMenu>
+				</h:form>
 
-		<t:panelNavigation2 id="nav" layout="list" itemClass="menuepunkt"
-			activeItemClass="aktiv" styleClass="menue">
-			<t:navigationMenuItems id="navitems" value="#{menu.menuItems}" />
-		</t:panelNavigation2>
 
-	</t:div>
+
 
 </h:form>
 
