@@ -22,6 +22,9 @@ public class Plandatum {
 	@Basic(optional = false)
 	private String name;
 	
+	@Basic(optional = true)
+	private String kommentar;
+	
 	@Basic(optional = false)
 	private double betrag;
 	
@@ -95,6 +98,16 @@ public class Plandatum {
 
 	public void setKategorie(Kategorie kategorie) {
 		this.kategorie = kategorie;
+	}
+
+
+	public String getKommentar() {
+		return kommentar;
+	}
+
+
+	public void setKommentar(String kommentar) {
+		this.kommentar = kommentar;
 	}
 	
 }

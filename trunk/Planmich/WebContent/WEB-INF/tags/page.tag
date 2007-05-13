@@ -19,12 +19,6 @@
 		<f:facet name="header">
 			<h:panelGrid columns="2" style="width: 100%" styleClass="headerTable"
 				columnClasses="standardTable_ColumnLeft, standardTable_ColumnRight">
-				<h:form>
-					<t:jscookMenu id="hiz" layout="hbr" theme="ThemeOffice"
-						styleLocation="/Planmich/css/jscookmenu">
-						<t:navigationMenuItems value="#{menu.menuItems}" />
-					</t:jscookMenu>
-				</h:form>
 				<f:verbatim>
 				</f:verbatim>
 

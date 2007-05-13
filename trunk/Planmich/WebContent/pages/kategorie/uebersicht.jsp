@@ -10,7 +10,7 @@
 	<f:facet name="body">
 		<h:form>
 
-			<d:Headline headline="#{messages.addcategorie}" />
+			<d:Headline headline="#{messages.addKategorie}" />
 
 			<h:dataTable value="#{sessionBean.mandant.kategorien}" rendered="true"
 				border="0" rows="5" var="kategorie" id="kategorien"

@@ -25,4 +25,8 @@ public class Session extends BaseBean{
 		this.service = service;
 	}
 	
+	public void selectMandant() {
+		
+	}
+	
 }

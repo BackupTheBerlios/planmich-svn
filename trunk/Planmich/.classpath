@@ -9,7 +9,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ant-junit-1.6.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ant-launcher-1.6.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ant-swing-1.6.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-attrs.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjweaver.jar"/>
@@ -46,13 +45,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jta.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-3.8.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/junit-4.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.11.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.8.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.9.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/myfaces-api-1.1.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/myfaces-impl-1.1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.0.4-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/oscache-2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/portlet-api.jar"/>
@@ -71,9 +65,11 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swarmcache-1.0rc2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/syndiag2.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tomahawk-1.1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/versioncheck.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xerces-2.6.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/myfaces-api-1.1.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/myfaces-impl-1.1.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tomahawk-1.1.5.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

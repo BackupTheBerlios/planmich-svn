@@ -20,8 +20,6 @@
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/ant-launcher-1.6.5.jar" NAME="lib-ant-launcher-1.6.5.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
-  LOCATION="%exadel.workspace%/lib/ant-swing-1.6.5.jar" NAME="lib-ant-swing-1.6.5.jar"/>
- <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/antlr-2.7.6.jar" NAME="lib-antlr-2.7.6.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/asm-attrs.jar" NAME="lib-asm-attrs.jar"/>
@@ -94,21 +92,11 @@
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/jta.jar" NAME="lib-jta.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
-  LOCATION="%exadel.workspace%/lib/junit-3.8.1.jar" NAME="lib-junit-3.8.1.jar"/>
- <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/junit-4.0.jar" NAME="lib-junit-4.0.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/junit.jar" NAME="lib-junit.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/log4j-1.2.11.jar" NAME="lib-log4j-1.2.11.jar"/>
- <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
-  LOCATION="%exadel.workspace%/lib/log4j-1.2.8.jar" NAME="lib-log4j-1.2.8.jar"/>
- <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
-  LOCATION="%exadel.workspace%/lib/log4j-1.2.9.jar" NAME="lib-log4j-1.2.9.jar"/>
- <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
-  LOCATION="%exadel.workspace%/lib/myfaces-api-1.1.4.jar" NAME="lib-myfaces-api-1.1.4.jar"/>
- <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
-  LOCATION="%exadel.workspace%/lib/myfaces-impl-1.1.4.jar" NAME="lib-myfaces-impl-1.1.4.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/oscache-2.1.jar" NAME="lib-oscache-2.1.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
@@ -144,8 +132,6 @@
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/syndiag2.jar" NAME="lib-syndiag2.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
-  LOCATION="%exadel.workspace%/lib/tomahawk-1.1.4.jar" NAME="lib-tomahawk-1.1.4.jar"/>
- <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/versioncheck.jar" NAME="lib-versioncheck.jar"/>
  <FILESYSTEM ENTITY="FileSystemJar" INFO="hidden=yes"
   LOCATION="%exadel.workspace%/lib/xerces-2.6.2.jar" NAME="lib-xerces-2.6.2.jar"/>
@@ -155,6 +141,12 @@
   LOCATION="%exadel.eclipse.project%" NAME="Planmich"/>
  <FILESYSTEM ENTITY="FileSystemJar"
   LOCATION="%exadel.workspace%/lib/mysql-connector-java-5.0.4-bin.jar" NAME="lib-mysql-connector-java-5.0.4-bin.jar"/>
+ <FILESYSTEM ENTITY="FileSystemJar"
+  LOCATION="%exadel.workspace%/lib/myfaces-api-1.1.5.jar" NAME="lib-myfaces-api-1.1.5.jar"/>
+ <FILESYSTEM ENTITY="FileSystemJar"
+  LOCATION="%exadel.workspace%/lib/myfaces-impl-1.1.5.jar" NAME="lib-myfaces-impl-1.1.5.jar"/>
+ <FILESYSTEM ENTITY="FileSystemJar"
+  LOCATION="%exadel.workspace%/lib/tomahawk-1.1.5.jar" NAME="lib-tomahawk-1.1.5.jar"/>
  <WEB ENTITY="ExadelWeb" MODEL_PATH="/web.xml" SERVLET_VERSION="2.4">
   <MODULE ENTITY="WebJSFModule" ROOT="WEB-ROOT" SRC="src,src2" URI="/WEB-INF/faces-config.xml"/>
  </WEB>

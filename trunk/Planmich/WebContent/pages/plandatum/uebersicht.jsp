@@ -9,9 +9,9 @@
 
 	<f:facet name="body">
 		<h:form>
-			<d:Headline headline="#{messages.addcategorie}" />
+			<d:Headline headline="#{messages.addPlandatum}" />
 			
-			<h:dataTable value="#{plandatesBean.plandates}" rendered="true"
+			<h:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
 				border="0" rows="10" var="plandate" id="showPlandates"
 				styleClass="scrollerTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"

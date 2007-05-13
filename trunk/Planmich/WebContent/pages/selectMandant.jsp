@@ -23,11 +23,10 @@
 						<h:outputText value="vorhandene Mandanten:" />
 					</f:facet>
 					
-					<t:commandLink action="" immediate="true">
+					<t:commandLink action="#{sessionBean.selectMandant}" immediate="true">
 						<h:outputText value="#{mandant.name}" />
-						<h:outputText value="#{mandant.id}" />
-						<!--<t:updateActionListener property="#{sessionBean.mandantId}"
-							value="#{mandant.id}" />-->
+						<t:updateActionListener property="#{sessionBean.mandantId}"
+							value="#{mandant.id}" />
 					</t:commandLink>
 
 				</h:column>

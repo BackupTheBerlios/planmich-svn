@@ -6,27 +6,29 @@
   <component-type>Headline</component-type>
   <component-class>org.schorpp.planmich.web.jsf.komponenten.UIHeadline</component-class>
  </component>
-  <component>
+ <component>
   <component-type>Spacer</component-type>
   <component-class>org.schorpp.planmich.web.jsf.komponenten.UISpacer</component-class>
  </component>
- 
-  <managed-bean>
+ <converter>
+  <converter-for-class>org.schorpp.planmich.domain.KategorieTyp</converter-for-class>
+  <converter-class>org.schorpp.planmich.web.jsf.konverter.KategorieTypConverter</converter-class>
+ </converter>
+ <managed-bean>
   <managed-bean-name>sessionBean</managed-bean-name>
   <managed-bean-class>org.schorpp.planmich.web.jsf.Session</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
-    <managed-property>
+  <managed-property>
    <property-name>service</property-name>
    <value>#{mandantService}</value>
   </managed-property>
  </managed-bean>
- 
  <managed-bean>
   <managed-bean-name>menu</managed-bean-name>
   <managed-bean-class>org.schorpp.planmich.web.jsf.menu.NavigationMenu</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
-  <managed-bean>
+ <managed-bean>
   <managed-bean-name>mandantBakingBean</managed-bean-name>
   <managed-bean-class>org.schorpp.planmich.web.jsf.MandantBakingBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
@@ -43,13 +45,26 @@
    <property-name>service</property-name>
    <value>#{mandantService}</value>
   </managed-property>
-   <managed-property>
+  <managed-property>
+   <property-name>mandantDAO</property-name>
+   <value>#{mandantDAO}</value>
+  </managed-property>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>plandatumBakingBean</managed-bean-name>
+  <managed-bean-class>org.schorpp.planmich.web.jsf.PlandatumBakingBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  <managed-property>
+   <property-name>service</property-name>
+   <value>#{mandantService}</value>
+  </managed-property>
+  <managed-property>
    <property-name>mandantDAO</property-name>
    <value>#{mandantDAO}</value>
   </managed-property>
  </managed-bean>
  <navigation-rule>
-   <navigation-case>
+  <navigation-case>
    <from-outcome>mandantUebersicht</from-outcome>
    <to-view-id>/pages/mandant/uebersicht.jsp</to-view-id>
    <redirect/>
@@ -68,24 +83,26 @@
    <to-view-id>/pages/kategorie/neu.jsp</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>plandatenUebersicht</from-outcome>
+   <to-view-id>/pages/plandatum/uebersicht.jsp</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>neuesPlandatum</from-outcome>
+   <to-view-id>/pages/plandatum/neu.jsp</to-view-id>
+   <redirect/>
+  </navigation-case>
  </navigation-rule>
- 
- 
- <converter>
-  
-  <converter-for-class>org.schorpp.planmich.domain.KategorieTyp</converter-for-class>
-  <converter-class>org.schorpp.planmich.web.jsf.konverter.KategorieTypConverter</converter-class>
-      
-</converter>
- 
  <application>
   <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
   <message-bundle>org.schorpp.planmich.web.resources</message-bundle>
-  
   <locale-config>
    <default-locale>de_DE</default-locale>
    <supported-locale>de</supported-locale>
    <supported-locale>en</supported-locale>
   </locale-config>
  </application>
+ <lifecycle>
+  <phase-listener>org.schorpp.planmich.web.jsf.MandantSelectionCheck</phase-listener>
+ </lifecycle>
 </faces-config>

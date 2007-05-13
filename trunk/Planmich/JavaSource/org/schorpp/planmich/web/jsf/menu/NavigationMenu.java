@@ -33,8 +33,8 @@ public class NavigationMenu {
         
         mandantMenu.add(createMenuNavigationItem("Neu", "neuerMandant", "/pages/mandant/neu.jsp"));
 
-        plandateMenu.add(createMenuNavigationItem("Plandatenübersicht", "showPlandates"));
-        plandateMenu.add(createMenuNavigationItem("neues Plandatum", "addPlandate"));
+        plandateMenu.add(createMenuNavigationItem("Plandatenübersicht", "plandatenUebersicht", "/pages/plandatum/uebersicht.jsp"));
+        plandateMenu.add(createMenuNavigationItem("neues Plandatum", "neuesPlandatum", "/pages/plandatum/neu.jsp"));
         
 
         
