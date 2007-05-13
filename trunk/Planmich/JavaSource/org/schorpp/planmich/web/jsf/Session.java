@@ -1,5 +1,8 @@
 package org.schorpp.planmich.web.jsf;
 
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
+
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.service.MandantService;
 
@@ -15,6 +18,17 @@ public class Session extends BaseBean{
 	public void setMandantId(int mandantId) {
 		this.mandantId = mandantId;
 		saveInSession("Mandant", mandantId);
+		
+		String forward = (String) getFromSession("Redirect");
+		if(forward != null) {
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			UIViewRoot vr = (UIViewRoot) facesContext.getApplication()
+					.getViewHandler().createView(facesContext,
+							forward);
+			facesContext.setViewRoot(vr);
+			facesContext.renderResponse();
+		}
+		
 	}
 	
 	public Mandant getMandant() {

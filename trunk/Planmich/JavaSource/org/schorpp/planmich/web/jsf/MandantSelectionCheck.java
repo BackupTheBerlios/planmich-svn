@@ -17,7 +17,11 @@ public class MandantSelectionCheck implements PhaseListener {
 	/**
 	 * Umleiten auf /pages/selectMandant.jsp
 	 */
-	private void toMandantSelection() {
+	private void toMandantSelection(String renderedViewId) {
+		
+		// Ursprünglich aufgerufene Seite in der Sessin speichern
+		saveInSession("Redirect", renderedViewId);
+		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		UIViewRoot vr = (UIViewRoot) facesContext.getApplication()
 				.getViewHandler().createView(facesContext,
@@ -37,8 +41,9 @@ public class MandantSelectionCheck implements PhaseListener {
 		// catch a view definition in xml
 		String renderedViewId = facesContext.getViewRoot().getViewId();
 
-		if(getFromSession("Mandant") == null)
-			toMandantSelection();
+		if(getFromSession("Mandant") == null) {
+			toMandantSelection(renderedViewId);
+		}
 		
 		// if (!renderedViewId.equals("/login.jsp") &&
 		// !renderedViewId.equals("/error.jsp")) {
@@ -76,6 +81,10 @@ public class MandantSelectionCheck implements PhaseListener {
 	
 	protected Object getFromSession(String name) {
 		return getRequest().getSession(true).getAttribute(name);
+	}
+	
+	protected void saveInSession(String name, Object objekt) {
+		getRequest().getSession(true).setAttribute(name, objekt);
 	}
 	
 	protected HttpServletRequest getRequest() {
