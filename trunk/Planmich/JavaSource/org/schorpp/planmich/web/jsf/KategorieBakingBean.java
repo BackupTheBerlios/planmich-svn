@@ -1,7 +1,6 @@
 package org.schorpp.planmich.web.jsf;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -76,7 +75,7 @@ public class KategorieBakingBean extends BaseBean {
 		
 		Mandant m = service.getMandantById(mandantId);
 		m.addKategorie(k);
-		mandantDAO.save(m);
+		mandantDAO.saveMandant(m);
 		
 		displayInfo("Kategorie " + name + " wurde hinzugefügt.");
 		

@@ -58,22 +58,22 @@
 				paginatorTableClass="paginator"
 				paginatorActiveColumnStyle="font-weight:bold;">
 				<f:facet name="first">
-					<t:graphicImage url="images/arrow-first.gif" border="1" />
+					<t:graphicImage url="/images/arrow-first.gif" border="1" />
 				</f:facet>
 				<f:facet name="last">
-					<t:graphicImage url="images/arrow-last.gif" border="1" />
+					<t:graphicImage url="/images/arrow-last.gif" border="1" />
 				</f:facet>
 				<f:facet name="previous">
-					<t:graphicImage url="images/arrow-previous.gif" border="1" />
+					<t:graphicImage url="/images/arrow-previous.gif" border="1" />
 				</f:facet>
 				<f:facet name="next">
-					<t:graphicImage url="images/arrow-next.gif" border="1" />
+					<t:graphicImage url="/images/arrow-next.gif" border="1" />
 				</f:facet>
 				<f:facet name="fastforward">
-					<t:graphicImage url="images/arrow-ff.gif" border="1" />
+					<t:graphicImage url="/images/arrow-ff.gif" border="1" />
 				</f:facet>
 				<f:facet name="fastrewind">
-					<t:graphicImage url="images/arrow-fr.gif" border="1" />
+					<t:graphicImage url="/images/arrow-fr.gif" border="1" />
 				</f:facet>
 			</t:dataScroller>
 		</h:form>

@@ -10,6 +10,7 @@ public class HeadlineTag extends UIComponentTag {
 
 	private String headline;
 	
+	@Override
 	protected void setProperties(UIComponent component)
 	  {
 	    super.setProperties(component);
@@ -22,13 +23,14 @@ public class HeadlineTag extends UIComponentTag {
 	        Application app = context.getApplication();
 	        ValueBinding vb = app.createValueBinding(headline);
 	        component.setValueBinding("headline", vb);                  
-	      }
-	      else 
-	        component.getAttributes().put("headline", headline);
+	      } else {
+			component.getAttributes().put("headline", headline);
+		}
 	    }                         
 	  }
 
-	  public void release()
+	  @Override
+	public void release()
 	  {
 	    super.release();
 	    headline = null;
@@ -40,11 +42,13 @@ public class HeadlineTag extends UIComponentTag {
 	    this.headline = hellomsg;
 	  } 
 
+	@Override
 	public String getComponentType() {
 		
 		return "Headline";
 	}
 
+	@Override
 	public String getRendererType() {
 
 		return null;

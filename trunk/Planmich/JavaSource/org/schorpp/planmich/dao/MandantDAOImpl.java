@@ -14,8 +14,8 @@ public class MandantDAOImpl extends HibernateDaoSupport implements MandantDAO {
 		return (Mandant) getHibernateTemplate().get(Mandant.class, id);
 	}
 	
-	public Integer saveMandant(Mandant m) {
-		return (Integer) getHibernateTemplate().save(m);
+	public void saveMandant(Mandant m) {
+		getHibernateTemplate().save(m);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -25,10 +25,11 @@ public class MandantDAOImpl extends HibernateDaoSupport implements MandantDAO {
 
 	public Mandant getMandantByName(String name) {
 		List res = getHibernateTemplate().find("from Mandant where name like ?", name);
-		if(res.size() > 0)
+		if(res.size() > 0) {
 			return (Mandant) res.get(0);
-		else
+		} else {
 			return null;
+		}
 	}
 
 	public void delete(Mandant m) {

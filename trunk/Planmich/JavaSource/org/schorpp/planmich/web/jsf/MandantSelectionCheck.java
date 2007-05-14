@@ -23,7 +23,7 @@ public class MandantSelectionCheck implements PhaseListener {
 		saveInSession("Redirect", renderedViewId);
 		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		UIViewRoot vr = (UIViewRoot) facesContext.getApplication()
+		UIViewRoot vr = facesContext.getApplication()
 				.getViewHandler().createView(facesContext,
 						"/pages/selectMandant.jsp");
 		facesContext.setViewRoot(vr);
@@ -41,7 +41,8 @@ public class MandantSelectionCheck implements PhaseListener {
 		// catch a view definition in xml
 		String renderedViewId = facesContext.getViewRoot().getViewId();
 
-		if(getFromSession("Mandant") == null) {
+		Integer mandantID = (Integer) getFromSession("Mandant");
+		if(mandantID == null) {
 			toMandantSelection(renderedViewId);
 		}
 		

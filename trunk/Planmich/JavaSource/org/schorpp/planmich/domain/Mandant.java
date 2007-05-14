@@ -28,8 +28,6 @@ public class Mandant {
 	
 	private List<Kategorie> kategorien = new ArrayList<Kategorie>();
 
-
-
 	/* Default-Konstruktor */
 	public Mandant() {
 	}
@@ -133,7 +131,7 @@ public class Mandant {
 	public void setKommentar(String kommentar) {
 		this.kommentar = kommentar;
 	}
-	
+
 	public boolean equals(Mandant m) {
 		return id == m.getId();
 	}

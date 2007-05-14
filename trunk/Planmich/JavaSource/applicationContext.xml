@@ -8,7 +8,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd"
 	default-autowire="byType">
 
-	<import resource="transactionContext.xml"/>
+	<import resource="transactionContext.xml" />
 
 	<!-- hibernate template -->
 	<bean id="hibernateTemplate"
@@ -24,6 +24,7 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 				<value>org.schorpp.planmich.domain.Mandant</value>
 				<value>org.schorpp.planmich.domain.Plandatum</value>
 				<value>org.schorpp.planmich.domain.Kategorie</value>
+				<value>org.schorpp.planmich.domain.Turnus</value>
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
@@ -32,18 +33,30 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				
 			</props>
 		</property>
 	</bean>
 
+<!-- 
 	<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="org.hsqldb.jdbcDriver" />
-		<property name="jdbcUrl" value="jdbc:hsqldb:c:/tmp/musicShop"/>
+		<property name="jdbcUrl" value="jdbc:hsqldb:c:/tmp/musicShop" />
 		<property name="user" value="sa" />
 		<property name="password" value="" />
 	</bean>
+	-->
+		<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl"
+		value="jdbc:mysql://localhost:3306/planmich" />
+		<property name="user" value="root" />
+		<property name="password" value="perry58" />
+		</bean>
 
 	<bean id="mandantDAO"
 		class="org.schorpp.planmich.dao.MandantDAOImpl">
@@ -55,19 +68,21 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		<property name="mandantDAO" ref="mandantDAO" />
 	</bean>
 
-	<bean id="kategorieDAO"
-		class="org.schorpp.planmich.dao.KategorieDAOImpl">
+
+	<bean id="turnusDAO"
+		class="org.schorpp.planmich.dao.TurnusDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-<!--  
-	<bean id="kategorieService"
+
+	<!--  
+		<bean id="kategorieService"
 		class="org.schorpp.planmich.service.KategorieServiceImpl">
 		<property name="kategorieDAO" ref="kategorieDAO" />
-	</bean>
--->
+		</bean>
+	-->
 	<!-- Testklassen -->
 	<bean id="mandantTest" class="PersistenceTest">
-		<property name="mandantSevice" ref="mandantService"/>
+		<property name="mandantSevice" ref="mandantService" />
 	</bean>
 
 </beans>

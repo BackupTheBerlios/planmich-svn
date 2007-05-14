@@ -20,7 +20,7 @@
     <description>State saving method: "client" or "server" (= default)
             See JSF Specification 2.5.3</description>
     <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-    <param-value>client</param-value>
+    <param-value>server</param-value>
   </context-param>
   <context-param>
     <description>Only applicable if state saving method is "server" (= default).
@@ -206,6 +206,9 @@
  <listener>
   <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
  </listener>
+ <listener>
+  <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+</listener>
 
  <servlet-mapping>
   <servlet-name>Faces Servlet</servlet-name>

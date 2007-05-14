@@ -10,6 +10,7 @@ public class SpacerTag extends UIComponentTag {
 
 	private String size;
 	
+	@Override
 	protected void setProperties(UIComponent component)
 	  {
 	    super.setProperties(component);
@@ -22,13 +23,14 @@ public class SpacerTag extends UIComponentTag {
 	        Application app = context.getApplication();
 	        ValueBinding vb = app.createValueBinding(size);
 	        component.setValueBinding("size", vb);                  
-	      }
-	      else 
-	        component.getAttributes().put("size", size);
+	      } else {
+			component.getAttributes().put("size", size);
+		}
 	    }                         
 	  }
 
-	  public void release()
+	  @Override
+	public void release()
 	  {
 	    super.release();
 	    size = null;
@@ -40,11 +42,13 @@ public class SpacerTag extends UIComponentTag {
 	    this.size = size;
 	  } 
 
+	@Override
 	public String getComponentType() {
 		
 		return "Spacer";
 	}
 
+	@Override
 	public String getRendererType() {
 
 		return null;

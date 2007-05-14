@@ -1,14 +1,12 @@
 package org.schorpp.planmich.web.jsf;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
 
 import org.schorpp.planmich.dao.MandantDAO;
-import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
@@ -71,7 +69,7 @@ public class PlandatumBakingBean extends BaseBean {
 		
 		Mandant m = service.getMandantById(mandantId);
 		m.addPlandatum(p);
-		mandantDAO.save(m);
+		mandantDAO.saveMandant(m);
 		
 		displayInfo("Plandatum " + name + " wurde hinzugefügt.");
 		
