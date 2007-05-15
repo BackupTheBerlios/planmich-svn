@@ -32,7 +32,7 @@
 					<f:validateLength minimum="1" maximum="255" />
 				</h:inputTextarea>
 
-				<h:outputText value="#messages.wertstellung" />
+				<h:outputText value="#{messages.wertstellung}" />
 				<t:inputCalendar id="valuta" monthYearRowClass="yearMonthHeader"
 					weekRowClass="weekHeader" popupButtonStyleClass="standard_bold"
 					currentDayCellClass="currentDayCell"

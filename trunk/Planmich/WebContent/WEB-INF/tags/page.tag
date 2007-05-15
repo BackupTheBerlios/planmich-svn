@@ -13,6 +13,14 @@
 	<f:loadBundle basename="org.schorpp.planmich.web.resources.resources"
 		var="messages" />
 
+	<h:form>
+		<t:jscookMenu id="menu2" layout="hbr" theme="ThemeOffice"
+			styleLocation="/css/jscookmenu">
+			<t:navigationMenuItems id="menu2items" value="#{menu.menuItems}" />
+		</t:jscookMenu>
+	</h:form>
+
+
 	<t:panelLayout id="page" styleClass="pageLayout"
 		headerClass="pageHeader" navigationClass="pageNavigation"
 		bodyClass="pageBody">
@@ -22,7 +30,7 @@
 				<f:verbatim>
 				</f:verbatim>
 
-				<f:verbatim>Webplanme Version 0.0.2 </f:verbatim>
+				<f:verbatim>Planmich Version 0.0.3 </f:verbatim>
 				<h:outputText style="padding-right: 1em"
 					value="messages.mandant:  #{sessionBean.mandant.name}" />
 			</h:panelGrid>
