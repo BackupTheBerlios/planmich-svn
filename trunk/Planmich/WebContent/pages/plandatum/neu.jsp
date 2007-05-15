@@ -27,21 +27,35 @@
 				</h:inputText>
 
 				<h:outputText value="#{messages.kommentar}" />
-				<h:inputTextarea id="Kommentar" value="#{plandatumBakingBean.kommentar}">
+				<h:inputTextarea id="Kommentar"
+					value="#{plandatumBakingBean.kommentar}">
 					<f:validateLength minimum="1" maximum="255" />
 				</h:inputTextarea>
-	
+
 				<h:outputText value="#messages.wertstellung" />
-				<t:inputCalendar id="valuta" monthYearRowClass="yearMonthHeader" weekRowClass="weekHeader" popupButtonStyleClass="standard_bold"
-                currentDayCellClass="currentDayCell" value="#{plandatumBakingBean.wertstellung}" renderAsPopup="true"
-                popupTodayString="#{example_messages['popup_today_string']}"
-                popupDateFormat="MM/dd/yyyy" popupWeekString="#{example_messages['popup_week_string']}"
-                helpText="MM/DD/YYYY"
-                forceId="true"/>
-	
+				<t:inputCalendar id="valuta" monthYearRowClass="yearMonthHeader"
+					weekRowClass="weekHeader" popupButtonStyleClass="standard_bold"
+					currentDayCellClass="currentDayCell"
+					value="#{plandatumBakingBean.wertstellung}" renderAsPopup="true"
+					popupTodayString="Heute: " popupDateFormat="MM/dd/yyyy"
+					popupWeekString="#{example_messages['popup_week_string']}"
+					helpText="MM/DD/YYYY" forceId="true" />
+
+				<h:outputText value="#{messages.betrag}" />
+				<h:inputText id="betrag" value="#{plandatumBakingBean.betrag}">
+					<f:validateLength minimum="1" maximum="255" />
+				</h:inputText>
+
+				<h:outputText value="#{messages.kategorie}" />
+				<h:selectOneMenu id="kategorie"
+					value="#{plandatumBakingBean.kategorie}">
+					<f:selectItems value="#{plandatumBakingBean.kategorieListe}"/>
+				</h:selectOneMenu>
+
 			</h:panelGrid>
 
-			<h:messages showSummary="false" showDetail="true" errorClass="error" infoClass="info"/>
+			<h:messages showSummary="false" showDetail="true" errorClass="error"
+				infoClass="info" />
 
 			<f:verbatim>
 				<br>

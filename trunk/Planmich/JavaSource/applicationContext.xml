@@ -24,7 +24,7 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 				<value>org.schorpp.planmich.domain.Mandant</value>
 				<value>org.schorpp.planmich.domain.Plandatum</value>
 				<value>org.schorpp.planmich.domain.Kategorie</value>
-				<value>org.schorpp.planmich.domain.Turnus</value>
+			<!-- <value>org.schorpp.planmich.domain.Turnus</value>-->
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
@@ -68,11 +68,6 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		<property name="mandantDAO" ref="mandantDAO" />
 	</bean>
 
-
-	<bean id="turnusDAO"
-		class="org.schorpp.planmich.dao.TurnusDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 
 	<!--  
 		<bean id="kategorieService"

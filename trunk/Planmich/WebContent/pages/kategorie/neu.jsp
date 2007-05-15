@@ -45,7 +45,7 @@
 			</f:verbatim>
 
 			<h:commandButton id="submit" value="#{messages.addcategory}"
-				action="#{kategorieBakingBean.neueKategorie}" />
+				action="#{kategorieBakingBean.addKategorie}" />
 
 		</h:form>
 	</f:facet>
