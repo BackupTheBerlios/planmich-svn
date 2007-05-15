@@ -69,7 +69,7 @@ public class PlandatumBakingBean extends BaseBean {
 	}
 	
 	public List getKategorieListe() {
-		List categories = ((Mandant) getFromSession("Mandant")).getKategorien();
+		List categories = ((Mandant) mandantDAO.getMandantById(mandantId)).getKategorien();
 		List<SelectItem> ret = new ArrayList<SelectItem>();
 		
 		// erster EintragI ist leer

@@ -38,7 +38,7 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		</property>
 	</bean>
 
-<!-- 
+ 
 	<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
@@ -47,8 +47,7 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		<property name="user" value="sa" />
 		<property name="password" value="" />
 	</bean>
-	-->
-		<bean id="dataSource"
+	<!-- 		<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
@@ -56,7 +55,7 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		value="jdbc:mysql://localhost:3306/planmich" />
 		<property name="user" value="root" />
 		<property name="password" value="perry58" />
-		</bean>
+		</bean>-->
 
 	<bean id="mandantDAO"
 		class="org.schorpp.planmich.dao.MandantDAOImpl">

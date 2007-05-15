@@ -4,12 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f"%>
 <%@ taglib uri="http://myfaces.apache.org/tomahawk" prefix="t"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="layout"%>
+<%@ taglib uri="http://schorpp.org/planmich" prefix="d"%>
 
 <layout:page>
 
 	<f:facet name="body">
 		<h:form>
-			<d:Headline headline="#{messages.addPlandatum}" />
+			<d:Headline headline="#{messages.plandatumUebersicht}" />
 			
 			<h:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
 				border="0" rows="10" var="plandate" id="showPlandates"
@@ -33,7 +34,7 @@
                                         <f:facet name="header">
                                                 <h:outputText value="Datum" />
                                         </f:facet>
-                                        <h:outputText value="#{plandate.datum}" />
+                                        <h:outputText value="#{plandate.wertstellung}" />
                                 </h:column>
 
 				<h:column>
@@ -42,12 +43,7 @@
 					</f:facet>
 					<h:outputText value="#{plandate.kategorie.name}" />
 				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Turnus" />
-					</f:facet>
-					<h:outputText value="#{plandate.turnus.name}" />
-				</h:column>
+
 			</h:dataTable>
 			<f:verbatim>
 				<br>
@@ -76,6 +72,12 @@
 					<t:graphicImage url="/images/arrow-fr.gif" border="1" />
 				</f:facet>
 			</t:dataScroller>
+			
+			
+			<d:Spacer/>
+			
+			<t:commandLink value="#{messages.addPlandatum}" action="neuesPlandatum" />
+			
 		</h:form>
 
 	</f:facet>
