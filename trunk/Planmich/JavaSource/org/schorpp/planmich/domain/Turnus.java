@@ -8,22 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "turnus")
 public class Turnus {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Basic(optional = false)
-	@Column(name = "name", unique=true)
 	private String name;
 
 	
 	public Turnus() {}
 	
-	public Turnus(String name) {
+	public Turnus(int id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 

@@ -41,6 +41,13 @@
 					popupWeekString="#{example_messages['popup_week_string']}"
 					helpText="MM/DD/YYYY" forceId="true" />
 
+				<h:outputText value="#{messages.turnus}" />
+				<h:selectOneMenu id="kategorie"
+					value="#{plandatumBakingBean.turnus}">
+					<f:selectItems value="#{plandatumBakingBean.turnusListe}"/>
+				</h:selectOneMenu>
+
+
 				<h:outputText value="#{messages.betrag}" />
 				<h:inputText id="betrag" value="#{plandatumBakingBean.betrag}">
 					<f:validateLength minimum="1" maximum="255" />

@@ -63,6 +63,14 @@
    <value>#{mandantDAO}</value>
   </managed-property>
  </managed-bean>
+ 
+ 
+ <managed-bean>
+ 	<managed-bean-name>turnusListe</managed-bean-name>
+ 	<managed-bean-class>org.schorpp.planmich.web.jsf.TurnusListe</managed-bean-class>
+ 	<managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
+ 
  <navigation-rule>
   <navigation-case>
    <from-outcome>mandantUebersicht</from-outcome>
