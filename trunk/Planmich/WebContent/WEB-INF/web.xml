@@ -252,14 +252,6 @@
 		</listener-class>
 	</listener>
 
-	<!-- Initialisierungsservlet, Testdaten speichern -->
-	<servlet>
-		<servlet-name>Init Servlet</servlet-name>
-		<servlet-class>
-			org.schorpp.planmich.web.Init
-		</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 
 	<listener>
 		<listener-class>
