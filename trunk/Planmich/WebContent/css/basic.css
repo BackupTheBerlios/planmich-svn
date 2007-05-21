@@ -231,8 +231,8 @@ a:hover {
 }
 
 #hauptmenue {
-	width: 200px; 
-	margin-top : 50px;
+	width: 200px;
+	margin-top: 50px;
 	margin-left: 0px;
 	margin-right: 0px;
 	background-color: #d;;
@@ -250,7 +250,7 @@ a:hover {
 }
 
 #hauptmenue ul li a {
-		text-decoration: none;
+	text-decoration: none;
 }
 
 #hauptmenue ul.menue ul li a {
@@ -261,7 +261,7 @@ a:hover {
 }
 
 #hauptmenue ul.menue ul li {
-	padding: 5px; 
+	padding: 5px;
 	background-color: #dedede;;
 	margin: 0px;
 }
@@ -270,9 +270,8 @@ a:hover {
 	margin: 0px;
 }
 
-
 .aktivmenuepunkt {
-	padding: 0px; 
+	padding: 0px;
 	white-space: nowrap;
 	text-decoration: none;
 	font-weight: bold;

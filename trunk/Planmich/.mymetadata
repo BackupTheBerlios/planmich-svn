@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Planmich"
+  id="myeclipse.1179767606312"
+  context-root="/Planmich"
+  j2ee-spec="1.4"
+  archive="Planmich.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebContent" />
+  </attributes>
+</project-module>
+

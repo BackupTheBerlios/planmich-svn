@@ -1,41 +1,41 @@
 body {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: normal;
-    color: #000000;
-    background-color: #ffffff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+	background-color: #ffffff;
 }
 
 h1 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 15px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
 }
 
 h2 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 14px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
 }
 
 h3 {
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 13px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
 }
 
-a, a:link, a:visited, a:active {
-    color: #000000;
-    background-color: inherit;
+a,a:link,a:visited,a:active {
+	color: #000000;
+	background-color: inherit;
 }
 
 a:hover {
-    color: #ff0000;
-    background-color: inherit;
+	color: #ff0000;
+	background-color: inherit;
 }
 
 hr {
-    height: 1px;
-    border-style: dotted;
-    border-color: #000000;
-    border-width: 0px 0px 1px 0px;
-    width: 600px;
-    margin: 1em 0 1em 0;
+	height: 1px;
+	border-style: dotted;
+	border-color: #000000;
+	border-width: 0px 0px 1px 0px;
+	width: 600px;
+	margin: 1em 0 1em 0;
 }

@@ -24,7 +24,7 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 				<value>org.schorpp.planmich.domain.Mandant</value>
 				<value>org.schorpp.planmich.domain.Plandatum</value>
 				<value>org.schorpp.planmich.domain.Kategorie</value>
-			<!-- <value>org.schorpp.planmich.domain.Turnus</value>-->
+				<!-- <value>org.schorpp.planmich.domain.Turnus</value>-->
 			</list>
 		</property>
 		<property name="dataSource" ref="dataSource" />
@@ -33,12 +33,12 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				
+
 			</props>
 		</property>
 	</bean>
 
- 
+
 	<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">

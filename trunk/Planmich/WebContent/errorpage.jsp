@@ -1,19 +1,21 @@
 <%@ page isErrorPage="true" import="java.io.*"%>
 <html>
-<head>
-<title>Ausnahme</title>
-	<style>
+	<head>
+		<title>Ausnahme</title>
+		<style>
 	body, p { font-family:Tahoma; font-size:10pt; padding-left:30; }
 	pre { font-size:8pt; }
 	</style>
-</head>
-<body>
-<h3>Ausnahme</h3>
+	</head>
+	<body>
+		<h3>
+			Ausnahme
+		</h3>
 
-<font color="red"> <%=exception.toString()%><br>
-</font>
+		<font color="red"> <%=exception.toString()%>
+			<br> </font>
 
-<%
+		<%
 	StringWriter sw = new StringWriter();
 	PrintWriter pw = new PrintWriter(sw);
 	exception.printStackTrace(pw);
@@ -40,5 +42,5 @@
 	pw.close();
 %>
 
-</body>
+	</body>
 </html>
