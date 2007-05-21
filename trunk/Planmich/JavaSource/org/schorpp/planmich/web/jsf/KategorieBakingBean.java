@@ -14,12 +14,17 @@ import org.schorpp.planmich.service.MandantService;
 public class KategorieBakingBean extends BaseBean {
 
 	private MandantService service;
+
 	private MandantDAO mandantDAO;
+
 	private String name;
+
 	private String kommentar;
+
 	private KategorieTyp typ = KategorieTyp.Ausgabe;
+
 	private Integer mandantId;
-	
+
 	public KategorieBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
 	}
@@ -51,34 +56,34 @@ public class KategorieBakingBean extends BaseBean {
 	public void setService(MandantService service) {
 		this.service = service;
 	}
-	
+
 	public void setMandantDAO(MandantDAO mandantDAO) {
 		this.mandantDAO = mandantDAO;
 	}
-	
+
 	public List getTypListe() {
 		KategorieTyp[] values = KategorieTyp.values();
-		
+
 		List<SelectItem> items = new ArrayList<SelectItem>();
-		
-		for(int i=0; i<values.length; i++) {
+
+		for (int i = 0; i < values.length; i++) {
 			items.add(new SelectItem(values[i]));
 		}
 		return items;
 	}
-	
+
 	public void addKategorie() {
 		Kategorie k = new Kategorie();
 		k.setName(name);
 		k.setKommentar(kommentar);
 		k.setKategorieTyp(typ);
-		
+
 		Mandant m = service.getMandantById(mandantId);
 		m.addKategorie(k);
 		mandantDAO.saveMandant(m);
-		
+
 		displayInfo("Kategorie " + name + " wurde hinzugefügt.");
-		
+
 	}
 
 }

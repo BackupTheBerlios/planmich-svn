@@ -18,34 +18,32 @@ public class Plandatum {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Basic(optional = false)
 	private String name;
-	
+
 	@Basic(optional = true)
 	private String kommentar;
-	
+
 	@Basic(optional = false)
 	private double betrag;
-	
+
 	@Basic(optional = false)
 	private Date wertstellung;
-	
+
 	@Basic(optional = false)
 	private int wiederholung;
-	
+
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	private Kategorie kategorie;
 
 	// Default Konstruktor
-	public Plandatum() 
-	{}
-	
-	
+	public Plandatum() {
+	}
+
 	public Plandatum(String name) {
 		this.name = name;
 	}
-	
 
 	// Getters und Setters
 
@@ -64,7 +62,6 @@ public class Plandatum {
 	public void setWiederholung(int wiederholung) {
 		this.wiederholung = wiederholung;
 	}
-
 
 	public int getId() {
 		return id;
@@ -90,24 +87,20 @@ public class Plandatum {
 		this.wertstellung = wertstellung;
 	}
 
-
 	public Kategorie getKategorie() {
 		return kategorie;
 	}
-
 
 	public void setKategorie(Kategorie kategorie) {
 		this.kategorie = kategorie;
 	}
 
-
 	public String getKommentar() {
 		return kommentar;
 	}
 
-
 	public void setKommentar(String kommentar) {
 		this.kommentar = kommentar;
 	}
-	
+
 }

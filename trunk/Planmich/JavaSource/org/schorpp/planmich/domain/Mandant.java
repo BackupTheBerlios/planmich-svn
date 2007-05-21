@@ -21,22 +21,22 @@ public class Mandant {
 	private int id;
 
 	private String name;
-	
+
 	private String kommentar;
 
 	private List<Plandatum> plandaten = new ArrayList<Plandatum>();
-	
+
 	private List<Kategorie> kategorien = new ArrayList<Kategorie>();
 
 	/* Default-Konstruktor */
 	public Mandant() {
 	}
-	
+
 	/* Konstruktor */
 	public Mandant(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Fügt eine Kategorie hinzu
 	 * 
@@ -65,23 +65,24 @@ public class Mandant {
 	public void addPlandatum(Plandatum p) {
 		plandaten.add(p);
 	}
-	
+
 	/**
 	 * @return the plandaten
 	 */
-	
+
 	@OneToMany(cascade = { CascadeType.ALL })
 	public List<Plandatum> getPlandaten() {
 		return plandaten;
 	}
 
 	/**
-	 * @param plandaten the plandaten to set
+	 * @param plandaten
+	 *            the plandaten to set
 	 */
 	public void setPlandaten(List<Plandatum> plandaten) {
 		this.plandaten = plandaten;
 	}
-	
+
 	/**
 	 * @return the id
 	 */
@@ -99,13 +100,11 @@ public class Mandant {
 		this.id = id;
 	}
 
-
-
 	/**
 	 * @return the name
 	 */
 	@Basic(optional = false)
-	@Column(name = "name", unique=true)
+	@Column(name = "name", unique = true)
 	public String getName() {
 		return name;
 	}
@@ -126,7 +125,8 @@ public class Mandant {
 	}
 
 	/**
-	 * @param kommentar the kommentar to set
+	 * @param kommentar
+	 *            the kommentar to set
 	 */
 	public void setKommentar(String kommentar) {
 		this.kommentar = kommentar;

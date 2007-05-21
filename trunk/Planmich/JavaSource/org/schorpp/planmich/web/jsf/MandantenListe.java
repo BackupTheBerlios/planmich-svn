@@ -9,13 +9,12 @@ public class MandantenListe {
 
 	private MandantDAO mandantDAO;
 
-	public List<Mandant>getMandanten() {
+	public List<Mandant> getMandanten() {
 		return mandantDAO.getMandanten();
 	}
-	
-	
+
 	public void setMandantDAO(MandantDAO mandantDAO) {
 		this.mandantDAO = mandantDAO;
 	}
-	
+
 }

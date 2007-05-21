@@ -21,5 +21,4 @@ public class UISpacer extends UIComponentBase {
 		return "PlanmichFamily";
 	}
 
-
 }

@@ -11,12 +11,12 @@ import javax.persistence.Table;
 public class Turnus {
 
 	private int id;
-	
+
 	private String name;
 
-	
-	public Turnus() {}
-	
+	public Turnus() {
+	}
+
 	public Turnus(int id, String name) {
 		this.id = id;
 		this.name = name;
@@ -25,7 +25,7 @@ public class Turnus {
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -37,5 +37,5 @@ public class Turnus {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

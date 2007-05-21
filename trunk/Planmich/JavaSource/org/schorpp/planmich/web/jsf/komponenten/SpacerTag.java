@@ -9,42 +9,36 @@ import javax.faces.webapp.UIComponentTag;
 public class SpacerTag extends UIComponentTag {
 
 	private String size;
-	
+
 	@Override
-	protected void setProperties(UIComponent component)
-	  {
-	    super.setProperties(component);
-	    
-	    if (size != null) 
-	    { 
-	      if (isValueReference(size))
-	      {
-	        FacesContext context = FacesContext.getCurrentInstance();
-	        Application app = context.getApplication();
-	        ValueBinding vb = app.createValueBinding(size);
-	        component.setValueBinding("size", vb);                  
-	      } else {
-			component.getAttributes().put("size", size);
+	protected void setProperties(UIComponent component) {
+		super.setProperties(component);
+
+		if (size != null) {
+			if (isValueReference(size)) {
+				FacesContext context = FacesContext.getCurrentInstance();
+				Application app = context.getApplication();
+				ValueBinding vb = app.createValueBinding(size);
+				component.setValueBinding("size", vb);
+			} else {
+				component.getAttributes().put("size", size);
+			}
 		}
-	    }                         
-	  }
+	}
 
-	  @Override
-	public void release()
-	  {
-	    super.release();
-	    size = null;
-	  }
+	@Override
+	public void release() {
+		super.release();
+		size = null;
+	}
 
-
-	  public void setHeadline(String size)
-	  {
-	    this.size = size;
-	  } 
+	public void setHeadline(String size) {
+		this.size = size;
+	}
 
 	@Override
 	public String getComponentType() {
-		
+
 		return "Spacer";
 	}
 
@@ -54,7 +48,4 @@ public class SpacerTag extends UIComponentTag {
 		return null;
 	}
 
-
-
-	
 }

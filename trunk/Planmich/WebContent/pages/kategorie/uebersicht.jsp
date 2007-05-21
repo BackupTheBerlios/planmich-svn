@@ -12,8 +12,8 @@
 
 			<d:Headline headline="#{messages.addKategorie}" />
 
-			<h:dataTable value="#{sessionBean.mandant.kategorien}" rendered="true"
-				border="0" rows="5" var="kategorie" id="kategorien"
+			<h:dataTable value="#{sessionBean.mandant.kategorien}"
+				rendered="true" border="0" rows="5" var="kategorie" id="kategorien"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
@@ -58,11 +58,11 @@
 					<t:graphicImage url="/images/arrow-fr.gif" border="1" />
 				</f:facet>
 			</t:dataScroller>
-			
-			<d:Spacer/>
-			
+
+			<d:Spacer />
+
 			<t:commandLink value="Neue Kategorie" action="neueKategorie" />
-		
+
 
 		</h:form>
 

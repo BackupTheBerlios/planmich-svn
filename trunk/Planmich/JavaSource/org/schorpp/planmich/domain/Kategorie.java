@@ -15,15 +15,15 @@ public class Kategorie {
 	private int id;
 
 	private String name;
-	
+
 	private String kommentar;
 
 	private KategorieTyp typ;
-	
+
 	/* Default-Konstruktor */
 	public Kategorie() {
 	}
-	
+
 	/* Konstruktor */
 	public Kategorie(String name) {
 		this.name = name;
@@ -55,7 +55,7 @@ public class Kategorie {
 	 * @return the name
 	 */
 	@Basic(optional = false)
-	@Column(name = "name", unique=true)
+	@Column(name = "name", unique = true)
 	public String getName() {
 		return name;
 	}
@@ -76,7 +76,8 @@ public class Kategorie {
 	}
 
 	/**
-	 * @param kommentar the kommentar to set
+	 * @param kommentar
+	 *            the kommentar to set
 	 */
 	public void setKommentar(String kommentar) {
 		this.kommentar = kommentar;
@@ -90,5 +91,4 @@ public class Kategorie {
 		this.typ = t;
 	}
 
-	
 }

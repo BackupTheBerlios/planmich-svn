@@ -27,18 +27,20 @@
 				</h:inputText>
 
 				<h:outputText value="#{messages.kommentar}" />
-				<h:inputTextarea id="Kommentar" value="#{kategorieBakingBean.kommentar}">
+				<h:inputTextarea id="Kommentar"
+					value="#{kategorieBakingBean.kommentar}">
 					<f:validateLength minimum="1" maximum="255" />
 				</h:inputTextarea>
-				
-				<h:outputText value="#{messages.sollhaben}" />	
+
+				<h:outputText value="#{messages.sollhaben}" />
 				<h:selectOneListbox value="#{kategorieBakingBean.kategorieTyp}">
 					<f:selectItems value="#{kategorieBakingBean.typListe}" />
 				</h:selectOneListbox>
-	
+
 			</h:panelGrid>
 
-			<h:messages showSummary="false" showDetail="true" errorClass="error" infoClass="info"/>
+			<h:messages showSummary="false" showDetail="true" errorClass="error"
+				infoClass="info" />
 
 			<f:verbatim>
 				<br>

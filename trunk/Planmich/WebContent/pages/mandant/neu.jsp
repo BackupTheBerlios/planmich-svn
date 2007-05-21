@@ -27,14 +27,14 @@
 				</h:inputText>
 
 				<h:outputText value="#{messages.kommentar}" />
-				<h:inputTextarea id="Kommentar" value="#{mandantBakingBean.kommentar}"
-					required="true">
+				<h:inputTextarea id="Kommentar"
+					value="#{mandantBakingBean.kommentar}" required="true">
 					<f:validateLength minimum="1" maximum="255" />
 				</h:inputTextarea>
 
 			</h:panelGrid>
 
-<h:messages showSummary="false" showDetail="true" styleClass="error" />
+			<h:messages showSummary="false" showDetail="true" styleClass="error" />
 
 			<f:verbatim>
 				<br>

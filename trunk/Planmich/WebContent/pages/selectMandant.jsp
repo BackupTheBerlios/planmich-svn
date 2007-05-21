@@ -10,8 +10,8 @@
 	<f:facet name="body">
 		<h:form>
 			<d:Headline headline="#{messages.mandantenauswahl}" />
-			
-			
+
+
 			<h:dataTable value="#{mandantDAO.mandanten}" rendered="true"
 				border="0" rows="10" var="mandant" id="selectMandant"
 				styleClass="scrollerTable" headerClass="standardTable_Header"
@@ -22,8 +22,9 @@
 					<f:facet name="header">
 						<h:outputText value="vorhandene Mandanten:" />
 					</f:facet>
-					
-					<t:commandLink action="#{sessionBean.selectMandant}" immediate="true">
+
+					<t:commandLink action="#{sessionBean.selectMandant}"
+						immediate="true">
 						<h:outputText value="#{mandant.name}" />
 						<t:updateActionListener property="#{sessionBean.mandantId}"
 							value="#{mandant.id}" />

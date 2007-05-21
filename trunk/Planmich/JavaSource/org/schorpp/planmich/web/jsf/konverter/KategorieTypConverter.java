@@ -9,9 +9,9 @@ import org.schorpp.planmich.domain.KategorieTyp;
 
 public class KategorieTypConverter implements Converter {
 
-	public Object getAsObject(FacesContext context, UIComponent component, String value)
-			throws ConverterException {
-		
+	public Object getAsObject(FacesContext context, UIComponent component,
+			String value) throws ConverterException {
+
 		try {
 			return KategorieTyp.valueOf(value);
 		} catch (IllegalArgumentException e) {
@@ -19,8 +19,8 @@ public class KategorieTypConverter implements Converter {
 		}
 	}
 
-	public String getAsString(FacesContext context, UIComponent component, Object value)
-			throws ConverterException {
+	public String getAsString(FacesContext context, UIComponent component,
+			Object value) throws ConverterException {
 		return value.toString();
 	}
 

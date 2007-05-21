@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 
 public class BaseBean {
 
-	protected ResourceBundle messages = ResourceBundle.getBundle("org.schorpp.planmich.web.resources.resources");
-	
-	
+	protected ResourceBundle messages = ResourceBundle
+			.getBundle("org.schorpp.planmich.web.resources.resources");
+
 	protected HttpServletRequest getRequest() {
-		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		return (HttpServletRequest) FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest();
 	}
-	
+
 	protected void saveInSession(String name, Object objekt) {
 		getRequest().getSession(true).setAttribute(name, objekt);
 	}
@@ -22,13 +23,15 @@ public class BaseBean {
 	protected Object getFromSession(String name) {
 		return getRequest().getSession(true).getAttribute(name);
 	}
-	
+
 	protected void displayError(String error) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( FacesMessage.SEVERITY_ERROR, error, error));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, error, error));
 	}
-	
+
 	protected void displayInfo(String info) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage( FacesMessage.SEVERITY_INFO, info, info));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, info, info));
 	}
-	
+
 }

@@ -16,7 +16,7 @@ public class UIHeadline extends UIComponentBase {
 		if (headline != null) {
 			writer.writeText(headline, "headline");
 		}
-		
+
 		writer.endElement("h1");
 	}
 
@@ -24,6 +24,5 @@ public class UIHeadline extends UIComponentBase {
 	public String getFamily() {
 		return "PlanmichFamily";
 	}
-
 
 }

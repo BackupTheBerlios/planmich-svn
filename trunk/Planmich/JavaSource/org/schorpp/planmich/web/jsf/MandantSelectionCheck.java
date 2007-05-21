@@ -18,14 +18,13 @@ public class MandantSelectionCheck implements PhaseListener {
 	 * Umleiten auf /pages/selectMandant.jsp
 	 */
 	private void toMandantSelection(String renderedViewId) {
-		
+
 		// Ursprünglich aufgerufene Seite in der Sessin speichern
 		saveInSession("Redirect", renderedViewId);
-		
+
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		UIViewRoot vr = facesContext.getApplication()
-				.getViewHandler().createView(facesContext,
-						"/pages/selectMandant.jsp");
+		UIViewRoot vr = facesContext.getApplication().getViewHandler()
+				.createView(facesContext, "/pages/selectMandant.jsp");
 		facesContext.setViewRoot(vr);
 		facesContext.renderResponse();
 	}
@@ -42,10 +41,10 @@ public class MandantSelectionCheck implements PhaseListener {
 		String renderedViewId = facesContext.getViewRoot().getViewId();
 
 		Integer mandantID = (Integer) getFromSession("Mandant");
-		if(mandantID == null) {
+		if (mandantID == null) {
 			toMandantSelection(renderedViewId);
 		}
-		
+
 		// if (!renderedViewId.equals("/login.jsp") &&
 		// !renderedViewId.equals("/error.jsp")) {
 		// // hier muss geprï¿½ft werden, ob der Benutzer die Seite zugreifen
@@ -68,8 +67,8 @@ public class MandantSelectionCheck implements PhaseListener {
 		//			
 		// }
 
-		//facesContext.getViewRoot().setViewId(renderedViewId);
-		
+		// facesContext.getViewRoot().setViewId(renderedViewId);
+
 	}
 
 	public PhaseId getPhaseId() {
@@ -79,16 +78,17 @@ public class MandantSelectionCheck implements PhaseListener {
 	public void afterPhase(PhaseEvent arg0) {
 
 	}
-	
+
 	protected Object getFromSession(String name) {
 		return getRequest().getSession(true).getAttribute(name);
 	}
-	
+
 	protected void saveInSession(String name, Object objekt) {
 		getRequest().getSession(true).setAttribute(name, objekt);
 	}
-	
+
 	protected HttpServletRequest getRequest() {
-		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		return (HttpServletRequest) FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest();
 	}
 }

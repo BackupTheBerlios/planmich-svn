@@ -8,11 +8,11 @@ import org.schorpp.planmich.domain.Mandant;
 public class MandantServiceImpl implements MandantService {
 
 	private MandantDAO mandantDao;
-	 
+
 	public void createMandant(String name) {
 		mandantDao.saveMandant(new Mandant(name));
 	}
-	
+
 	public void setMandantDAO(MandantDAO mandantDao) {
 		// Dependency Injection
 		this.mandantDao = mandantDao;

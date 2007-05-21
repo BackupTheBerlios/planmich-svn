@@ -44,7 +44,7 @@
 				<h:outputText value="#{messages.turnus}" />
 				<h:selectOneMenu id="kategorie"
 					value="#{plandatumBakingBean.turnus}">
-					<f:selectItems value="#{plandatumBakingBean.turnusListe}"/>
+					<f:selectItems value="#{plandatumBakingBean.turnusListe}" />
 				</h:selectOneMenu>
 
 
@@ -56,7 +56,7 @@
 				<h:outputText value="#{messages.kategorie}" />
 				<h:selectOneMenu id="kategorie"
 					value="#{plandatumBakingBean.kategorie}">
-					<f:selectItems value="#{plandatumBakingBean.kategorieListe}"/>
+					<f:selectItems value="#{plandatumBakingBean.kategorieListe}" />
 				</h:selectOneMenu>
 
 			</h:panelGrid>
