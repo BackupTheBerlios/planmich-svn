@@ -6,6 +6,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
 import javax.faces.webapp.UIComponentTag;
 
+
+
 public class SpacerTag extends UIComponentTag {
 
 	private String size;
