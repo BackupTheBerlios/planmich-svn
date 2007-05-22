@@ -24,7 +24,7 @@ public class MandantSelectionCheck implements PhaseListener {
 
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		UIViewRoot vr = facesContext.getApplication().getViewHandler()
-				.createView(facesContext, "/pages/selectMandant.jsp");
+				.createView(facesContext, "/pages/mandant/selectMandant.jsp");
 		facesContext.setViewRoot(vr);
 		facesContext.renderResponse();
 	}
@@ -40,6 +40,10 @@ public class MandantSelectionCheck implements PhaseListener {
 		// catch a view definition in xml
 		String renderedViewId = facesContext.getViewRoot().getViewId();
 
+		// Mandantenverwaltung von der Umleitnug ausnehmen
+		if(renderedViewId.startsWith("/pages/mandant/"))
+			return;
+		
 		Integer mandantID = (Integer) getFromSession("Mandant");
 		if (mandantID == null) {
 			toMandantSelection(renderedViewId);

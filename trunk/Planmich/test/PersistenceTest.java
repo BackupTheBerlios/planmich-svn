@@ -28,7 +28,7 @@ public class PersistenceTest extends
 		p.setName("Gehalt");
 		p.setBetrag(100.00);
 		p.setWertstellung(new Date());
-		p.setWiederholung(Wiederholung.KEINE);
+		p.setTurnus(Wiederholung.KEINE);
 		p.setKategorie(new Kategorie("Gehalt"));
 
 		m = new Mandant("Markus Schorpp");

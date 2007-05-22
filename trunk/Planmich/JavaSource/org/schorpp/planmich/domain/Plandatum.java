@@ -32,7 +32,7 @@ public class Plandatum {
 	private Date wertstellung;
 
 	@Basic(optional = false)
-	private int wiederholung;
+	private int turnus;
 
 	@ManyToOne(optional = false, cascade = CascadeType.ALL)
 	private Kategorie kategorie;
@@ -53,14 +53,6 @@ public class Plandatum {
 
 	public void setBetrag(double betrag) {
 		this.betrag = betrag;
-	}
-
-	public int getWiederholung() {
-		return wiederholung;
-	}
-
-	public void setWiederholung(int wiederholung) {
-		this.wiederholung = wiederholung;
 	}
 
 	public int getId() {
@@ -101,6 +93,14 @@ public class Plandatum {
 
 	public void setKommentar(String kommentar) {
 		this.kommentar = kommentar;
+	}
+
+	public int getTurnus() {
+		return turnus;
+	}
+
+	public void setTurnus(int turnus) {
+		this.turnus = turnus;
 	}
 
 }

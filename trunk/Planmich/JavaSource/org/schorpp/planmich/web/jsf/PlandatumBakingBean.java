@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.schorpp.planmich.dao.MandantDAO;
@@ -13,6 +15,7 @@ import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
+import org.schorpp.planmich.domain.Turnus;
 import org.schorpp.planmich.service.MandantService;
 
 public class PlandatumBakingBean extends BaseBean {
@@ -32,9 +35,12 @@ public class PlandatumBakingBean extends BaseBean {
 	private double betrag;
 
 	private String kategorieAuswahl;
+	
+	private int turnusAuswahl;
 
 	private Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
-
+	private Map<Integer, Turnus> turnusMap = new HashMap<Integer, Turnus>();
+	
 	public PlandatumBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
 	}
@@ -79,7 +85,7 @@ public class PlandatumBakingBean extends BaseBean {
 				.getKategorien();
 		List<SelectItem> ret = new ArrayList<SelectItem>();
 
-		// erster EintragI ist leer
+		// erster Eintrag ist leer
 		ret.add(new SelectItem("dummy", ""));
 
 		for (int i = 0; i < categories.size(); i++) {
@@ -94,6 +100,29 @@ public class PlandatumBakingBean extends BaseBean {
 
 		return ret;
 	}
+	
+
+	public List getTurnusListe() {
+		
+		FacesContext context = FacesContext.getCurrentInstance( );
+
+		TurnusListe liste = (TurnusListe) context.getApplication().createValueBinding("#{turnusListe}").getValue(context);
+
+		List turnus = liste.turnus;
+		
+		List<SelectItem> ret = new ArrayList<SelectItem>();
+
+		// erster Eintrag ist leer
+		ret.add(new SelectItem("dummy", ""));
+
+		for (int i = 0; i < turnus.size(); i++) {
+			Turnus aktTurnus = (Turnus) turnus.get(i);
+			ret.add(new SelectItem(i, aktTurnus.getName()));
+			turnusMap.put(i, aktTurnus); 
+		}
+
+		return ret;
+	}
 
 	public void addPlandatum() {
 		Plandatum p = new Plandatum();
@@ -102,6 +131,7 @@ public class PlandatumBakingBean extends BaseBean {
 		p.setWertstellung(wertstellung);
 		p.setBetrag(betrag);
 		p.setKategorie((Kategorie) categoriesMap.get(kategorieAuswahl));
+		p.setTurnus(turnusAuswahl);
 
 		Mandant m = service.getMandantById(mandantId);
 		m.addPlandatum(p);
@@ -133,6 +163,14 @@ public class PlandatumBakingBean extends BaseBean {
 
 	public void setKategorie(String kategorieAuswahl) {
 		this.kategorieAuswahl = kategorieAuswahl;
+	}
+
+	public int getTurnus() {
+		return turnusAuswahl;
+	}
+
+	public void setTurnus(int turnusAuswahl) {
+		this.turnusAuswahl = turnusAuswahl;
 	}
 
 }

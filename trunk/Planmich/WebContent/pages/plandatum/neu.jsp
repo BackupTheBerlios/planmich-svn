@@ -42,8 +42,7 @@
 					helpText="MM/DD/YYYY" forceId="true" />
 
 				<h:outputText value="#{messages.turnus}" />
-				<h:selectOneMenu id="kategorie"
-					value="#{plandatumBakingBean.turnus}">
+				<h:selectOneMenu id="turnus" value="#{plandatumBakingBean.turnus}">
 					<f:selectItems value="#{plandatumBakingBean.turnusListe}" />
 				</h:selectOneMenu>
 
@@ -63,7 +62,6 @@
 
 			<h:messages showSummary="false" showDetail="true" errorClass="error"
 				infoClass="info" />
-
 			<f:verbatim>
 				<br>
 			</f:verbatim>
