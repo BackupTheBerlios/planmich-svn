@@ -19,26 +19,24 @@
 					<h:panelGrid columns="2" style="width: 100%"
 						styleClass="headerTable"
 						columnClasses="standardTable_ColumnLeft, standardTable_ColumnRight">
+						<f:verbatim>
+						</f:verbatim>
+												<h:outputText style="padding-right: 1em"
+							value="messages.mandant:  #{sessionBean.mandant.name}" />
 						<h:form>
-							<t:jscookMenu id="menu2" layout="hbr" theme="ThemeOffice"
+							<t:jscookMenu id="menu" layout="hbr" theme="ThemeOffice"
 								styleLocation="/css/jscookmenu">
 								<t:navigationMenuItems id="navitems" value="#{menu.menuItems}" />
 							</t:jscookMenu>
 						</h:form>
-						<f:verbatim>
-						</f:verbatim>
-						<f:verbatim>Planmich Version 0.0.3 </f:verbatim>
-						<h:outputText style="padding-right: 1em"
-							value="messages.mandant:  #{sessionBean.mandant.name}" />
+
+						<f:verbatim> </f:verbatim>
+
 					</h:panelGrid>
 
 				</f:facet>
 
-				<f:facet name="navigation">
-					<f:subview id="menu">
-						<jsp:include page="/inc/navigation.jsp" />
-					</f:subview>
-				</f:facet>
+
 
 				<jsp:doBody />
 

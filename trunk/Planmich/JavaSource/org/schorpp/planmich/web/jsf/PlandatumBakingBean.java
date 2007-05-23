@@ -6,10 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
@@ -80,6 +78,10 @@ public class PlandatumBakingBean extends BaseBean {
 		return items;
 	}
 
+	
+	/*
+	 * Erzeugt eine Liste mit SelectItems zur Auswahl der Kategorie
+	 */
 	public List getKategorieListe() {
 		List categories = ((Mandant) mandantDAO.getMandantById(mandantId))
 				.getKategorien();
@@ -92,16 +94,15 @@ public class PlandatumBakingBean extends BaseBean {
 			Kategorie aktKategorie = (Kategorie) categories.get(i);
 			String id = String.valueOf(aktKategorie.getId());
 			ret.add(new SelectItem(id, aktKategorie.getName()));
-			categoriesMap.put(id, aktKategorie); // aktuelles
-													// Kategorie-Objekt in
-													// Hashmap ablegen zum
-													// sp�teren wiederfinden.
+			categoriesMap.put(id, aktKategorie); 
 		}
 
 		return ret;
 	}
 	
-
+/*
+ * Erzeugt eine Liste von SelectItems zur Auswahl des Turnus
+ */
 	public List getTurnusListe() {
 		
 		FacesContext context = FacesContext.getCurrentInstance( );
@@ -111,9 +112,6 @@ public class PlandatumBakingBean extends BaseBean {
 		List turnus = liste.turnus;
 		
 		List<SelectItem> ret = new ArrayList<SelectItem>();
-
-		// erster Eintrag ist leer
-		ret.add(new SelectItem("dummy", ""));
 
 		for (int i = 0; i < turnus.size(); i++) {
 			Turnus aktTurnus = (Turnus) turnus.get(i);
