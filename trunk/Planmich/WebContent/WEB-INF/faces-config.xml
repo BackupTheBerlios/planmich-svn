@@ -120,6 +120,11 @@
 			<to-view-id>/pages/plandatum/neu.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>wechselnMandant</from-outcome>
+			<to-view-id>/pages/mandant/selectMandant.jsp</to-view-id>
+			<redirect />
+		</navigation-case>		
 	</navigation-rule>
 	<application>
 		<variable-resolver>

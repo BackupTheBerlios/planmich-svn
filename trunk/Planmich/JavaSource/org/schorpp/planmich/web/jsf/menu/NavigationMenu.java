@@ -33,13 +33,16 @@ public class NavigationMenu {
 		NavigationMenuItem mandantMenu = createMenuNavigationItem("Mandanten",
 				null);
 		menu.add(mandantMenu);
-		mandantMenu.add(createMenuNavigationItem("Übersicht",
+		mandantMenu.add(createMenuNavigationItem("Mandantenübersicht",
 				"mandantUebersicht", "/pages/mandant/uebersicht.jsp"));
 
-		mandantMenu.add(createMenuNavigationItem("Neu", "neuerMandant",
+		mandantMenu.add(createMenuNavigationItem("Neuer Mandant", "neuerMandant",
 				"/pages/mandant/neu.jsp"));
 
-		plandateMenu.add(createMenuNavigationItem("Plandatenübersicht",
+		mandantMenu.add(createMenuNavigationItem("Mandant wechseln", "wechselnMandant",
+		"/pages/mandant/selectMandant.jsp"));
+		
+		plandateMenu.add(createMenuNavigationItem("Übersicht",
 				"plandatenUebersicht", "/pages/plandatum/uebersicht.jsp"));
 		plandateMenu.add(createMenuNavigationItem("neues Plandatum",
 				"neuesPlandatum", "/pages/plandatum/neu.jsp"));

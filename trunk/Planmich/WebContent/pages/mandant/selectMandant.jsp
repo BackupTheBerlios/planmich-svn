@@ -59,6 +59,13 @@
 					<t:graphicImage url="/images/arrow-fr.gif" border="1" />
 				</f:facet>
 			</t:dataScroller>
+			
+			
+			<d:Spacer />
+
+			<t:commandLink value="#{messages.neuermandant}" action="neuerMandant" />
+			
+			
 		</h:form>
 	</f:facet>
 </layout:page>
