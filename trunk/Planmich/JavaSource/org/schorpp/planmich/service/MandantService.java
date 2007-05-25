@@ -2,6 +2,7 @@ package org.schorpp.planmich.service;
 
 import java.util.List;
 
+import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.Mandant;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -55,6 +56,6 @@ public interface MandantService {
 	 * Löscht die Kategorie mit der angebenenen Id
 	 * @param id
 	 */
-	public void deleteKategorie(Integer id);
+	public void deleteKategorie(Kategorie k);
 
 }

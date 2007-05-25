@@ -33,10 +33,10 @@
 				</h:column>
 				<h:column>
 					<t:commandLink action="#{kategorieBakingBean.delete}"
-						immediate="true">
+						immediate="false">
 						<h:outputText value="Löschen" />
-						<t:updateActionListener property="#{kategorieBakingBean.id}"
-							value="#{kategorie.id}" />
+						<t:updateActionListener property="#{kategorieBakingBean.kategorie}"
+							value="#{kategorie}" />
 					</t:commandLink>
 				</h:column>				
 			</t:dataTable>

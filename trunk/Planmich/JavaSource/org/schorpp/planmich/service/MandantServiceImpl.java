@@ -3,6 +3,7 @@ package org.schorpp.planmich.service;
 import java.util.List;
 
 import org.schorpp.planmich.dao.MandantDAO;
+import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.Mandant;
 
 public class MandantServiceImpl implements MandantService {
@@ -38,7 +39,7 @@ public class MandantServiceImpl implements MandantService {
 		mandantDao.delete(m);
 	}
 
-	public void deleteKategorie(Integer id) {
+	public void deleteKategorie(Kategorie k) {
 		
 	}
 

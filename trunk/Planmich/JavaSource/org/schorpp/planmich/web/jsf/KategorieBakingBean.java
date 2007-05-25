@@ -25,7 +25,7 @@ public class KategorieBakingBean extends BaseBean {
 
 	private Integer mandantId;
 	
-	private Integer id;
+	private Kategorie k;
 
 	public KategorieBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
@@ -74,12 +74,12 @@ public class KategorieBakingBean extends BaseBean {
 		return items;
 	}
 
-	public Integer getId() {
-		return id;
+	public Kategorie getKategorie() {
+		return k;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setKategorie(Kategorie k) {
+		this.k = k;
 	}
 
 	public void addKategorie() {
@@ -97,7 +97,7 @@ public class KategorieBakingBean extends BaseBean {
 	}
 	
 	public void delete() {
-		service.deleteKategorie(id);
+		service.deleteKategorie(k);
 	}
 
 }
