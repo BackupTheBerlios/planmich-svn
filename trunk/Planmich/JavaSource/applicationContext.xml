@@ -72,6 +72,11 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="kategorieDAO"
+		class="org.schorpp.planmich.dao.KategorieDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="mandantService"
 		class="org.schorpp.planmich.service.MandantServiceImpl">
 		<property name="mandantDAO" ref="mandantDAO" />

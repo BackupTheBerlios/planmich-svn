@@ -72,13 +72,14 @@ hr {
 	font-weight: bold;
 }
 
-.scrollerTable {
+.standardTable {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #000000;
-	padding: 2;
+	padding: 0;
 	border-style: solid;
 	border-width: 1px;
+        border-color: #d0d0d0;
 	width: 600px;
 }
 
@@ -106,25 +107,16 @@ hr {
 	color: #000000;
 	padding: 2;
 	border-style: solid;
-	border-width: 1px;
+	border-width: 0px;
 	width: 400px;
 }
 
-.standardTable {
-	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #000000;
-	padding: 0;
-	border-style: solid;
-	border-width: 1px;
-	width: 600px;
-}
 
 .standardTable_Header {
 	color: #000000;
-	background-color: #FFDD00;
-	padding: 3;
-	text-align: center;
+	background-color: #CDBA96;
+	padding: 5;
+	text-align: left;
 	border: none;
 }
 
@@ -138,15 +130,15 @@ hr {
 }
 
 .standardTable_Footer {
-	background-color: #FFFFE0;
+	background-color: #FFE4F1;
 }
 
 .standardTable_Row1 {
-	background-color: #FFFFE0;
+	background-color: #FCCE9C;
 }
 
 .standardTable_Row2 {
-	background-color: #DDDDDD;
+	background-color: #EBEBEB;
 }
 
 .standardTable_Column {
@@ -187,7 +179,7 @@ hr {
 }
 
 .pageHeader {
-	background-color: #dedede;
+	background-color: #A4CAFC;
 	text-align: center;
 	vertical-align: middle;
 	height: 30px;

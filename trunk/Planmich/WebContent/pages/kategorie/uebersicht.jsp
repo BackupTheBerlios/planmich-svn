@@ -12,12 +12,13 @@
 
 			<d:Headline headline="#{messages.addKategorie}" />
 
-			<h:dataTable value="#{sessionBean.mandant.kategorien}"
+			<t:dataTable value="#{sessionBean.mandant.kategorien}"
 				rendered="true" border="0" rows="5" var="kategorie" id="kategorien"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column, standardTable_Column">
+				columnClasses="standardTable_Column, standardTable_Column"
+				sortable="true">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
@@ -30,7 +31,15 @@
 					</f:facet>
 					<h:outputText value="#{kategorie.kommentar}" />
 				</h:column>
-			</h:dataTable>
+				<h:column>
+					<t:commandLink action="#{kategorieBakingBean.delete}"
+						immediate="true">
+						<h:outputText value="Löschen" />
+						<t:updateActionListener property="#{kategorieBakingBean.id}"
+							value="#{kategorie.id}" />
+					</t:commandLink>
+				</h:column>				
+			</t:dataTable>
 			<f:verbatim>
 				<br>
 			</f:verbatim>

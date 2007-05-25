@@ -24,6 +24,8 @@ public class KategorieBakingBean extends BaseBean {
 	private KategorieTyp typ = KategorieTyp.Ausgabe;
 
 	private Integer mandantId;
+	
+	private Integer id;
 
 	public KategorieBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
@@ -72,6 +74,14 @@ public class KategorieBakingBean extends BaseBean {
 		return items;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public void addKategorie() {
 		Kategorie k = new Kategorie();
 		k.setName(name);
@@ -84,6 +94,10 @@ public class KategorieBakingBean extends BaseBean {
 
 		displayInfo("Kategorie " + name + " wurde hinzugefügt.");
 
+	}
+	
+	public void delete() {
+		service.deleteKategorie(id);
 	}
 
 }

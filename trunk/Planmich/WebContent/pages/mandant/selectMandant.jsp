@@ -14,7 +14,7 @@
 
 			<h:dataTable value="#{mandantDAO.mandanten}" rendered="true"
 				border="0" rows="10" var="mandant" id="selectMandant"
-				styleClass="scrollerTable" headerClass="standardTable_Header"
+				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
 				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column">
