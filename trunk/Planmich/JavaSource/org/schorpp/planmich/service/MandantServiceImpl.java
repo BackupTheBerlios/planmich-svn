@@ -39,8 +39,11 @@ public class MandantServiceImpl implements MandantService {
 		mandantDao.delete(m);
 	}
 
-	public void deleteKategorie(Kategorie k) {
-		
+	public void deleteKategorie(Mandant m, Kategorie k) {
+		List kategorien = m.getKategorien();
+		kategorien.remove(k); 
+		//m.setChild(entriesList); //not required 
+		mandantDao.save(m);
 	}
 
 }

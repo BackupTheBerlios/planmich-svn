@@ -56,6 +56,6 @@ public interface MandantService {
 	 * Löscht die Kategorie mit der angebenenen Id
 	 * @param id
 	 */
-	public void deleteKategorie(Kategorie k);
+	public void deleteKategorie(Mandant m, Kategorie k);
 
 }

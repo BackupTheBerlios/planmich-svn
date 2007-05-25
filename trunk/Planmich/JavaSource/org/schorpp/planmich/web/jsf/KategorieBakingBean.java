@@ -97,7 +97,8 @@ public class KategorieBakingBean extends BaseBean {
 	}
 	
 	public void delete() {
-		service.deleteKategorie(k);
+		Mandant m = service.getMandantById(mandantId);
+		service.deleteKategorie(m, k);
 	}
 
 }

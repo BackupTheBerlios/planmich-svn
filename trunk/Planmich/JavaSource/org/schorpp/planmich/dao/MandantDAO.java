@@ -16,4 +16,6 @@ public interface MandantDAO {
 
 	public abstract void saveMandant(Mandant m);
 
+	public void save(Mandant m);
+	
 }

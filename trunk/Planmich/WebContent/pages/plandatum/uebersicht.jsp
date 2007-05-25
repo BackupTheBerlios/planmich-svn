@@ -12,12 +12,12 @@
 		<h:form>
 			<d:Headline headline="#{messages.plandatumUebersicht}" />
 
-			<h:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
+			<t:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
 				border="0" rows="10" var="plandate" id="showPlandates"
-				styleClass="scrollerTable" headerClass="standardTable_Header"
+				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column">
+				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column" sortable="true">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Bezeichnung" />
@@ -44,7 +44,9 @@
 					<h:outputText value="#{plandate.kategorie.name}" />
 				</h:column>
 
-			</h:dataTable>
+		</t:dataTable>
+
+
 			<f:verbatim>
 				<br>
 			</f:verbatim>

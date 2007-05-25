@@ -15,7 +15,7 @@
 			<t:dataTable value="#{sessionBean.mandant.kategorien}"
 				rendered="true" border="0" rows="5" var="kategorie" id="kategorien"
 				styleClass="standardTable" headerClass="standardTable_Header"
-				footerClass="standardTable_Header"
+				footerClass="standardTable_Footer"
 				rowClasses="standardTable_Row1,standardTable_Row2"
 				columnClasses="standardTable_Column, standardTable_Column"
 				sortable="true">
@@ -30,6 +30,12 @@
 						<h:outputText value="Kommentar" />
 					</f:facet>
 					<h:outputText value="#{kategorie.kommentar}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Einnahme/Ausgabe" />
+					</f:facet>
+					<h:outputText value="#{kategorie.kategorieTyp}" />
 				</h:column>
 				<h:column>
 					<t:commandLink action="#{kategorieBakingBean.delete}"

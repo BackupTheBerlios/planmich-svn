@@ -78,8 +78,8 @@ hr {
 	color: #000000;
 	padding: 0;
 	border-style: solid;
-	border-width: 1px;
-        border-color: #d0d0d0;
+	border-width: 0px;
+    border-color: #d0d0d0;
 	width: 600px;
 }
 
@@ -101,29 +101,26 @@ hr {
 	padding: 0;
 }
 
-.inputTable {
-	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #000000;
-	padding: 2;
-	border-style: solid;
-	border-width: 0px;
-	width: 400px;
-}
 
 
 .standardTable_Header {
-	color: #000000;
+	color: white;
 	background-color: #CDBA96;
-	padding: 5;
+	padding: 0.5em;
 	text-align: left;
 	border: none;
+	background: white url(/Planmich/images/verlauf.jpg) repeat-x 0 0;
+	height: 30px;
+}
+
+.standardTable_Header a,a:link,a:visited,a:active {
+	color: white;
 }
 
 .standardTable_SortHeader {
 	background-color: #FFDD00;
 	color: #000000;
-	padding: 3;
+	padding: 0.5em;
 	text-align: center;
 	border: none;
 	font-weight: bold;
@@ -133,11 +130,11 @@ hr {
 	background-color: #FFE4F1;
 }
 
-.standardTable_Row1 {
-	background-color: #FCCE9C;
+.standardTable_Row2 {
+	background-color: #C7C7C7;
 }
 
-.standardTable_Row2 {
+.standardTable_Row1 {
 	background-color: #EBEBEB;
 }
 
