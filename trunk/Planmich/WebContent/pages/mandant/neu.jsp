@@ -12,7 +12,7 @@
 
 			<d:Headline headline="#{messages.neuermandant}" />
 
-			<h:panelGrid columns="2" styleClass="inputTable"
+			<h:panelGrid columns="2" styleClass="standardTable"
 				headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
@@ -40,7 +40,7 @@
 				<br>
 			</f:verbatim>
 
-			<h:commandButton id="submit" value="#{messages.neuermandant}"
+			<h:commandLink id="submit" value="#{messages.neuermandant}"
 				action="#{mandantBakingBean.addMandant}" />
 
 		</h:form>

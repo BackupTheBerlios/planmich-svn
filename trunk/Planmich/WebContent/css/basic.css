@@ -61,20 +61,20 @@ hr {
 
 .standard {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	color: #000000;
 }
 
 .standard_bold {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	color: #000000;
 	font-weight: bold;
 }
 
 .standardTable {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	color: #000000;
 	padding: 0;
 	border-style: solid;
@@ -89,14 +89,14 @@ hr {
 
 .paginator {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	margin: 0;
 }
 
 
 .headerTable {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	color: #ffffff;
 	padding: 0;
 }
@@ -113,7 +113,7 @@ hr {
 	height: 30px;
 }
 
-.standardTable_Header a,a:link,a:visited,a:active {
+.standardTable_Header a {
 	color: white;
 }
 
@@ -159,14 +159,21 @@ hr {
 
 .error {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
-	font-size: 10px;
+	font-size: 11px;
 	color: #FF0000;
+	margin-top: 20px;
 }
+
+.error ul {
+	list-style-type: none;
+}	
 
 .info {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	color: black;
+	color: #ff0000;
+	padding: 1em;
+	
 }
 
 .pageLayout {

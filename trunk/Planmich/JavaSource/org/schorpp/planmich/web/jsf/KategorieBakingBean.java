@@ -11,6 +11,7 @@ import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.service.MandantService;
 
+
 public class KategorieBakingBean extends BaseBean {
 
 	private MandantService service;
@@ -26,6 +27,8 @@ public class KategorieBakingBean extends BaseBean {
 	private Integer mandantId;
 	
 	private Kategorie k;
+	
+	private boolean editMode = false;
 
 	public KategorieBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
@@ -82,23 +85,80 @@ public class KategorieBakingBean extends BaseBean {
 		this.k = k;
 	}
 
+	public boolean isEditMode() {
+		return editMode;
+	}
+
+	public void setEditMode(boolean editMode) {
+		this.editMode = editMode;
+	}
+
+	
+	/**
+	 * Legt eine neue Kategorie an und speicher diese in der Liste 
+	 * der Kategorien ab
+	 */
 	public void addKategorie() {
-		Kategorie k = new Kategorie();
+		
+		Mandant m = service.getMandantById(mandantId);
+		
+		k = new Kategorie();
+		
 		k.setName(name);
 		k.setKommentar(kommentar);
 		k.setKategorieTyp(typ);
 
-		Mandant m = service.getMandantById(mandantId);
 		m.addKategorie(k);
 		mandantDAO.saveMandant(m);
 
 		displayInfo("Kategorie " + name + " wurde hinzugefügt.");
-
 	}
 	
-	public void delete() {
+	/**
+	 * Aktualisiert die Kategorie indem die alte aus der Liste der 
+	 * Kategorien gelöscht wird und die Kategorie mit den nueen Daten angelegt wird.
+	 * 
+	 */
+	public void updateKategorie() {
+		Mandant m = service.getMandantById(mandantId);
+		
+		m.getKategorien().remove(k);
+		
+		mandantDAO.saveMandant(m);
+		
+		k = new Kategorie();
+		
+		k.setName(name);
+		k.setKommentar(kommentar);
+		k.setKategorieTyp(typ);
+
+		m.addKategorie(k);
+		mandantDAO.saveMandant(m);
+
+		displayInfo("Kategorie " + name + " wurde aktualisiert.");
+	}
+	
+	/**
+	 * Löscht die selektierte Kategorie aus der Liste der Kategorien
+	 *
+	 */
+	public void deleteKategorie() {
 		Mandant m = service.getMandantById(mandantId);
 		service.deleteKategorie(m, k);
+	}
+	
+	/**
+	 * Wählt die Kategorie aus und befüllt die Eigenschaften
+	 * @return
+	 */
+	public String selectKategorie() {
+		this.setName(k.getName());
+		this.setKommentar(k.getKommentar());
+		this.setKategorieTyp(k.getKategorieTyp());
+		
+		this.editMode = true;
+		
+		return "success";
 	}
 
 }

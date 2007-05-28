@@ -12,12 +12,12 @@
 
 			<d:Headline headline="#{messages.mandantenuebersicht}" />
 
-			<h:dataTable value="#{mandantDAO.mandanten}" rendered="true"
+			<t:dataTable value="#{mandantDAO.mandanten}" rendered="true"
 				border="0" rows="5" var="mandant" id="mandanten"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column, standardTable_Column">
+				columnClasses="standardTable_Column, standardTable_Column" sortable="true">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />
@@ -30,7 +30,7 @@
 					</f:facet>
 					<h:outputText value="#{mandant.kommentar}" />
 				</h:column>
-			</h:dataTable>
+			</t:dataTable>
 			<f:verbatim>
 				<br>
 			</f:verbatim>

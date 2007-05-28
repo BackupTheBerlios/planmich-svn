@@ -46,4 +46,8 @@ public class MandantServiceImpl implements MandantService {
 		mandantDao.save(m);
 	}
 
+	public void updateKategorie(Mandant m, Kategorie k) {
+
+	}
+
 }

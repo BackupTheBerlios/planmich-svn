@@ -13,7 +13,7 @@
 			<d:Headline headline="#{messages.addKategorie}" />
 
 			<t:dataTable value="#{sessionBean.mandant.kategorien}"
-				rendered="true" border="0" rows="5" var="kategorie" id="kategorien"
+				rendered="true" border="0" rows="15" var="kategorie" id="kategorien"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Footer"
 				rowClasses="standardTable_Row1,standardTable_Row2"
@@ -38,9 +38,15 @@
 					<h:outputText value="#{kategorie.kategorieTyp}" />
 				</h:column>
 				<h:column>
-					<t:commandLink action="#{kategorieBakingBean.delete}"
+					<t:commandLink action="#{kategorieBakingBean.deleteKategorie}"
 						immediate="false">
 						<h:outputText value="Löschen" />
+						<t:updateActionListener property="#{kategorieBakingBean.kategorie}"
+							value="#{kategorie}" />
+					</t:commandLink><f:verbatim> </f:verbatim>
+					<t:commandLink action="#{kategorieBakingBean.selectKategorie}"
+						immediate="false">
+						<h:outputText value="Bearbeiten" />
 						<t:updateActionListener property="#{kategorieBakingBean.kategorie}"
 							value="#{kategorie}" />
 					</t:commandLink>

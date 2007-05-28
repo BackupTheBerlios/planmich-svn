@@ -12,12 +12,12 @@
 			<d:Headline headline="#{messages.mandantenauswahl}" />
 
 
-			<h:dataTable value="#{mandantDAO.mandanten}" rendered="true"
+			<t:dataTable value="#{mandantDAO.mandanten}" rendered="true"
 				border="0" rows="10" var="mandant" id="selectMandant"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column">
+				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column" sortable="true">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="vorhandene Mandanten:" />
@@ -31,7 +31,7 @@
 					</t:commandLink>
 
 				</h:column>
-			</h:dataTable>
+			</t:dataTable>
 			<f:verbatim>
 				<br>
 			</f:verbatim>

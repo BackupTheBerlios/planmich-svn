@@ -58,4 +58,11 @@ public interface MandantService {
 	 */
 	public void deleteKategorie(Mandant m, Kategorie k);
 
+	/** Aktualisiert die angegebene Kategorie
+	 * 
+	 * @param Mandant
+	 * @param Kategorie
+	 */
+	public void updateKategorie(Mandant m, Kategorie k);
+
 }

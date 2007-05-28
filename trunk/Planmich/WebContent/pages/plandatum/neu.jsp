@@ -12,7 +12,7 @@
 
 			<d:Headline headline="#{messages.addPlandatum}" />
 
-			<h:panelGrid columns="2" styleClass="inputTable"
+			<h:panelGrid columns="2" styleClass="standardTable"
 				headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"

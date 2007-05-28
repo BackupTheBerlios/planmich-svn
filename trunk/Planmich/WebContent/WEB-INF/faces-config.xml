@@ -124,8 +124,17 @@
 			<from-outcome>wechselnMandant</from-outcome>
 			<to-view-id>/pages/mandant/selectMandant.jsp</to-view-id>
 			<redirect />
-		</navigation-case>		
+		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/pages/kategorie/uebersicht.jsp</from-view-id>
+		<navigation-case>
+			<from-action>#{kategorieBakingBean.selectKategorie}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/kategorie/bearbeiten.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<application>
 		<variable-resolver>
 			org.springframework.web.jsf.DelegatingVariableResolver
