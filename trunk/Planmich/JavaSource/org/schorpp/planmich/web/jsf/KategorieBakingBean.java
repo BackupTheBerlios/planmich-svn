@@ -3,6 +3,7 @@ package org.schorpp.planmich.web.jsf;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.event.ActionEvent;
 import javax.faces.model.SelectItem;
 
 import org.schorpp.planmich.dao.MandantDAO;
@@ -177,7 +178,19 @@ public class KategorieBakingBean extends BaseBean {
 		this.name = null;
 		this.kommentar = null;
 		this.typ = KategorieTyp.Ausgabe;
+		this.editMode = false;
 		
 		return "neueKategorie";
 	}
+	
+	
+	/**
+	 * Wird aufgerufen, wenn Cancel Button gedrückt wird
+	 * 
+	 */
+	
+	public void cancelAction() {
+	    redirect("/pages/kategorie/uebersicht.jsp");
+	  }
+	
 }

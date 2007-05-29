@@ -108,7 +108,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>neueKategorie</from-outcome>
-			<to-view-id>/pages/kategorie/neu.jsp</to-view-id>
+			<to-view-id>/pages/kategorie/kategorie.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -117,7 +117,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>neuesPlandatum</from-outcome>
-			<to-view-id>/pages/plandatum/neu.jsp</to-view-id>
+			<to-view-id>/pages/plandatum/kategorie.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -131,7 +131,7 @@
 		<navigation-case>
 			<from-action>#{kategorieBakingBean.selectKategorie}</from-action>
 			<from-outcome>success</from-outcome>
-			<to-view-id>/pages/kategorie/bearbeiten.jsp</to-view-id>
+			<to-view-id>/pages/kategorie/kategorie.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	

@@ -28,7 +28,7 @@ public class NavigationMenu {
 				"kategorieUebersicht", "/pages/kategorie/uebersicht.jsp"));
 
 		kategorieMenu.add(createMenuNavigationItem("Neu", "#{kategorieBakingBean.clearKategorie}",
-				"/pages/kategorie/neu.jsp"));
+				"/pages/kategorie/kategorie.jsp"));
 
 		NavigationMenuItem mandantMenu = createMenuNavigationItem("Mandanten",
 				null);

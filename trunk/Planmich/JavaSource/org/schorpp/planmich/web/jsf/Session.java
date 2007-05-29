@@ -22,11 +22,7 @@ public class Session extends BaseBean {
 
 		String forward = (String) getFromSession("Redirect");
 		if (forward != null) {
-			FacesContext facesContext = FacesContext.getCurrentInstance();
-			UIViewRoot vr = facesContext.getApplication().getViewHandler()
-					.createView(facesContext, forward);
-			facesContext.setViewRoot(vr);
-			facesContext.renderResponse();
+			redirect(forward);
 		}
 
 	}

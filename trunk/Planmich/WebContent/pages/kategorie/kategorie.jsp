@@ -10,7 +10,9 @@
 
 		<h:form>
 
-			<d:Headline headline="#{messages.neueKategorie}" />
+
+			<d:Headline headline="#{messages.neueKategorie}" rendered="#{not kategorieBean.editMode}"/>
+			<d:Headline headline="#{messages.updateKategorie}" rendered="#{kategorieBean.editMode}"/>
 
 			<h:panelGrid columns="2" styleClass="standardTable"
 				headerClass="standardTable_Header"
@@ -18,7 +20,7 @@
 				rowClasses="standardTable_Row1,standardTable_Row2"
 				columnClasses="standardTable_Column">
 				<f:facet name="header">
-					<h:outputText value="Neue Kategorie:" />
+					<h:outputText value="Kategorie:" />
 				</f:facet>
 				<h:outputText value="#{messages.bezeichnung}" />
 				<h:inputText id="bezeichnung" value="#{kategorieBakingBean.name}"
@@ -47,10 +49,12 @@
 			</f:verbatim>
 
 			<h:commandLink id="add" value="#{messages.addKategorie}"
-				action="#{kategorieBakingBean.addKategorie}" rendered="#{!kategorieBakingBean.editMode}" />
+				action="#{kategorieBakingBean.addKategorie}" rendered="#{not kategorieBakingBean.editMode}" />
 
 			<h:commandLink id="update" value="#{messages.updateKategorie}"
 				action="#{kategorieBakingBean.updateKategorie}" rendered="#{kategorieBakingBean.editMode}"/>
+				
+			<t:commandLink value="#{messages.cancel}" immediate="true" action="#{kategorieBakingBean.cancelAction}"/>
 
 		</h:form>
 	</f:facet>
