@@ -82,7 +82,7 @@
 
 			<d:Spacer />
 
-			<t:commandLink value="Neue Kategorie" action="neueKategorie" />
+			<t:commandLink value="Neue Kategorie" action="#{kategorieBakingBean.clearKategorie}" />
 
 
 		</h:form>

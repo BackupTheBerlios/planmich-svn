@@ -90,5 +90,9 @@ public class Kategorie {
 	public void setKategorieTyp(KategorieTyp t) {
 		this.typ = t;
 	}
+	
+	public boolean equals(Object b) {
+		return this.id == ((Kategorie)b).id;
+	}
 
 }

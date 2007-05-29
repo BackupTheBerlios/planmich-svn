@@ -18,6 +18,8 @@ public class KategorieBakingBean extends BaseBean {
 
 	private MandantDAO mandantDAO;
 
+	private int id;
+	
 	private String name;
 
 	private String kommentar;
@@ -36,6 +38,14 @@ public class KategorieBakingBean extends BaseBean {
 
 	public String getName() {
 		return name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setName(String name) {
@@ -122,19 +132,15 @@ public class KategorieBakingBean extends BaseBean {
 	public void updateKategorie() {
 		Mandant m = service.getMandantById(mandantId);
 		
-		m.getKategorien().remove(k);
+		Kategorie temp = m.getKategorien().get(m.getKategorien().indexOf(k));
+		//service.updateKategorie(m, k);
 		
-		mandantDAO.saveMandant(m);
+		temp.setName(name);
+		temp.setKommentar(kommentar);
+		temp.setKategorieTyp(typ);
 		
-		k = new Kategorie();
+		mandantDAO.save(m);
 		
-		k.setName(name);
-		k.setKommentar(kommentar);
-		k.setKategorieTyp(typ);
-
-		m.addKategorie(k);
-		mandantDAO.saveMandant(m);
-
 		displayInfo("Kategorie " + name + " wurde aktualisiert.");
 	}
 	
@@ -152,6 +158,7 @@ public class KategorieBakingBean extends BaseBean {
 	 * @return
 	 */
 	public String selectKategorie() {
+		this.setId(k.getId());
 		this.setName(k.getName());
 		this.setKommentar(k.getKommentar());
 		this.setKategorieTyp(k.getKategorieTyp());
@@ -160,5 +167,17 @@ public class KategorieBakingBean extends BaseBean {
 		
 		return "success";
 	}
-
+	
+	/**
+	 * Setzt die Kategorie auf ein Default Werte
+	 */
+	
+	public String clearKategorie() {
+		this.k = new Kategorie();
+		this.name = null;
+		this.kommentar = null;
+		this.typ = KategorieTyp.Ausgabe;
+		
+		return "neueKategorie";
+	}
 }

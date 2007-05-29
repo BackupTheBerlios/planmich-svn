@@ -47,7 +47,17 @@ public class MandantServiceImpl implements MandantService {
 	}
 
 	public void updateKategorie(Mandant m, Kategorie k) {
-
+		
+		int pos = m.getKategorien().indexOf(k);
+		
+		List<Kategorie> kategorien = m.getKategorien();
+		for(Kategorie kategorie:kategorien) {
+			if(kategorie.equals(k))
+				System.out.println("Treffer");
+		}
+		
+		mandantDao.saveMandant(m);
+		
 	}
 
 }

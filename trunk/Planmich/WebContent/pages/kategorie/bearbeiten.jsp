@@ -46,8 +46,10 @@
 				<br>
 			</f:verbatim>
 			
-			<h:commandLink id="update" value="#{messages.updateKategorie}"
-				action="#{kategorieBakingBean.updateKategorie}" />
+			<t:commandLink id="update" value="#{messages.updateKategorie}"
+				action="#{kategorieBakingBean.updateKategorie}">
+			</t:commandLink>
+
 
 		</h:form>
 	</f:facet>
