@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "kategorie")
-public class Kategorie {
+public class Kategorie implements Comparable {
 
 	private int id;
 
@@ -93,6 +93,13 @@ public class Kategorie {
 	
 	public boolean equals(Object b) {
 		return this.id == ((Kategorie)b).id;
+	}
+
+	public int compareTo(Object o) {
+		if(this.id == ((Kategorie)o).getId())
+			return 0;
+		
+		return -1;
 	}
 
 }

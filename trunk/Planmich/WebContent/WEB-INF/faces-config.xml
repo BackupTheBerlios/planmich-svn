@@ -51,6 +51,7 @@
 			<value>#{mandantService}</value>
 		</managed-property>
 	</managed-bean>
+	
 	<managed-bean>
 		<managed-bean-name>kategorieBakingBean</managed-bean-name>
 		<managed-bean-class>
@@ -66,6 +67,8 @@
 			<value>#{mandantDAO}</value>
 		</managed-property>
 	</managed-bean>
+	
+	
 	<managed-bean>
 		<managed-bean-name>plandatumBakingBean</managed-bean-name>
 		<managed-bean-class>
@@ -89,6 +92,21 @@
 			org.schorpp.planmich.web.jsf.TurnusListe
 		</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+
+
+	<managed-bean>
+		<managed-bean-name>liquiplanBakingBean</managed-bean-name>
+		<managed-bean-class>org.schorpp.planmich.web.jsf.LiquiplanBakingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+				<managed-property>
+			<property-name>service</property-name>
+			<value>#{liquiplanService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>mandantDAO</property-name>
+			<value>#{mandantDAO}</value>
+		</managed-property>
 	</managed-bean>
 
 	<navigation-rule>
@@ -117,7 +135,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>neuesPlandatum</from-outcome>
-			<to-view-id>/pages/plandatum/kategorie.jsp</to-view-id>
+			<to-view-id>/pages/plandatum/neu.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>

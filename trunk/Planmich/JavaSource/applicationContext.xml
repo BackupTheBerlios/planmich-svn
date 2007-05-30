@@ -78,6 +78,10 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		<property name="mandantDAO" ref="mandantDAO" />
 	</bean>
 
+	<bean id="liquiplanService"
+		class="org.schorpp.planmich.service.LiquiplanServiceImpl">
+	</bean>
+
 	<!-- Testklassen -->
 	<bean id="mandantTest" class="PersistenceTest">
 		<property name="mandantSevice" ref="mandantService" />
