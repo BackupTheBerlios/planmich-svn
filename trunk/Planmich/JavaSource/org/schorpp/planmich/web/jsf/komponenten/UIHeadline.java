@@ -13,6 +13,13 @@ public class UIHeadline extends UIComponentBase {
 		String headline = (String) getAttributes().get("headline");
 
 		writer.startElement("h1", this);
+		
+		writer.writeAttribute("id", getClientId(context), null);
+		
+		String styleClass = (String) getAttributes().get("styleClass");
+		if(styleClass!=null)
+			writer.writeAttribute("class", styleClass, null);
+		
 		if (headline != null) {
 			writer.writeText(headline, "headline");
 		}

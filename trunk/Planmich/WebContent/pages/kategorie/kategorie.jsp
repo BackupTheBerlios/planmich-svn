@@ -11,17 +11,15 @@
 		<h:form>
 
 
-			<d:Headline headline="#{messages.neueKategorie}" rendered="#{not kategorieBean.editMode}"/>
-			<d:Headline headline="#{messages.updateKategorie}" rendered="#{kategorieBean.editMode}"/>
+			<d:Headline headline="#{messages.neueKategorie}" rendered="#{!kategorieBakingBean.editMode}" styleClass="headline"/>
+			<d:Headline headline="#{messages.updateKategorie}" rendered="#{kategorieBakingBean.editMode}" styleClass="headline"/>
 
 			<h:panelGrid columns="2" styleClass="standardTable"
 				headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column">
-				<f:facet name="header">
-					<h:outputText value="Kategorie:" />
-				</f:facet>
+				columnClasses="standardTable_Column, whiteColumn">
+				
 				<h:outputText value="#{messages.bezeichnung}" />
 				<h:inputText id="bezeichnung" value="#{kategorieBakingBean.name}"
 					required="true" maxlength="45">

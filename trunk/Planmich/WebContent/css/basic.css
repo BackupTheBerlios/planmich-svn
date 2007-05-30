@@ -48,6 +48,14 @@ hr {
 	margin: 1em 0 1em 0;
 }
 
+h1.headline {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	border-bottom: 1px solid #0453CC;
+	padding: 0.5em;
+	margin-bottom: 10px;
+}
+
 .headline1 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 15px;
@@ -132,10 +140,12 @@ hr {
 
 .standardTable_Row2 {
 	background-color: #C7C7C7;
+		vertical-align: top;
 }
 
 .standardTable_Row1 {
 	background-color: #EBEBEB;
+		vertical-align: top;
 }
 
 .standardTable_Column {
@@ -150,11 +160,18 @@ hr {
 .standardTable_ColumnLeft {
 	text-align: left;
 	padding: 0.5em;
+	vertical-align: top;
 }
 
 .standardTable_ColumnRight {
 	text-align: right;
 	padding: 0.5em;
+}
+
+.whiteColumn {
+	text-align: left;
+	padding: 3px;
+	background-color: white;
 }
 
 .error {

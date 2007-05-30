@@ -9,6 +9,7 @@ import javax.faces.webapp.UIComponentTag;
 public class HeadlineTag extends UIComponentTag {
 
 	private String headline;
+	private String styleClass;
 
 	@Override
 	protected void setProperties(UIComponent component) {
@@ -24,12 +25,16 @@ public class HeadlineTag extends UIComponentTag {
 				component.getAttributes().put("headline", headline);
 			}
 		}
+		
+		if(styleClass != null)
+			component.getAttributes().put("styleClass", styleClass);
 	}
 
 	@Override
 	public void release() {
 		super.release();
 		headline = null;
+		styleClass = null;
 	}
 
 	public void setHeadline(String hellomsg) {
@@ -46,6 +51,14 @@ public class HeadlineTag extends UIComponentTag {
 	public String getRendererType() {
 
 		return null;
+	}
+
+	public String getStyleClass() {
+		return styleClass;
+	}
+
+	public void setStyleClass(String styleClass) {
+		this.styleClass = styleClass;
 	}
 
 }

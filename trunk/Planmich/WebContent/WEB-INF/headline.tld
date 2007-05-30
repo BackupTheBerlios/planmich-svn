@@ -12,20 +12,12 @@
 			org.schorpp.planmich.web.jsf.komponenten.HeadlineTag
 		</tag-class>
 		<attribute>
-			<name>binding</name>
-			<rtexprvalue>false</rtexprvalue>
-			<description>
-				A value binding that points to a bean property
-			</description>
-		</attribute>
-		<attribute>
 			<name>id</name>
 			<rtexprvalue>false</rtexprvalue>
 			<description>The client id of this component</description>
 		</attribute>
 		<attribute>
 			<name>rendered</name>
-			<rtexprvalue>false</rtexprvalue>
 			<description>Is this component rendered?</description>
 		</attribute>
 		<attribute>
@@ -34,6 +26,9 @@
 			<description>
 				a custom message for the Component
 			</description>
+		</attribute>
+		<attribute>
+			<name>styleClass</name>
 		</attribute>
 	</tag>
 	<tag>
