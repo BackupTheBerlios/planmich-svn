@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -48,6 +49,7 @@ public class Mandant {
 	}
 
 	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name="kategorie_fk")
 	public List<Kategorie> getKategorien() {
 		return kategorien;
 	}
@@ -71,6 +73,7 @@ public class Mandant {
 	 */
 
 	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name="plandatum_fk")
 	public List<Plandatum> getPlandaten() {
 		return plandaten;
 	}
