@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name = "mandant")
 public class Mandant {
@@ -49,6 +51,8 @@ public class Mandant {
 	}
 
 	@OneToMany(cascade = { CascadeType.ALL })
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+          org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	@JoinColumn(name="kategorie_fk")
 	public List<Kategorie> getKategorien() {
 		return kategorien;
@@ -73,6 +77,8 @@ public class Mandant {
 	 */
 
 	@OneToMany(cascade = { CascadeType.ALL })
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+          org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	@JoinColumn(name="plandatum_fk")
 	public List<Plandatum> getPlandaten() {
 		return plandaten;
