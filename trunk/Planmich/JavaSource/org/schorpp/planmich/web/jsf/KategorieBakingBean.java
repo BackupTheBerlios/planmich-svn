@@ -151,7 +151,10 @@ public class KategorieBakingBean extends BaseBean {
 	 */
 	public void deleteKategorie() {
 		Mandant m = service.getMandantById(mandantId);
-		service.deleteKategorie(m, k);
+		
+		m.getKategorien().remove(k);
+		
+		mandantDAO.save(m);
 	}
 	
 	/**

@@ -1,6 +1,9 @@
 package org.schorpp.planmich.web.jsf;
 
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.schorpp.planmich.dao.MandantDAO;
@@ -26,12 +29,35 @@ public class LiquiplanBakingBean extends BaseBean {
 		this.mandantDAO = mandantDAO;
 	}
 	
-	public Map getPlanData() {
+	public List getPlanData() {
 		Mandant mandant = mandantDAO.getMandantById((Integer) getFromSession("Mandant"));
 		
 		bis.add(Calendar.DAY_OF_MONTH, 12);
 		//return null;
-		return service.getPlanAsMap(mandant, von, bis);
+		
+		Map plan = service.getPlanAsMap(mandant, von, bis);
+		
+		
+		Iterator it = plan.keySet().iterator();
+		while(it.hasNext()) {
+			String datum = (String) it.next();
+			
+			System.out.print(datum + " ");
+			
+			Iterator kt = ((Map)plan.get(datum)).keySet().iterator();
+			
+			while(kt.hasNext()) {
+				org.schorpp.planmich.domain.Kategorie kat = (org.schorpp.planmich.domain.Kategorie)kt.next();
+				System.out.print(kat.getName() + "   "); System.out.print(((Map)plan.get(datum)).get(kat));
+				
+			}
+			
+			
+			
+			System.out.println();
+		}
+		
+		return null;
 	}
 
 	public Calendar getBis() {

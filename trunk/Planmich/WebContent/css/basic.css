@@ -51,9 +51,8 @@ hr {
 h1.headline {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	border-bottom: 1px solid #0453CC;
-	padding: 0.5em;
-	margin-bottom: 10px;
+	padding: 0;
+	margin-bottom: 2em;
 }
 
 .headline1 {

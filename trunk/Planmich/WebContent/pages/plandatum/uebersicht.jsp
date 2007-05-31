@@ -10,7 +10,7 @@
 
 	<f:facet name="body">
 		<h:form>
-			<d:Headline headline="#{messages.plandatumUebersicht}" />
+			<d:Headline headline="#{messages.plandatumUebersicht}" styleClass="headline"/>
 
 			<t:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
 				border="0" rows="10" var="plandate" id="showPlandates"

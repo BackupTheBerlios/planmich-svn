@@ -32,7 +32,7 @@
 	
 	<!-- deklarative Transaktion fuer DAOs: fuer die Webanwendung erforderlich -->
 	<aop:config>
-		<aop:pointcut id="daoMethods" expression="execution(* org.schorpp.planmich.dao.*DAO*.*(..))"/>
+		<aop:pointcut id="daoMethods" expression="execution(* org.schorpp.planmich.dao.MandantDAO*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods"/>
 	</aop:config>
 

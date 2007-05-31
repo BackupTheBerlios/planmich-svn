@@ -14,7 +14,7 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 	<bean id="hibernateTemplate"
 		class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory" />
-		<!-- property name="cacheQueries" value="true" /-->
+		<property name="cacheQueries" value="true" />
 	</bean>
 
 	<bean id="sessionFactory"
