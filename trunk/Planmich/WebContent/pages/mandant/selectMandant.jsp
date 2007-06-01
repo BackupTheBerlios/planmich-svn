@@ -9,7 +9,7 @@
 <layout:page>
 	<f:facet name="body">
 		<h:form>
-			<d:Headline headline="#{messages.mandantenauswahl}" />
+			<d:Headline headline="#{messages.mandantenauswahl}" styleClass="headline"/>
 
 
 			<t:dataTable value="#{mandantDAO.mandanten}" rendered="true"

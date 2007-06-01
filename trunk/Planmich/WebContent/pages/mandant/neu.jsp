@@ -10,7 +10,7 @@
 
 		<h:form>
 
-			<d:Headline headline="#{messages.neuermandant}" />
+			<d:Headline headline="#{messages.neuermandant}" styleClass="headline"/>
 
 			<h:panelGrid columns="2" styleClass="standardTable"
 				headerClass="standardTable_Header"
