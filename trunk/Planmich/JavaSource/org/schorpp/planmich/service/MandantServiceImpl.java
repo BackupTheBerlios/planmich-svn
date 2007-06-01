@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Kategorie;
+import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 
 public class MandantServiceImpl implements MandantService {
@@ -39,25 +40,8 @@ public class MandantServiceImpl implements MandantService {
 		mandantDao.delete(m);
 	}
 
-	public void deleteKategorie(Mandant m, Kategorie k) {
-		List kategorien = m.getKategorien();
-		kategorien.remove(k); 
-		//m.setChild(entriesList); //not required 
-		mandantDao.save(m);
-	}
-
-	public void updateKategorie(Mandant m, Kategorie k) {
-		
-		int pos = m.getKategorien().indexOf(k);
-		
-		List<Kategorie> kategorien = m.getKategorien();
-		for(Kategorie kategorie:kategorien) {
-			if(kategorie.equals(k))
-				System.out.println("Treffer");
-		}
-		
-		mandantDao.saveMandant(m);
-		
+	public void deleteKategorie(Integer mandantId, Kategorie k) {
+		getMandantById(mandantId).getKategorien().remove(k);
 	}
 
 }

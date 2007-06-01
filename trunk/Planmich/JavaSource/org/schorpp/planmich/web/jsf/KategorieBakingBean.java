@@ -10,13 +10,16 @@ import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
+import org.schorpp.planmich.service.KategorieService;
 import org.schorpp.planmich.service.MandantService;
 
 
 public class KategorieBakingBean extends BaseBean {
 
-	private MandantService service;
+	private MandantService mandantService;
 
+	private KategorieService kategorieService;
+	
 	private MandantDAO mandantDAO;
 
 	private int id;
@@ -69,8 +72,12 @@ public class KategorieBakingBean extends BaseBean {
 		this.typ = t;
 	}
 
-	public void setService(MandantService service) {
-		this.service = service;
+	public void setMandantService(MandantService service) {
+		this.mandantService = service;
+	}
+
+	public void setKategorieService(KategorieService service) {
+		this.kategorieService = service;
 	}
 
 	public void setMandantDAO(MandantDAO mandantDAO) {
@@ -111,7 +118,7 @@ public class KategorieBakingBean extends BaseBean {
 	 */
 	public void addKategorie() {
 		
-		Mandant m = service.getMandantById(mandantId);
+		Mandant m = mandantService.getMandantById(mandantId);
 		
 		k = new Kategorie();
 		
@@ -131,16 +138,8 @@ public class KategorieBakingBean extends BaseBean {
 	 * 
 	 */
 	public void updateKategorie() {
-		Mandant m = service.getMandantById(mandantId);
-		
-		Kategorie temp = m.getKategorien().get(m.getKategorien().indexOf(k));
-		//service.updateKategorie(m, k);
-		
-		temp.setName(name);
-		temp.setKommentar(kommentar);
-		temp.setKategorieTyp(typ);
-		
-		mandantDAO.save(m);
+
+		kategorieService.updateKategorie(k, name, kommentar, typ);
 		
 		displayInfo("Kategorie " + name + " wurde aktualisiert.");
 	}
@@ -150,11 +149,7 @@ public class KategorieBakingBean extends BaseBean {
 	 *
 	 */
 	public void deleteKategorie() {
-		Mandant m = service.getMandantById(mandantId);
-		
-		m.getKategorien().remove(k);
-		
-		mandantDAO.save(m);
+		mandantService.deleteKategorie(mandantId, k);
 	}
 	
 	/**

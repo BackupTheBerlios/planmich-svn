@@ -59,8 +59,12 @@
 		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-			<property-name>service</property-name>
+			<property-name>mandantService</property-name>
 			<value>#{mandantService}</value>
+		</managed-property>
+				<managed-property>
+			<property-name>kategorieService</property-name>
+			<value>#{kategorieService}</value>
 		</managed-property>
 		<managed-property>
 			<property-name>mandantDAO</property-name>

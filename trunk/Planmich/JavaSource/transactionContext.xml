@@ -26,7 +26,7 @@
 
 	<!-- deklarative Transaktion fuer den *Service -->
 	<aop:config>
-		<aop:pointcut id="txMethods" expression="execution(* org.schorpp.planmich.service.MandantService*.*(..))"/>
+		<aop:pointcut id="txMethods" expression="execution(* org.schorpp.planmich.service.*Service*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txMethods"/>
 	</aop:config>
 	

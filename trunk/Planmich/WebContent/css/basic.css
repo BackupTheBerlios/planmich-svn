@@ -51,8 +51,9 @@ hr {
 h1.headline {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	padding: 0;
-	margin-bottom: 2em;
+	border-bottom: 1px solid #0453CC;
+	padding: 0.5em;
+	margin-bottom: 10px;
 }
 
 .headline1 {
@@ -116,8 +117,8 @@ h1.headline {
 	padding: 0.5em;
 	text-align: left;
 	border: none;
-	background: white url(/Planmich/images/verlauf.jpg) repeat-x 0 0;
-	height: 30px;
+	/*background: white url(/Planmich/images/verlauf.jpg) repeat-x 0 0;*/
+	height: 25px;
 }
 
 .standardTable_Header a {
@@ -237,8 +238,4 @@ h1.headline {
 	width: 100%;
 	padding: 20px;
 	background-color: #FFFFFF;
-}
-
-#menu {
-	padding-left: 1em;
 }

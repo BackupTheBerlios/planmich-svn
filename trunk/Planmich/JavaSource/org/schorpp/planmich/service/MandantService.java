@@ -3,6 +3,7 @@ package org.schorpp.planmich.service;
 import java.util.List;
 
 import org.schorpp.planmich.domain.Kategorie;
+import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -50,19 +51,10 @@ public interface MandantService {
 	 * 
 	 * @param m
 	 */
+	@Transactional
 	public void delete(Mandant m);
 
-	/**
-	 * Löscht die Kategorie mit der angebenenen Id
-	 * @param id
-	 */
-	public void deleteKategorie(Mandant m, Kategorie k);
-
-	/** Aktualisiert die angegebene Kategorie
-	 * 
-	 * @param Mandant
-	 * @param Kategorie
-	 */
-	public void updateKategorie(Mandant m, Kategorie k);
+	@Transactional
+	public void deleteKategorie(Integer mandantId, Kategorie k);
 
 }
