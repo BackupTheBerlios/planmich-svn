@@ -1,6 +1,7 @@
 package org.schorpp.planmich.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 * @see org.schorpp.planmich.service.Liquidiplan#getPlanAsMap(java.util.Calendar,
 	 *      java.util.Calendar)
 	 */
-	public Map getPlanAsMap(Mandant mandant, Calendar von, Calendar bis) {
+	public Double[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis) {
 
 		List<Plandatum> plandaten = null;
 
@@ -32,15 +33,17 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		plandaten = mandant.getPlandaten();
 		kategorien = mandant.getKategorien();
 		
-		Map<String, Map<Kategorie, Double>> spalten = new TreeMap<String, Map<Kategorie, Double>>();
-		Map<Kategorie, Double> zellen;
+		// Soviele Zeile wie Kategorien vorhanden sind
+		Double daten[][] = new Double[kategorien.size() + 1][1000];
+			
 
+		int x=0;
+		
 		for (Calendar aktDatum = (Calendar) von.clone(); aktDatum.before(bis); aktDatum
 				.add(Calendar.DATE, 1)) {
-
-
-			zellen = new TreeMap<Kategorie, Double>();
-
+			
+			int y = 0;
+			
 			for (Kategorie aktKategorie : kategorien) {
 
 				double wert = 0.0;
@@ -52,15 +55,20 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 					}
 				}
 
-				zellen.put(aktKategorie, wert);
+				daten[y][x] = 999.;
+				daten[y+1][x] = wert;
 
+				y += 1;
+				
 			}
 
-			spalten.put(df.format(aktDatum.getTime()), zellen);
+			//spalten.put(df.format(aktDatum.getTime()), zellen);
 
+			x += 1;
+			
 		}
 
-		return spalten;
+		return daten;
 	}
 
 	private boolean pruefeDatumAufTurnus(Calendar aktDatum, Plandatum plandatum) {

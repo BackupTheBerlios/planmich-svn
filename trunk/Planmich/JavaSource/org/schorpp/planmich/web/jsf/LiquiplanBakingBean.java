@@ -6,9 +6,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.model.ArrayDataModel;
+import javax.faces.model.DataModel;
+
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.service.LiquiplanService;
+import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 
 
 public class LiquiplanBakingBean extends BaseBean {
@@ -21,6 +25,14 @@ public class LiquiplanBakingBean extends BaseBean {
 	
 	private Calendar bis = Calendar.getInstance();
 	
+	protected DataModel columnHeaders;
+	
+	protected DataModel data;
+	
+	public LiquiplanBakingBean() {
+
+	}
+	
 	public void setService(LiquiplanService service) {
 		this.service = service;
 	}
@@ -29,35 +41,20 @@ public class LiquiplanBakingBean extends BaseBean {
 		this.mandantDAO = mandantDAO;
 	}
 	
-	public List getPlanData() {
+	public DataModel getPlanData() {
+
 		Mandant mandant = mandantDAO.getMandantById((Integer) getFromSession("Mandant"));
 		
 		bis.add(Calendar.DAY_OF_MONTH, 12);
 		//return null;
 		
-		Map plan = service.getPlanAsMap(mandant, von, bis);
+		Double[][] plan = service.getPlanAsMap(mandant, von, bis);
 		
 		
-		Iterator it = plan.keySet().iterator();
-		while(it.hasNext()) {
-			String datum = (String) it.next();
-			
-			System.out.print(datum + " ");
-			
-			Iterator kt = ((Map)plan.get(datum)).keySet().iterator();
-			
-			while(kt.hasNext()) {
-				org.schorpp.planmich.domain.Kategorie kat = (org.schorpp.planmich.domain.Kategorie)kt.next();
-				System.out.print(kat.getName() + "   "); System.out.print(((Map)plan.get(datum)).get(kat));
-				
-			}
-			
-			
-			
-			System.out.println();
-		}
+		data = new ArrayDataModel(plan);
+		columnHeaders = new ArrayDataModel(plan[0]);
 		
-		return null;
+		return data;
 	}
 
 	public Calendar getBis() {
@@ -76,4 +73,44 @@ public class LiquiplanBakingBean extends BaseBean {
 		this.von = von;
 	}
 	
+
+	public Object getColumnValue() {
+		Object columnValue = null;
+		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
+	
+			columnValue = ((List) data.getRowData()).get(columnHeaders
+					.getRowIndex());
+		}
+		return columnValue;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void setColumnValue(Object value) {
+		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
+			((List<Object>) data.getRowData()).set(columnHeaders.getRowIndex(),
+					value);
+		}
+	}
+
+	public String getColumnWidth() {
+		String columnWidth = null;
+		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
+			columnWidth = ((SpaltenUeberschrift) columnHeaders.getRowData())
+					.getWidth();
+		}
+		return columnWidth;
+	}
+
+	public String getTextAlign() {
+		String textAlign = null;
+		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
+			textAlign = ((SpaltenUeberschrift) columnHeaders.getRowData())
+					.getTextAlign();
+		}
+		return textAlign;
+	}
+
+	public DataModel getColumnHeaders() {
+		return columnHeaders;
+	}
 }

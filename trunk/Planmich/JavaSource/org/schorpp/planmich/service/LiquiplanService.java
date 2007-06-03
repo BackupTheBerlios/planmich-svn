@@ -18,6 +18,6 @@ public interface LiquiplanService {
 	 * @param bis
 	 * @return
 	 */
-	public Map getPlanAsMap(Mandant mandant, Calendar von, Calendar bis);
+	public Double[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis);
 	
 }

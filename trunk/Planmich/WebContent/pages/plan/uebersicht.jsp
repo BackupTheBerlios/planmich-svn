@@ -14,18 +14,15 @@
 
 
 			<t:dataTable value="#{liquiplanBakingBean.planData}" rendered="true"
-				border="0" rows="10" var="zeile" id="showPlandates"
+				border="0" rows="10" var="daten" id="showPlandates"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
 				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
 				sortable="true">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Bezeichnung" />
-					</f:facet>
-					<h:outputText value="#{zeile}" />
-				</h:column>
+				<t:columns value="#{liquiplanBakingBean.columnHeaders}" var="spalte">
+					<h:outputText value="#{liquiplanBakingBean.columnValue}" />
+				</t:columns>
 
 			</t:dataTable>
 		

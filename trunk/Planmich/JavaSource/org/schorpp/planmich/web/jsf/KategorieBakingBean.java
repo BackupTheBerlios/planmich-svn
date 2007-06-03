@@ -118,6 +118,7 @@ public class KategorieBakingBean extends BaseBean {
 	 */
 	public void addKategorie() {
 		
+		mandantId = (Integer) getFromSession("Mandant");
 		Mandant m = mandantService.getMandantById(mandantId);
 		
 		k = new Kategorie();
