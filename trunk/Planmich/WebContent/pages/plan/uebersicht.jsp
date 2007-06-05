@@ -10,7 +10,7 @@
 	<f:facet name="body">
 		<h:form>
 
-			<d:Headline headline="Liquiditätsplan" styleClass="headline"/>
+			<d:Headline headline="Liquiditätsplan" styleClass="headline" />
 
 
 			<t:dataTable value="#{liquiplanBakingBean.planData}" rendered="true"
@@ -20,13 +20,16 @@
 				rowClasses="standardTable_Row1,standardTable_Row2"
 				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
 				sortable="true">
-				<t:columns value="#{liquiplanBakingBean.columnHeaders}" var="spalte">
+				<t:columns value="#{liquiplanBakingBean.columnHeaders}" var="columnHeader">
+					<f:facet name="header">
+						<h:outputText value="#{columnHeader.label}" />
+					</f:facet>
 					<h:outputText value="#{liquiplanBakingBean.columnValue}" />
 				</t:columns>
 
 			</t:dataTable>
-		
-			
+
+
 		</h:form>
 
 	</f:facet>

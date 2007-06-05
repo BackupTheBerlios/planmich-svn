@@ -1,5 +1,6 @@
 package org.schorpp.planmich.web.jsf;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import javax.faces.model.ArrayDataModel;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Mandant;
@@ -44,15 +46,16 @@ public class LiquiplanBakingBean extends BaseBean {
 	public DataModel getPlanData() {
 
 		Mandant mandant = mandantDAO.getMandantById((Integer) getFromSession("Mandant"));
+		List<SpaltenUeberschrift> colHeaders = new ArrayList<SpaltenUeberschrift>();
 		
 		bis.add(Calendar.DAY_OF_MONTH, 12);
 		//return null;
 		
-		Double[][] plan = service.getPlanAsMap(mandant, von, bis);
+		Double[][] plan = service.getPlanAsMap(mandant, von, bis, colHeaders);
 		
 		
 		data = new ArrayDataModel(plan);
-		columnHeaders = new ArrayDataModel(plan[0]);
+		columnHeaders = new ListDataModel(colHeaders);
 		
 		return data;
 	}
@@ -78,8 +81,8 @@ public class LiquiplanBakingBean extends BaseBean {
 		Object columnValue = null;
 		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
 	
-			columnValue = ((List) data.getRowData()).get(columnHeaders
-					.getRowIndex());
+			columnValue = ((Double[]) data.getRowData())[columnHeaders.getRowIndex()];
+					
 		}
 		return columnValue;
 	}

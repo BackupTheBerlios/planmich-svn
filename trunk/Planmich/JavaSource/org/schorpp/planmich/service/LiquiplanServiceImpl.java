@@ -12,6 +12,8 @@ import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Wiederholung;
+import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
+
 
 public class LiquiplanServiceImpl implements LiquiplanService {
 
@@ -24,7 +26,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 * @see org.schorpp.planmich.service.Liquidiplan#getPlanAsMap(java.util.Calendar,
 	 *      java.util.Calendar)
 	 */
-	public Double[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis) {
+	public Double[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis, List<SpaltenUeberschrift> colHeaders) {
 
 		List<Plandatum> plandaten = null;
 
@@ -55,8 +57,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 					}
 				}
 
-				daten[y][x] = 999.;
-				daten[y+1][x] = wert;
+				colHeaders.add(new SpaltenUeberschrift(aktKategorie.getName(), "300", "left", false));
+				daten[y][x] = wert;
 
 				y += 1;
 				
