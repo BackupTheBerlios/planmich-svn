@@ -13,13 +13,15 @@
 			<d:Headline headline="Liquiditätsplan" styleClass="headline" />
 
 
+			<t:div style="overflow: auto">
+
 			<t:dataTable value="#{liquiplanBakingBean.planData}" rendered="true"
 				border="0" rows="10" var="daten" id="showPlandates"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
 				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
-				sortable="true">
+				sortable="true" preserveDataModel="true">
 				<t:columns value="#{liquiplanBakingBean.columnHeaders}" var="columnHeader">
 					<f:facet name="header">
 						<h:outputText value="#{columnHeader.label}" />
@@ -29,6 +31,7 @@
 
 			</t:dataTable>
 
+		</t:div>
 
 		</h:form>
 

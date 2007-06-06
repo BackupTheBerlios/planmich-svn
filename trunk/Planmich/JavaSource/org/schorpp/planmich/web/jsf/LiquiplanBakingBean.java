@@ -48,11 +48,10 @@ public class LiquiplanBakingBean extends BaseBean {
 		Mandant mandant = mandantDAO.getMandantById((Integer) getFromSession("Mandant"));
 		List<SpaltenUeberschrift> colHeaders = new ArrayList<SpaltenUeberschrift>();
 		
-		bis.add(Calendar.DAY_OF_MONTH, 12);
+		bis.add(Calendar.DATE, 5);
 		//return null;
 		
-		Double[][] plan = service.getPlanAsMap(mandant, von, bis, colHeaders);
-		
+		String[][] plan = service.getPlanAsMap(mandant, von, bis, colHeaders);
 		
 		data = new ArrayDataModel(plan);
 		columnHeaders = new ListDataModel(colHeaders);
@@ -81,7 +80,7 @@ public class LiquiplanBakingBean extends BaseBean {
 		Object columnValue = null;
 		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
 	
-			columnValue = ((Double[]) data.getRowData())[columnHeaders.getRowIndex()];
+			columnValue = ((String[]) data.getRowData())[columnHeaders.getRowIndex()];
 					
 		}
 		return columnValue;

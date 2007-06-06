@@ -12,12 +12,13 @@
 		<h:form>
 			<d:Headline headline="#{messages.plandatumUebersicht}" styleClass="headline"/>
 
+
 			<t:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
 				border="0" rows="10" var="plandate" id="showPlandates"
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column" sortable="true">
+				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column" sortable="true preserveDataModel="false">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Bezeichnung" />

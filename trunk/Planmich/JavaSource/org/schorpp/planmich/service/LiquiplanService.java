@@ -20,6 +20,6 @@ public interface LiquiplanService {
 	 * @param colHeaders 
 	 * @return
 	 */
-	public Double[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis, List<SpaltenUeberschrift> colHeaders);
+	public String[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis, List<SpaltenUeberschrift> colHeaders);
 	
 }

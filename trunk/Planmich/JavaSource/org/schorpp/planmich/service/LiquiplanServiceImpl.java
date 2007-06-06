@@ -18,7 +18,7 @@ import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 public class LiquiplanServiceImpl implements LiquiplanService {
 
 
-	SimpleDateFormat df = new SimpleDateFormat("yyMMdd");
+	SimpleDateFormat df = new SimpleDateFormat();
 	
 	/*
 	 * (non-Javadoc)
@@ -26,7 +26,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 * @see org.schorpp.planmich.service.Liquidiplan#getPlanAsMap(java.util.Calendar,
 	 *      java.util.Calendar)
 	 */
-	public Double[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis, List<SpaltenUeberschrift> colHeaders) {
+	public String[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis, List<SpaltenUeberschrift> colHeaders) {
 
 		List<Plandatum> plandaten = null;
 
@@ -35,8 +35,12 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		plandaten = mandant.getPlandaten();
 		kategorien = mandant.getKategorien();
 		
+		// Liste der Uberschriften Löschen
+		colHeaders.clear();
+		colHeaders.add(new SpaltenUeberschrift("Kategorie", "300", "left", false));
+		
 		// Soviele Zeile wie Kategorien vorhanden sind
-		Double daten[][] = new Double[kategorien.size() + 1][1000];
+		String daten[][] = new String[kategorien.size()][1000];
 			
 
 		int x=0;
@@ -45,6 +49,9 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				.add(Calendar.DATE, 1)) {
 			
 			int y = 0;
+			
+			
+			colHeaders.add(new SpaltenUeberschrift(df.format(aktDatum.getTime()), "300", "left", false));
 			
 			for (Kategorie aktKategorie : kategorien) {
 
@@ -57,15 +64,13 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 					}
 				}
 
-				colHeaders.add(new SpaltenUeberschrift(aktKategorie.getName(), "300", "left", false));
-				daten[y][x] = wert;
+				//daten[y][0] = aktKategorie.getName();
+				daten[y][x] = Double.toString(wert);
 
 				y += 1;
 				
 			}
-
-			//spalten.put(df.format(aktDatum.getTime()), zellen);
-
+			
 			x += 1;
 			
 		}
