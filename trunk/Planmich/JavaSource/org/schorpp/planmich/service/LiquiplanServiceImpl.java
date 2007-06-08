@@ -26,8 +26,15 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 * @see org.schorpp.planmich.service.Liquidiplan#getPlanAsMap(java.util.Calendar,
 	 *      java.util.Calendar)
 	 */
-	public String[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis, List<SpaltenUeberschrift> colHeaders) {
+	public String[][] getPlanAsMap(Mandant mandant, Date von, Date bis, List<SpaltenUeberschrift> colHeaders) {
 
+			Calendar vonDatum = Calendar.getInstance();
+			vonDatum.setTime(von);
+			
+			Calendar bisDatum = Calendar.getInstance();
+			bisDatum.setTime(bis);
+			
+		
 		List<Plandatum> plandaten = null;
 
 		List<Kategorie> kategorien = null;
@@ -45,8 +52,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 		int x=0;
 		
-		for (Calendar aktDatum = (Calendar) von.clone(); aktDatum.before(bis); aktDatum
-				.add(Calendar.DATE, 1)) {
+		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum.before(bisDatum); aktDatum
+				.add(Calendar.YEAR, 1)) {
 			
 			int y = 0;
 			
@@ -64,8 +71,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 					}
 				}
 
-				//daten[y][0] = aktKategorie.getName();
-				daten[y][x] = Double.toString(wert);
+				daten[y][0] = aktKategorie.getName();
+				daten[y][x+1] = Double.toString(wert);
 
 				y += 1;
 				

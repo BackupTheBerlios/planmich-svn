@@ -3,6 +3,7 @@ package org.schorpp.planmich.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,6 @@ public interface LiquiplanService {
 	 * @param colHeaders 
 	 * @return
 	 */
-	public String[][] getPlanAsMap(Mandant mandant, Calendar von, Calendar bis, List<SpaltenUeberschrift> colHeaders);
+	public String[][] getPlanAsMap(Mandant mandant, Date von, Date bis, List<SpaltenUeberschrift> colHeaders);
 	
 }

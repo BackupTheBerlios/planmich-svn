@@ -49,6 +49,21 @@ public class NavigationMenu {
 
 		return menu;
 	}
+	
+	public List getPlanMenuItems() {
+		List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
+
+
+		NavigationMenuItem planMenu = createMenuNavigationItem(
+				"Plan", null);
+		menu.add(planMenu);
+		planMenu.add(createMenuNavigationItem("Jahresplan",
+				"liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
+
+		
+
+		return menu;
+	}
 
 	private static NavigationMenuItem createMenuNavigationItem(String label,
 			String action) {

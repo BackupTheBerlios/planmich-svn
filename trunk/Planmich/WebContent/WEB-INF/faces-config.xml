@@ -102,7 +102,7 @@
 	<managed-bean>
 		<managed-bean-name>liquiplanBakingBean</managed-bean-name>
 		<managed-bean-class>org.schorpp.planmich.web.jsf.LiquiplanBakingBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>request</managed-bean-scope>
 				<managed-property>
 			<property-name>service</property-name>
 			<value>#{liquiplanService}</value>
@@ -145,6 +145,11 @@
 		<navigation-case>
 			<from-outcome>wechselnMandant</from-outcome>
 			<to-view-id>/pages/mandant/selectMandant.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+				<navigation-case>
+			<from-outcome>liquiplanUebersicht</from-outcome>
+			<to-view-id>/pages/plan/uebersicht.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
