@@ -21,6 +21,6 @@ public interface LiquiplanService {
 	 * @param colHeaders 
 	 * @return
 	 */
-	public String[][] getPlanAsMap(Mandant mandant, Date von, Date bis, List<SpaltenUeberschrift> colHeaders);
+	public String[][] calculatePlanAsMap(Mandant mandant, Date von, Date bis, List<SpaltenUeberschrift> colHeaders);
 	
 }

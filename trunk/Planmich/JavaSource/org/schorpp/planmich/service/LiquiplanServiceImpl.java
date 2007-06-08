@@ -14,52 +14,54 @@ import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Wiederholung;
 import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 
-
 public class LiquiplanServiceImpl implements LiquiplanService {
 
-
 	SimpleDateFormat df = new SimpleDateFormat();
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.schorpp.planmich.service.Liquidiplan#getPlanAsMap(java.util.Calendar,
 	 *      java.util.Calendar)
 	 */
-	public String[][] getPlanAsMap(Mandant mandant, Date von, Date bis, List<SpaltenUeberschrift> colHeaders) {
+	public String[][] calculatePlanAsMap(Mandant mandant, Date von, Date bis,
+			List<SpaltenUeberschrift> colHeaders) {
 
-			Calendar vonDatum = Calendar.getInstance();
-			vonDatum.setTime(von);
-			
-			Calendar bisDatum = Calendar.getInstance();
-			bisDatum.setTime(bis);
-			
+		Calendar vonDatum = Calendar.getInstance();
+		vonDatum.setTime(von);
+
+		
+		Calendar bisDatum = Calendar.getInstance();
+		bisDatum.setTime(bis);
+
 		
 		List<Plandatum> plandaten = null;
 
 		List<Kategorie> kategorien = null;
-		
+
 		plandaten = mandant.getPlandaten();
 		kategorien = mandant.getKategorien();
-		
+
 		// Liste der Uberschriften Löschen
 		colHeaders.clear();
-		colHeaders.add(new SpaltenUeberschrift("Kategorie", "300", "left", false));
-		
+		colHeaders.add(new SpaltenUeberschrift("Kategorie", "300", "left",
+				false));
+		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left",
+				false));
+
 		// Soviele Zeile wie Kategorien vorhanden sind
 		String daten[][] = new String[kategorien.size()][1000];
-			
 
-		int x=0;
-		
-		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum.before(bisDatum); aktDatum
-				.add(Calendar.YEAR, 1)) {
-			
+		int x = 0;
+
+		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
+				.before(bisDatum); aktDatum.add(Calendar.DATE, 1)) {
+
 			int y = 0;
 			
-			
-			colHeaders.add(new SpaltenUeberschrift(df.format(aktDatum.getTime()), "300", "left", false));
-			
+			colHeaders.add(new SpaltenUeberschrift(df
+					.format(aktDatum.getTime()), "300", "left", false));
+
 			for (Kategorie aktKategorie : kategorien) {
 
 				double wert = 0.0;
@@ -72,14 +74,15 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				}
 
 				daten[y][0] = aktKategorie.getName();
-				daten[y][x+1] = Double.toString(wert);
+				daten[y][1] = aktKategorie.getKategorieTyp().name();
+				daten[y][x + 2] = Double.toString(wert);
 
 				y += 1;
-				
+
 			}
-			
+
 			x += 1;
-			
+
 		}
 
 		return daten;

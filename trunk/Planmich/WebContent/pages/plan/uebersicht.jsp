@@ -30,14 +30,19 @@
 					popupTodayString="Heute: " popupDateFormat="dd.MM.yyyy"
 					popupWeekString="Woche:" helpText="dd.MM.yyyy" forceId="true" />
 
-				<h:commandLink id="submit" action="#{liquiplanBakingBean.updatePlan}"
+				<h:commandLink id="submit" action="liquiplanUebersicht"
 					value="Aktualisieren">
 					<h:outputText>Aktualisieren</h:outputText>
 				</h:commandLink>
 
 			</h:panelGrid>
 
-			<d:Spacer/>
+			<f:verbatim><br><br></f:verbatim>
+
+			<t:panelTabbedPane>
+
+
+			<t:panelTab id="tabelle" label="Tabelle">
 
 			<t:div style="overflow: auto">
 
@@ -47,7 +52,7 @@
 					footerClass="standardTable_Header"
 					rowClasses="standardTable_Row1,standardTable_Row2"
 					columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
-					sortable="false" preserveDataModel="false">
+					sortable="true" preserveDataModel="true">
 
 					<t:columns value="#{liquiplanBakingBean.columnHeaders}"
 						var="columnHeader">
@@ -59,7 +64,17 @@
 
 				</t:dataTable>
 
+			<f:verbatim><br><br></f:verbatim>
+
 			</t:div>
+			
+			</t:panelTab>
+			
+			<t:panelTab id="grafik" label="Grafik">
+			
+			</t:panelTab>
+			
+			</t:panelTabbedPane>
 
 		</h:form>
 

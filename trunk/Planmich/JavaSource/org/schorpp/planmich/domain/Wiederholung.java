@@ -4,20 +4,20 @@ public interface Wiederholung {
 
 	public static int KEINE = 0;
 
-	public static int TAEGLICH = 2;
+	public static int TAEGLICH = 1;
 
-	public static int WOECHENTLICH = 3;
+	public static int WOECHENTLICH = 2;
 
-	public static int ZWEIWOECHENTLICH = 4;
+	public static int ZWEIWOECHENTLICH = 3;
 
-	public static int MONATLICH = 5;
+	public static int MONATLICH = 4;
 
-	public static int ZWEIMONATLICH = 6;
+	public static int ZWEIMONATLICH = 5;
 
-	public static int VIERTELJAEHRLICH = 7;
+	public static int VIERTELJAEHRLICH = 6;
 
-	public static int HALBJAEHRLICH = 8;
+	public static int HALBJAEHRLICH = 7;
 
-	public static int JAEHRLICH = 9;
+	public static int JAEHRLICH = 8;
 
 }

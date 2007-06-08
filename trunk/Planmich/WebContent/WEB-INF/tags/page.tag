@@ -12,7 +12,7 @@
 
 			<f:loadBundle basename="org.schorpp.planmich.web.resources.resources"
 				var="messages" />
-				
+
 			<t:panelLayout id="page" styleClass="pageLayout"
 				headerClass="pageHeader" navigationClass="pageNavigation"
 				bodyClass="pageBody">
@@ -22,16 +22,25 @@
 						columnClasses="standardTable_ColumnLeft, standardTable_ColumnRight">
 						<f:verbatim>
 						</f:verbatim>
-												<h:outputText style="padding-right: 1em; color: black"
+						<h:outputText style="padding-right: 1em; color: black"
 							value="#{messages.mandant}:  #{sessionBean.mandant.name}" />
 						<h:form>
 							<t:jscookMenu id="menu" layout="hbr" theme="ThemeOffice"
 								styleLocation="/css/jscookmenu">
-								<t:navigationMenuItems id="navitems" value="#{menu.menuItems}" />
+								<t:navigationMenuItems id="hauptmenue" value="#{menu.menuItems}" />
 							</t:jscookMenu>
 						</h:form>
 
-						<f:verbatim> </f:verbatim>
+						<h:form>
+							<t:jscookMenu id="menu" layout="hbr" theme="ThemeOffice"
+								styleLocation="/css/jscookmenu">
+								<t:navigationMenuItems id="planmenue"
+									value="#{menu.planMenuItems}" />
+							</t:jscookMenu>
+						</h:form>
+
+						<f:verbatim>
+						</f:verbatim>
 
 					</h:panelGrid>
 

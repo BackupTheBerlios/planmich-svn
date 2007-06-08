@@ -18,7 +18,7 @@
 				styleClass="standardTable" headerClass="standardTable_Header"
 				footerClass="standardTable_Header"
 				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column" sortable="true preserveDataModel="false">
+				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column" sortable="true" preserveDataModel="false">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Bezeichnung" />
