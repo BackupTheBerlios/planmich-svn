@@ -60,7 +60,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			int y = 0;
 			
 			colHeaders.add(new SpaltenUeberschrift(df
-					.format(aktDatum.getTime()), "300", "left", false));
+					.format(aktDatum.getTime()), "300", "right", false));
 
 			for (Kategorie aktKategorie : kategorien) {
 
@@ -141,11 +141,27 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	}
 
 	private boolean matchByMonth(Calendar a, Calendar b) {
-		return matchByMonth(a, b, 1);
+		
+		int taga = a.get(Calendar.DATE);
+		int tagb = b.get(Calendar.DATE);
+		
+		return taga == tagb;
+		
+		//return Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH)) % 2 == 0;
+		
+		
+		//return matchByMonth(a, b, 1);
 	}
 
 	private boolean matchByMonth(Calendar a, Calendar b, int dauer) {
-		return matchByWhatever(a, b, Calendar.MONTH, dauer);
+		
+		int taga = a.get(Calendar.DATE);
+		int tagb = b.get(Calendar.DATE);
+		
+		return taga == tagb && Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH)) % dauer == 0;
+		
+		
+		//return matchByWhatever(a, b, Calendar.MONTH, dauer);
 	}
 
 	private boolean matchByYear(Calendar a, Calendar b) {
