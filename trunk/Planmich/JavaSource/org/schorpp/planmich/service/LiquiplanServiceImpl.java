@@ -16,7 +16,7 @@ import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 
 public class LiquiplanServiceImpl implements LiquiplanService {
 
-	SimpleDateFormat df = new SimpleDateFormat();
+	SimpleDateFormat df = new SimpleDateFormat("E dd MM");
 
 	/*
 	 * (non-Javadoc)
@@ -50,8 +50,11 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				false));
 
 		// Soviele Zeile wie Kategorien vorhanden sind
-		String daten[][] = new String[kategorien.size()][1000];
+		String daten[][] = new String[kategorien.size()+2][1000];
 
+		double endbestand = 0;
+		double anfangsbestand = 0;
+		
 		int x = 0;
 
 		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
@@ -62,6 +65,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			colHeaders.add(new SpaltenUeberschrift(df
 					.format(aktDatum.getTime()), "300", "right", false));
 
+			anfangsbestand += endbestand;
+			
 			for (Kategorie aktKategorie : kategorien) {
 
 				double wert = 0.0;
@@ -77,11 +82,17 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				daten[y][1] = aktKategorie.getKategorieTyp().name();
 				daten[y][x + 2] = Double.toString(wert);
 
+				anfangsbestand += wert;
+				
 				y += 1;
 
 			}
+			
+			daten[y+1][x+2] = Double.toString(anfangsbestand);
 
 			x += 1;
+			
+			endbestand = anfangsbestand;
 
 		}
 
@@ -137,7 +148,10 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	}
 
 	private boolean matchByWeek(Calendar a, Calendar b, int dauer) {
-		return matchByWhatever(a, b, Calendar.WEEK_OF_YEAR, 1);
+		
+		return Math.abs(a.get(Calendar.DATE) - b.get(Calendar.DATE)) % (dauer * 7) == 0;
+		
+		//return matchByWhatever(a, b, Calendar.WEEK_OF_YEAR, 1);
 	}
 
 	private boolean matchByMonth(Calendar a, Calendar b) {
