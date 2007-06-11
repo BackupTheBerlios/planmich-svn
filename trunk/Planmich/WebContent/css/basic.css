@@ -80,7 +80,7 @@ h1.headline {
 	font-weight: bold;
 }
 
-.standardTable {
+.tabelle {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: #000000;
@@ -91,6 +91,16 @@ h1.headline {
 	width: 600px;
 }
 
+.liquiplanTabelle {
+	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	padding: 0;
+	border-style: solid;
+	border-width: 0px;
+    border-color: #d0d0d0;
+	width: 100%;
+}
 .scroller {
 	padding-left: 0px;
 }
@@ -111,7 +121,7 @@ h1.headline {
 
 
 
-.standardTable_Header {
+.tabelle_Ueberschrift {
 	color: white;
 	background-color: #CDBA96;
 	padding: 0.5em;
@@ -121,11 +131,11 @@ h1.headline {
 	height: 25px;
 }
 
-.standardTable_Header a {
+.tabelle_Ueberschrift a {
 	color: white;
 }
 
-.standardTable_SortHeader {
+.tabelle_SortHeader {
 	background-color: #FFDD00;
 	color: #000000;
 	padding: 0.5em;
@@ -134,41 +144,41 @@ h1.headline {
 	font-weight: bold;
 }
 
-.standardTable_Footer {
+.tabelle_Footer {
 	background-color: #FFE4F1;
 }
 
-.standardTable_Row2 {
+.tabelle_Zeile2 {
 	background-color: #C7C7C7;
 		vertical-align: top;
 }
 
-.standardTable_Row1 {
+.tabelle_Zeile1 {
 	background-color: #EBEBEB;
 		vertical-align: top;
 }
 
-.standardTable_Column {
+.tabelle_Spalte {
 	padding: 0.5em;
 }
 
-.standardTable_ColumnCentered {
+.tabelle_SpalteCentered {
 	text-align: center;
 	padding: 0.5em;
 }
 
-.standardTable_ColumnLeft {
+.tabelle_SpalteLeft {
 	text-align: left;
 	padding: 0.5em;
 	vertical-align: top;
 }
 
-.standardTable_ColumnRight {
+.tabelle_SpalteRight {
 	text-align: right;
 	padding: 0.5em;
 }
 
-.whiteColumn {
+.whiteSpalte {
 	text-align: left;
 	padding: 3px;
 	background-color: white;

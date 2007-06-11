@@ -14,10 +14,10 @@
 
 			<t:dataTable value="#{sessionBean.mandant.kategorien}"
 				rendered="true" border="0" rows="15" var="kategorie" id="kategorien"
-				styleClass="standardTable" headerClass="standardTable_Header"
-				footerClass="standardTable_Footer"
-				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column, standardTable_Column"
+				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
+				footerClass="tabelle_Footer"
+				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+				columnClasses="tabelle_Spalte, tabelle_Spalte"
 				sortable="true">
 				<h:column>
 					<f:facet name="header">

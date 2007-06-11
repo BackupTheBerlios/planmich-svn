@@ -12,11 +12,11 @@
 
 			<d:Headline headline="#{messages.addPlandatum}" />
 
-			<h:panelGrid columns="2" styleClass="standardTable"
-				headerClass="standardTable_Header"
-				footerClass="standardTable_Header"
-				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column">
+			<h:panelGrid columns="2" styleClass="tabelle"
+				headerClass="tabelle_Ueberschrift"
+				footerClass="tabelle_Ueberschrift"
+				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+				columnClasses="tabelle_Spalte">
 				<f:facet name="header">
 					<h:outputText value="#{messages.addPlandatum}" />
 				</f:facet>

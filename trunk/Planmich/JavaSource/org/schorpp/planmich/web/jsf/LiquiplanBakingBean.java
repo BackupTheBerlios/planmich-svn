@@ -39,7 +39,7 @@ public class LiquiplanBakingBean extends BaseBean {
 		
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(bis);
-		temp.set(Calendar.MONTH, 12);
+		temp.add(Calendar.MONTH, 12);
 		bis = temp.getTime();
 		
 		colHeaders = new ArrayList<SpaltenUeberschrift>();

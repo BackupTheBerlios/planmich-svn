@@ -15,10 +15,10 @@
 
 			<t:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
 				border="0" rows="10" var="plandate" id="showPlandates"
-				styleClass="standardTable" headerClass="standardTable_Header"
-				footerClass="standardTable_Header"
-				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column" sortable="true" preserveDataModel="false">
+				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
+				footerClass="tabelle_Ueberschrift"
+				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+				columnClasses="tabelle_Spalte,tabelle_SpalteCentered,tabelle_Spalte" sortable="true" preserveDataModel="false">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Bezeichnung" />

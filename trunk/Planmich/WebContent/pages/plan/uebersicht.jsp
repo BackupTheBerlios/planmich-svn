@@ -54,17 +54,16 @@
 
 						<t:dataTable value="#{liquiplanBakingBean.planData}"
 							rendered="true" border="0" rows="10" var="daten"
-							id="showPlandates" styleClass="standardTable"
-							headerClass="standardTable_Header"
-							footerClass="standardTable_Header"
-							rowClasses="standardTable_Row1,standardTable_Row2"
-							columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
-							sortable="true" preserveDataModel="true">
+							id="showPlandates" styleClass="liquiplanTabelle"
+							headerClass="tabelle_Ueberschrift"
+							footerClass="tabelle_Ueberschrift"
+							rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+							columnClasses="tabelle_Spalte,tabelle_SpalteRight,tabelle_SpalteRight">
 
 							<t:columns value="#{liquiplanBakingBean.columnHeaders}"
-								var="columnHeader" style="width: 300px;">
+								var="columnHeader" style="width: 300px; text-align:right">
 								<f:facet name="header">
-									<h:outputText value="#{columnHeader.label}" />
+									<h:outputText value="#{columnHeader.label}"/>
 								</f:facet>
 								<h:outputText value="#{liquiplanBakingBean.columnValue}" />
 							</t:columns>

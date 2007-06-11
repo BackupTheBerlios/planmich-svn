@@ -14,10 +14,10 @@
 
 			<t:dataTable value="#{mandantDAO.mandanten}" rendered="true"
 				border="0" rows="5" var="mandant" id="mandanten"
-				styleClass="standardTable" headerClass="standardTable_Header"
-				footerClass="standardTable_Header"
-				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column, standardTable_Column" sortable="true">
+				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
+				footerClass="tabelle_Ueberschrift"
+				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+				columnClasses="tabelle_Spalte, tabelle_Spalte" sortable="true">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Name" />

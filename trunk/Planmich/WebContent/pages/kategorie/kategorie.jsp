@@ -14,11 +14,11 @@
 			<d:Headline headline="#{messages.neueKategorie}" rendered="#{!kategorieBakingBean.editMode}" styleClass="headline"/>
 			<d:Headline headline="#{messages.updateKategorie}" rendered="#{kategorieBakingBean.editMode}" styleClass="headline"/>
 
-			<h:panelGrid columns="2" styleClass="standardTable"
-				headerClass="standardTable_Header"
-				footerClass="standardTable_Header"
-				rowClasses="standardTable_Row1,standardTable_Row2"
-				columnClasses="standardTable_Column, whiteColumn">
+			<h:panelGrid columns="2" styleClass="tabelle"
+				headerClass="tabelle_Ueberschrift"
+				footerClass="tabelle_Ueberschrift"
+				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+				columnClasses="tabelle_Spalte, whiteSpalte">
 				
 				<h:outputText value="#{messages.bezeichnung}" />
 				<h:inputText id="bezeichnung" value="#{kategorieBakingBean.name}"
