@@ -1,5 +1,6 @@
 package org.schorpp.planmich.service;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,6 +10,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.schorpp.planmich.domain.Kategorie;
+import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Wiederholung;
@@ -16,7 +18,9 @@ import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 
 public class LiquiplanServiceImpl implements LiquiplanService {
 
-	SimpleDateFormat df = new SimpleDateFormat("E dd MM");
+	SimpleDateFormat df = new SimpleDateFormat("MMM.yyyy");
+
+	DecimalFormat nf = new DecimalFormat("###,##0.00");
 
 	/*
 	 * (non-Javadoc)
@@ -30,11 +34,11 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		Calendar vonDatum = Calendar.getInstance();
 		vonDatum.setTime(von);
 
-		
 		Calendar bisDatum = Calendar.getInstance();
 		bisDatum.setTime(bis);
 
-		
+		Calendar tempvonDatum;
+
 		List<Plandatum> plandaten = null;
 
 		List<Kategorie> kategorien = null;
@@ -46,53 +50,64 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		colHeaders.clear();
 		colHeaders.add(new SpaltenUeberschrift("Kategorie", "300", "left",
 				false));
-		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left",
-				false));
+		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left", false));
 
 		// Soviele Zeile wie Kategorien vorhanden sind
-		String daten[][] = new String[kategorien.size()+2][1000];
+		String daten[][] = new String[kategorien.size() + 2][1000];
 
 		double endbestand = 0;
 		double anfangsbestand = 0;
-		
+
 		int x = 0;
 
+		tempvonDatum = (Calendar) vonDatum.clone();
+
 		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
-				.before(bisDatum); aktDatum.add(Calendar.DATE, 1)) {
+				.before(bisDatum); aktDatum.add(Calendar.MONTH, 1)) {
 
 			int y = 0;
-			
-			colHeaders.add(new SpaltenUeberschrift(df
-					.format(aktDatum.getTime()), "300", "right", false));
 
-			anfangsbestand += endbestand;
-			
+			colHeaders.add(new SpaltenUeberschrift(df
+					.format(aktDatum.getTime()), "400", "right", false));
+
+			anfangsbestand = endbestand;
+
 			for (Kategorie aktKategorie : kategorien) {
 
 				double wert = 0.0;
 
 				for (Plandatum aktPlandatum : plandaten) {
 					if (aktKategorie.equals(aktPlandatum.getKategorie())) {
-						if (pruefeDatumAufTurnus(aktDatum, aktPlandatum))
-							wert += aktPlandatum.getBetrag();
+						for (Calendar kanditatDatum = (Calendar) tempvonDatum
+								.clone(); kanditatDatum.before(aktDatum); kanditatDatum
+								.add(Calendar.DATE, 1)) {
+							if (pruefeDatumAufTurnus(kanditatDatum,
+									aktPlandatum))
+								if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+									wert += aktPlandatum.getBetrag();
+								else
+									wert -= aktPlandatum.getBetrag();
+						}
 					}
 				}
 
 				daten[y][0] = aktKategorie.getName();
 				daten[y][1] = aktKategorie.getKategorieTyp().name();
-				daten[y][x + 2] = Double.toString(wert);
+				daten[y][x + 2] = nf.format(wert);
 
 				anfangsbestand += wert;
-				
+
 				y += 1;
 
 			}
-			
-			daten[y+1][x+2] = Double.toString(anfangsbestand);
+
+			daten[y + 1][x + 2] = nf.format(anfangsbestand);
 
 			x += 1;
-			
+
 			endbestand = anfangsbestand;
+
+			tempvonDatum = (Calendar) aktDatum.clone();
 
 		}
 
@@ -148,34 +163,36 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	}
 
 	private boolean matchByWeek(Calendar a, Calendar b, int dauer) {
-		
-		return Math.abs(a.get(Calendar.DATE) - b.get(Calendar.DATE)) % (dauer * 7) == 0;
-		
-		//return matchByWhatever(a, b, Calendar.WEEK_OF_YEAR, 1);
+
+		return Math.abs(a.get(Calendar.DATE) - b.get(Calendar.DATE))
+				% (dauer * 7) == 0;
+
+		// return matchByWhatever(a, b, Calendar.WEEK_OF_YEAR, 1);
 	}
 
 	private boolean matchByMonth(Calendar a, Calendar b) {
-		
+
 		int taga = a.get(Calendar.DATE);
 		int tagb = b.get(Calendar.DATE);
-		
+
 		return taga == tagb;
-		
-		//return Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH)) % 2 == 0;
-		
-		
-		//return matchByMonth(a, b, 1);
+
+		// return Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH)) % 2
+		// == 0;
+
+		// return matchByMonth(a, b, 1);
 	}
 
 	private boolean matchByMonth(Calendar a, Calendar b, int dauer) {
-		
+
 		int taga = a.get(Calendar.DATE);
 		int tagb = b.get(Calendar.DATE);
-		
-		return taga == tagb && Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH)) % dauer == 0;
-		
-		
-		//return matchByWhatever(a, b, Calendar.MONTH, dauer);
+
+		return taga == tagb
+				&& Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH))
+						% dauer == 0;
+
+		// return matchByWhatever(a, b, Calendar.MONTH, dauer);
 	}
 
 	private boolean matchByYear(Calendar a, Calendar b) {

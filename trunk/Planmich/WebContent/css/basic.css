@@ -239,3 +239,10 @@ h1.headline {
 	padding: 20px;
 	background-color: #FFFFFF;
 }
+
+.overflow {
+	overflow: auto;  
+	-overflow: scroll;
+	overflow-x: auto;
+	width: 100%;
+}

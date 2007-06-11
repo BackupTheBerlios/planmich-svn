@@ -10,6 +10,7 @@ import javax.faces.model.ArrayDataModel;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import org.jfree.data.general.DefaultPieDataset;
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.service.LiquiplanService;
@@ -38,7 +39,7 @@ public class LiquiplanBakingBean extends BaseBean {
 		
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(bis);
-		temp.add(Calendar.DATE, 1);
+		temp.set(Calendar.MONTH, 12);
 		bis = temp.getTime();
 		
 		colHeaders = new ArrayList<SpaltenUeberschrift>();
@@ -112,4 +113,14 @@ public class LiquiplanBakingBean extends BaseBean {
 		updatePlan();
 		return columnHeaders;
 	}
+	
+	public DefaultPieDataset getPieDataSet() {
+		DefaultPieDataset pieDataSet = new
+		DefaultPieDataset();
+		pieDataSet.setValue("A",52);
+		pieDataSet.setValue("B", 18);
+		pieDataSet.setValue("C", 30); 
+		
+		return pieDataSet;
+		} 
 }

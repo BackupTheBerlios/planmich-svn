@@ -5,6 +5,7 @@
 <%@ taglib uri="http://myfaces.apache.org/tomahawk" prefix="t"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="layout"%>
 <%@ taglib uri="http://schorpp.org/planmich" prefix="d"%>
+<%@ taglib uri="http://sourceforge.net/projects/jsf-comp" prefix="c"%>
 
 <layout:page>
 	<f:facet name="body">
@@ -37,44 +38,58 @@
 
 			</h:panelGrid>
 
-			<f:verbatim><br><br></f:verbatim>
+			<f:verbatim>
+				<br>
+				<br>
+			</f:verbatim>
 
-			<t:panelTabbedPane>
 
 
-			<t:panelTab id="tabelle" label="Tabelle">
+			<t:div styleClass="overflow">
 
-			<t:div style="overflow: auto">
+				<t:panelTabbedPane style="width: 100%">
 
-				<t:dataTable value="#{liquiplanBakingBean.planData}" rendered="true"
-					border="0" rows="10" var="daten" id="showPlandates"
-					styleClass="standardTable" headerClass="standardTable_Header"
-					footerClass="standardTable_Header"
-					rowClasses="standardTable_Row1,standardTable_Row2"
-					columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
-					sortable="true" preserveDataModel="true">
 
-					<t:columns value="#{liquiplanBakingBean.columnHeaders}"
-						var="columnHeader">
-						<f:facet name="header">
-							<h:outputText value="#{columnHeader.label}" />
-						</f:facet>
-						<h:outputText value="#{liquiplanBakingBean.columnValue}" />
-					</t:columns>
+					<t:panelTab id="tabelle" label="Tabelle">
 
-				</t:dataTable>
+						<t:dataTable value="#{liquiplanBakingBean.planData}"
+							rendered="true" border="0" rows="10" var="daten"
+							id="showPlandates" styleClass="standardTable"
+							headerClass="standardTable_Header"
+							footerClass="standardTable_Header"
+							rowClasses="standardTable_Row1,standardTable_Row2"
+							columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
+							sortable="true" preserveDataModel="true">
 
-			<f:verbatim><br><br></f:verbatim>
+							<t:columns value="#{liquiplanBakingBean.columnHeaders}"
+								var="columnHeader" style="width: 300px;">
+								<f:facet name="header">
+									<h:outputText value="#{columnHeader.label}" />
+								</f:facet>
+								<h:outputText value="#{liquiplanBakingBean.columnValue}" />
+							</t:columns>
+
+						</t:dataTable>
+
+						<f:verbatim>
+							<br>
+							<br>
+						</f:verbatim>
+
+
+
+					</t:panelTab>
+
+					<t:panelTab id="grafik" label="Grafik">
+						<c:chart id="chart1"
+							datasource="#{liquiplanBakingBean.pieDataSet}" type="pie"
+							is3d="true" antialias="true" title="Example Chart"
+							xlabel="X Label" ylabel="Y Label" height="300" width="400"></c:chart>
+					</t:panelTab>
+
+				</t:panelTabbedPane>
 
 			</t:div>
-			
-			</t:panelTab>
-			
-			<t:panelTab id="grafik" label="Grafik">
-			
-			</t:panelTab>
-			
-			</t:panelTabbedPane>
 
 		</h:form>
 
