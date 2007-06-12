@@ -37,14 +37,32 @@
 					</f:facet>
 					<h:outputText value="#{plandate.wertstellung}" />
 				</h:column>
-
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Wiederholung" />
+					</f:facet>
+					<h:outputText value="#{plandate.turnus}" />
+				</h:column>
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Kategorie" />
 					</f:facet>
 					<h:outputText value="#{plandate.kategorie.name}" />
 				</h:column>
-
+				<h:column>
+					<t:commandLink action="#{plandatumBakingBean.deletePlandatum}"
+						immediate="false">
+						<h:outputText value="Löschen" />
+						<t:updateActionListener property="#{plandatumBakingBean.plandatum}"
+							value="#{plandate}" />
+					</t:commandLink><f:verbatim> </f:verbatim>
+					<t:commandLink action="#{plandatumBakingBean.selectPlandatum}"
+						immediate="false">
+						<h:outputText value="Bearbeiten" />
+						<t:updateActionListener property="#{plandatumBakingBean.plandatum}"
+							value="#{plandate}" />
+					</t:commandLink>
+				</h:column>		
 		</t:dataTable>
 
 

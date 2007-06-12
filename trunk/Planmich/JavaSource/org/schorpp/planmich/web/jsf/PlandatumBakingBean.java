@@ -18,7 +18,7 @@ import org.schorpp.planmich.service.MandantService;
 
 public class PlandatumBakingBean extends BaseBean {
 
-	private MandantService service;
+	private MandantService mandantService;
 
 	private MandantDAO mandantDAO;
 
@@ -35,6 +35,10 @@ public class PlandatumBakingBean extends BaseBean {
 	private String kategorieAuswahl;
 	
 	private int turnusAuswahl;
+	
+	private boolean editMode = false;
+	
+	private Plandatum p;
 
 	private Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
 	private Map<Integer, Turnus> turnusMap = new HashMap<Integer, Turnus>();
@@ -60,7 +64,7 @@ public class PlandatumBakingBean extends BaseBean {
 	}
 
 	public void setService(MandantService service) {
-		this.service = service;
+		this.mandantService = service;
 	}
 
 	public void setMandantDAO(MandantDAO mandantDAO) {
@@ -131,12 +135,32 @@ public class PlandatumBakingBean extends BaseBean {
 		p.setKategorie((Kategorie) categoriesMap.get(kategorieAuswahl));
 		p.setTurnus(turnusAuswahl);
 
-		Mandant m = service.getMandantById(mandantId);
+		Mandant m = mandantService.getMandantById(mandantId);
 		m.addPlandatum(p);
 		mandantDAO.saveMandant(m);
 
 		displayInfo("Plandatum " + name + " wurde hinzugefügt.");
 
+	}
+		
+	/**
+	 * Löscht das selektierte Plandatum aus der Liste der Plandaten
+	 *
+	 */
+	public void deletePlandatum() {
+		mandantService.deletePlandatum(mandantId, p);
+	}
+	
+	/**
+	 * Aktualisiert das Plandatum indem die alte aus der Liste der 
+	 * Kategorien gelöscht wird und die Kategorie mit den nueen Daten angelegt wird.
+	 * 
+	 */
+	public void updatePlandatum() {
+
+	//	plandatumService.updatePlandatum(p, name, kommentar, typ);
+		
+	//	displayInfo("Kategorie " + name + " wurde aktualisiert.");
 	}
 
 	public Date getWertstellung() {
@@ -169,6 +193,57 @@ public class PlandatumBakingBean extends BaseBean {
 
 	public void setTurnus(int turnusAuswahl) {
 		this.turnusAuswahl = turnusAuswahl;
+	}
+	
+	/**
+	 * Wählt das Plandatum aus und befüllt die Eigenschaften
+	 * @return
+	 */
+	public String selectPlandatum() {
+		return "success";
+	}
+
+	public boolean isEditMode() {
+		return editMode;
+	}
+
+	public void setEditMode(boolean editMode) {
+		this.editMode = editMode;
+	}
+	
+	public Plandatum getPlandatum() {
+		return p;
+	}
+	
+	public void setPlandatum(Plandatum p) {
+		this.p = p;
+	}
+	
+	
+	
+	/**
+	 * Wird aufgerufen, wenn Cancel Button gedrückt wird
+	 * 
+	 */
+	
+	public void cancelAction() {
+	    redirect("/pages/plandatum/uebersicht.jsp");
+	  }
+	
+	
+	/**
+	 * Setzt das Plandatum auf Default Werte
+	 */
+	
+	public String clearKategorie() {
+		this.p = new Plandatum();
+		this.name = null;
+		this.kommentar = null;
+		this.kategorieAuswahl = "";
+		this.editMode = false;
+		this.turnusAuswahl = 0;
+		
+		return "neuesPlandatum";
 	}
 
 }

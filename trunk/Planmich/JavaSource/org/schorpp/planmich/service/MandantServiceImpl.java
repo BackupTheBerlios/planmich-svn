@@ -6,6 +6,7 @@ import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
+import org.schorpp.planmich.domain.Plandatum;
 
 public class MandantServiceImpl implements MandantService {
 
@@ -42,6 +43,10 @@ public class MandantServiceImpl implements MandantService {
 
 	public void deleteKategorie(Integer mandantId, Kategorie k) {
 		getMandantById(mandantId).getKategorien().remove(k);
+	}
+
+	public void deletePlandatum(Integer mandantId, Plandatum p) {
+		getMandantById(mandantId).getPlandaten().remove(p);
 	}
 
 }

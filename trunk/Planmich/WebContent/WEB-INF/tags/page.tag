@@ -31,6 +31,8 @@
 							</t:jscookMenu>
 						</h:form>
 
+						<f:verbatim></f:verbatim>
+
 						<h:form>
 							<t:jscookMenu id="menu" layout="hbr" theme="ThemeOffice"
 								styleLocation="/css/jscookmenu">

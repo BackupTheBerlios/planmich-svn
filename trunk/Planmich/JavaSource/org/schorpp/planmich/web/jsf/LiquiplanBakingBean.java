@@ -16,45 +16,46 @@ import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.service.LiquiplanService;
 import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 
-
 public class LiquiplanBakingBean extends BaseBean {
 
 	private LiquiplanService service;
 
 	private MandantDAO mandantDAO;
-	
+
 	private Date von;
-	
+
 	private Date bis;
-	
+
 	private DataModel columnHeaders;
-	
+
 	private DataModel data;
-	
+
 	private List<SpaltenUeberschrift> colHeaders;
-	
+
 	public LiquiplanBakingBean() {
 		von = new Date();
 		bis = new Date();
-		
+
 		Calendar temp = Calendar.getInstance();
 		temp.setTime(bis);
 		temp.add(Calendar.MONTH, 12);
 		bis = temp.getTime();
-		
+
 		colHeaders = new ArrayList<SpaltenUeberschrift>();
 	}
-	
-	public void updatePlan() {
-		
-		Mandant mandant = mandantDAO.getMandantById((Integer) getFromSession("Mandant"));
 
-		String[][] plan = service.calculatePlanAsMap(mandant, von, bis, colHeaders);
-		
+	public void updatePlan() {
+
+		Mandant mandant = mandantDAO
+				.getMandantById((Integer) getFromSession("Mandant"));
+
+		String[][] plan = service.calculatePlanAsMap(mandant, von, bis,
+				colHeaders);
+
 		data = new ArrayDataModel(plan);
 		columnHeaders = new ListDataModel(colHeaders);
 	}
-	
+
 	public void setService(LiquiplanService service) {
 		this.service = service;
 	}
@@ -62,15 +63,11 @@ public class LiquiplanBakingBean extends BaseBean {
 	public void setMandantDAO(MandantDAO mandantDAO) {
 		this.mandantDAO = mandantDAO;
 	}
-	
-	
-	
-	public DataModel getPlanData() {
-		
-		//return null;
-		
 
-		
+	public DataModel getPlanData() {
+
+		// return null;
+
 		return data;
 	}
 
@@ -89,14 +86,13 @@ public class LiquiplanBakingBean extends BaseBean {
 	public void setVon(Date von) {
 		this.von = von;
 	}
-	
 
 	public Object getColumnValue() {
 		Object columnValue = null;
 		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
 			String[] rowData = (String[]) data.getRowData();
 			columnValue = rowData[columnHeaders.getRowIndex()];
-					
+
 		}
 		return columnValue;
 	}
@@ -104,23 +100,38 @@ public class LiquiplanBakingBean extends BaseBean {
 	@SuppressWarnings("unchecked")
 	public void setColumnValue(Object value) {
 		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
-			((List) data.getRowData()).set(columnHeaders.getRowIndex(), (String)value);
+			((List) data.getRowData()).set(columnHeaders.getRowIndex(),
+					(String) value);
 		}
 	}
-
 
 	public DataModel getColumnHeaders() {
 		updatePlan();
 		return columnHeaders;
 	}
-	
+
+	public String getColumnWidth() {
+		if (data.isRowAvailable() && columnHeaders.isRowAvailable())
+			return ((SpaltenUeberschrift) columnHeaders.getRowData())
+					.getWidth();
+
+		return null;
+	}
+
+	public String getColumnAlign() {
+		if (data.isRowAvailable() && columnHeaders.isRowAvailable())
+			return ((SpaltenUeberschrift) columnHeaders.getRowData())
+					.getTextAlign();
+
+		return null;
+	}
+
 	public DefaultPieDataset getPieDataSet() {
-		DefaultPieDataset pieDataSet = new
-		DefaultPieDataset();
-		pieDataSet.setValue("A",52);
+		DefaultPieDataset pieDataSet = new DefaultPieDataset();
+		pieDataSet.setValue("A", 52);
 		pieDataSet.setValue("B", 18);
-		pieDataSet.setValue("C", 30); 
-		
+		pieDataSet.setValue("C", 30);
+
 		return pieDataSet;
-		} 
+	}
 }

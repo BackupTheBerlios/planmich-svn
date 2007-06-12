@@ -116,7 +116,8 @@ h1.headline {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: #ffffff;
-	padding: 0;
+	padding: 1em;
+	
 }
 
 
@@ -127,12 +128,12 @@ h1.headline {
 	padding: 0.5em;
 	text-align: left;
 	border: none;
-	/*background: white url(/Planmich/images/verlauf.jpg) repeat-x 0 0;*/
-	height: 25px;
+	background: white url(/Planmich/images/verlauf.jpg) repeat-x 0 0;
 }
 
 .tabelle_Ueberschrift a {
 	color: white;
+	background: inherit;
 }
 
 .tabelle_SortHeader {
@@ -160,6 +161,26 @@ h1.headline {
 
 .tabelle_Spalte {
 	padding: 0.5em;
+	text-align:left;
+}
+
+
+.liquiplantabelle_Ueberschrift {
+	color: white;
+	background-color: #CDBA96;
+	padding: 0.1em;
+	text-align: center;
+	border: none;
+	background: white url(/Planmich/images/verlauf.jpg) repeat-x 0 0;
+}
+
+.liquiplantabelle_Ueberschrift a {
+	color: white;
+}
+
+.liquiplantabelle_Spalte {
+	padding: 0.1em;
+	text-align:left;
 }
 
 .tabelle_SpalteCentered {

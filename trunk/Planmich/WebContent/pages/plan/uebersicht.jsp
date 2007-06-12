@@ -47,21 +47,17 @@
 
 			<t:div styleClass="overflow">
 
-				<t:panelTabbedPane style="width: 100%">
 
-
-					<t:panelTab id="tabelle" label="Tabelle">
 
 						<t:dataTable value="#{liquiplanBakingBean.planData}"
 							rendered="true" border="0" rows="10" var="daten"
 							id="showPlandates" styleClass="liquiplanTabelle"
-							headerClass="tabelle_Ueberschrift"
-							footerClass="tabelle_Ueberschrift"
+							headerClass="liquiplantabelle_Ueberschrift"
 							rowClasses="tabelle_Zeile1,tabelle_Zeile2"
-							columnClasses="tabelle_Spalte,tabelle_SpalteRight,tabelle_SpalteRight">
-
+							columnClasses="liquiplantabelle_Spalte">
+ 
 							<t:columns value="#{liquiplanBakingBean.columnHeaders}"
-								var="columnHeader" style="width: 300px; text-align:right">
+								var="columnHeader" style="width:#{liquiplanBakingBean.columnWidth}px; text-align:#{liquiplanBakingBean.columnAlign}">
 								<f:facet name="header">
 									<h:outputText value="#{columnHeader.label}"/>
 								</f:facet>
@@ -76,17 +72,6 @@
 						</f:verbatim>
 
 
-
-					</t:panelTab>
-
-					<t:panelTab id="grafik" label="Grafik">
-						<c:chart id="chart1"
-							datasource="#{liquiplanBakingBean.pieDataSet}" type="pie"
-							is3d="true" antialias="true" title="Example Chart"
-							xlabel="X Label" ylabel="Y Label" height="300" width="400"></c:chart>
-					</t:panelTab>
-
-				</t:panelTabbedPane>
 
 			</t:div>
 

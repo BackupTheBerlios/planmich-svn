@@ -5,6 +5,7 @@ import java.util.List;
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
+import org.schorpp.planmich.domain.Plandatum;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,5 +57,8 @@ public interface MandantService {
 
 	@Transactional
 	public void deleteKategorie(Integer mandantId, Kategorie k);
+
+	@Transactional
+	public void deletePlandatum(Integer mandantId, Plandatum p);
 
 }
