@@ -57,7 +57,7 @@
 							columnClasses="liquiplantabelle_Spalte">
  
 							<t:columns value="#{liquiplanBakingBean.columnHeaders}"
-								var="columnHeader" style="width:#{liquiplanBakingBean.columnWidth}px; text-align:#{liquiplanBakingBean.columnAlign}">
+								var="columnHeader" style="width: #{liquiplanBakingBean.columnWidth}px; text-align: #{liquiplanBakingBean.columnAlign}">
 								<f:facet name="header">
 									<h:outputText value="#{columnHeader.label}"/>
 								</f:facet>
