@@ -10,7 +10,8 @@
 
 		<h:form>
 
-			<d:Headline headline="#{messages.addPlandatum}" />
+			<d:Headline headline="#{messages.addPlandatum}" rendered="#{!plandatumBakingBean.editMode}" styleClass="headline"/>
+			<d:Headline headline="#{messages.updatePlandatum}" rendered="#{plandatumBakingBean.editMode}" styleClass="headline"/>
 
 			<h:panelGrid columns="2" styleClass="tabelle"
 				headerClass="tabelle_Ueberschrift"
@@ -66,12 +67,14 @@
 				<br>
 			</f:verbatim>
 			
+
 			<h:commandLink id="add" value="#{messages.addPlandatum}"
-				action="#{plandatumBakingBean.addPlandatum}" rendered="#{not plandatumBakingBean.editMode}" />
+				action="#{plandatumBakingBean.addKPlandatum}" rendered="#{not plandatumBakingBean.editMode}" />
 
 			<h:commandLink id="update" value="#{messages.updatePlandatum}"
 				action="#{plandatumBakingBean.updatePlandatum}" rendered="#{plandatumBakingBean.editMode}"/>
-
+				
+			<t:commandLink value="#{messages.cancel}" immediate="true" action="#{plandatumBakingBean.cancelAction}"/>
 
 
 		</h:form>

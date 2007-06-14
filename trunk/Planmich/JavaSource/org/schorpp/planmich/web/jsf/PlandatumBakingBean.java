@@ -14,12 +14,16 @@ import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Turnus;
+import org.schorpp.planmich.service.KategorieService;
 import org.schorpp.planmich.service.MandantService;
+import org.schorpp.planmich.service.PlandatumService;
 
 public class PlandatumBakingBean extends BaseBean {
 
 	private MandantService mandantService;
 
+	private PlandatumService plandatumService;
+	
 	private MandantDAO mandantDAO;
 
 	private String name;
@@ -153,14 +157,14 @@ public class PlandatumBakingBean extends BaseBean {
 	
 	/**
 	 * Aktualisiert das Plandatum indem die alte aus der Liste der 
-	 * Kategorien gelöscht wird und die Kategorie mit den nueen Daten angelegt wird.
+	 * Kategorien gelöscht wird und die Kategorie mit den neuen Daten angelegt wird.
 	 * 
 	 */
 	public void updatePlandatum() {
 
-	//	plandatumService.updatePlandatum(p, name, kommentar, typ);
+		plandatumService.updatePlandatum(p, name, kommentar, wertstellung, turnusAuswahl, betrag);
 		
-	//	displayInfo("Kategorie " + name + " wurde aktualisiert.");
+		displayInfo("Plandatum " + name + " wurde aktualisiert.");
 	}
 
 	public Date getWertstellung() {
@@ -235,7 +239,7 @@ public class PlandatumBakingBean extends BaseBean {
 	 * Setzt das Plandatum auf Default Werte
 	 */
 	
-	public String clearKategorie() {
+	public String Plandatum() {
 		this.p = new Plandatum();
 		this.name = null;
 		this.kommentar = null;

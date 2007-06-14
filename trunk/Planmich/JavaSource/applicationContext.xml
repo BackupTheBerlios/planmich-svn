@@ -77,6 +77,10 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="plandatumDAO"
+		class="org.schorpp.planmich.dao.PlandatumDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="mandantService"
 		class="org.schorpp.planmich.service.MandantServiceImpl">
 		<property name="mandantDAO" ref="mandantDAO" />
@@ -90,6 +94,11 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 
 	<bean id="liquiplanService"
 		class="org.schorpp.planmich.service.LiquiplanServiceImpl">
+	</bean>
+	
+	<bean id="plandatumService"
+		class="org.schorpp.planmich.service.PlandatumServiceImpl">
+		<property name="plandatumDAO" ref="plandatumDAO" />
 	</bean>
 
 	<!-- Testklassen -->

@@ -51,7 +51,7 @@
 			<value>#{mandantService}</value>
 		</managed-property>
 	</managed-bean>
-	
+
 	<managed-bean>
 		<managed-bean-name>kategorieBakingBean</managed-bean-name>
 		<managed-bean-class>
@@ -62,7 +62,7 @@
 			<property-name>mandantService</property-name>
 			<value>#{mandantService}</value>
 		</managed-property>
-				<managed-property>
+		<managed-property>
 			<property-name>kategorieService</property-name>
 			<value>#{kategorieService}</value>
 		</managed-property>
@@ -71,8 +71,8 @@
 			<value>#{mandantDAO}</value>
 		</managed-property>
 	</managed-bean>
-	
-	
+
+
 	<managed-bean>
 		<managed-bean-name>plandatumBakingBean</managed-bean-name>
 		<managed-bean-class>
@@ -101,9 +101,11 @@
 
 	<managed-bean>
 		<managed-bean-name>liquiplanBakingBean</managed-bean-name>
-		<managed-bean-class>org.schorpp.planmich.web.jsf.LiquiplanBakingBean</managed-bean-class>
+		<managed-bean-class>
+			org.schorpp.planmich.web.jsf.LiquiplanBakingBean
+		</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
-				<managed-property>
+		<managed-property>
 			<property-name>service</property-name>
 			<value>#{liquiplanService}</value>
 		</managed-property>
@@ -139,7 +141,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>neuesPlandatum</from-outcome>
-			<to-view-id>/pages/plandatum/neu.jsp</to-view-id>
+			<to-view-id>/pages/plandatum/plandatum.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -147,7 +149,7 @@
 			<to-view-id>/pages/mandant/selectMandant.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
-				<navigation-case>
+		<navigation-case>
 			<from-outcome>liquiplanUebersicht</from-outcome>
 			<to-view-id>/pages/plan/uebersicht.jsp</to-view-id>
 			<redirect />
@@ -156,12 +158,24 @@
 	<navigation-rule>
 		<from-view-id>/pages/kategorie/uebersicht.jsp</from-view-id>
 		<navigation-case>
-			<from-action>#{kategorieBakingBean.selectKategorie}</from-action>
+			<from-action>
+				#{kategorieBakingBean.selectKategorie}
+			</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/pages/kategorie/kategorie.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
+	<navigation-rule>
+		<from-view-id>/pages/plandatum/uebersicht.jsp</from-view-id>
+		<navigation-case>
+			<from-action>
+				#{plandatumBakingBean.selectPlandatum}
+			</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/pages/plandatum/plandatum.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 	<application>
 		<variable-resolver>
 			org.springframework.web.jsf.DelegatingVariableResolver
