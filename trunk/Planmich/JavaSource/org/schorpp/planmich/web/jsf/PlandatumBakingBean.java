@@ -71,6 +71,10 @@ public class PlandatumBakingBean extends BaseBean {
 		this.mandantService = service;
 	}
 
+	public void setPlandatumService(PlandatumService plandatumService) {
+		this.plandatumService = plandatumService;
+	}
+
 	public void setMandantDAO(MandantDAO mandantDAO) {
 		this.mandantDAO = mandantDAO;
 	}
@@ -204,6 +208,15 @@ public class PlandatumBakingBean extends BaseBean {
 	 * @return
 	 */
 	public String selectPlandatum() {
+		this.name = p.getName();
+		this.betrag = p.getBetrag();
+		this.kommentar = p.getKommentar();
+		this.wertstellung = p.getWertstellung();
+		this.turnusAuswahl = p.getTurnus();
+		//this.kategorieAuswahl = p.getKategorie();
+		
+		editMode = true;
+		
 		return "success";
 	}
 
@@ -239,7 +252,7 @@ public class PlandatumBakingBean extends BaseBean {
 	 * Setzt das Plandatum auf Default Werte
 	 */
 	
-	public String Plandatum() {
+	public String clearPlandatum() {
 		this.p = new Plandatum();
 		this.name = null;
 		this.kommentar = null;

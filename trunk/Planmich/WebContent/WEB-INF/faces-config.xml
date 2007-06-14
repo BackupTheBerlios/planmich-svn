@@ -84,6 +84,10 @@
 			<value>#{mandantService}</value>
 		</managed-property>
 		<managed-property>
+			<property-name>plandatumService</property-name>
+			<value>#{plandatumService}</value>
+		</managed-property>
+		<managed-property>
 			<property-name>mandantDAO</property-name>
 			<value>#{mandantDAO}</value>
 		</managed-property>

@@ -37,9 +37,7 @@ public class Plandatum {
 	@Basic(optional = false)
 	private int turnus;
 
-	@ManyToOne(optional = false, cascade = CascadeType.ALL)
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE,
-          org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+	@ManyToOne(optional = false, cascade = CascadeType.PERSIST)
 	@JoinColumn(name="kategorie_fk")
 	private Kategorie kategorie;
 
