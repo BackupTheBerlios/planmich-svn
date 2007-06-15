@@ -77,7 +77,7 @@
 
 
 				<h:commandButton id="add" value="#{messages.speichernPlandatum}"
-					action="#{plandatumBakingBean.addKPlandatum}"
+					action="#{plandatumBakingBean.addPlandatum}"
 					rendered="#{not plandatumBakingBean.editMode}" />
 
 				<h:commandButton id="update" value="#{messages.speichernPlandatum}"
