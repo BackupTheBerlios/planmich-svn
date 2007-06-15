@@ -8,19 +8,18 @@
 <layout:page>
 	<f:facet name="body">
 
-		<h:form>
+		<h:form id="plandatum" styleClass="eingabeForm">
 
-			<d:Headline headline="#{messages.addPlandatum}" rendered="#{!plandatumBakingBean.editMode}" styleClass="headline"/>
-			<d:Headline headline="#{messages.updatePlandatum}" rendered="#{plandatumBakingBean.editMode}" styleClass="headline"/>
+			<d:Headline headline="#{messages.addPlandatum}"
+				rendered="#{!plandatumBakingBean.editMode}" styleClass="headline" />
+			<d:Headline headline="#{messages.updatePlandatum}"
+				rendered="#{plandatumBakingBean.editMode}" styleClass="headline" />
 
 			<h:panelGrid columns="2" styleClass="tabelle"
 				headerClass="tabelle_Ueberschrift"
-				footerClass="tabelle_Ueberschrift"
-				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
-				columnClasses="tabelle_Spalte">
-				<f:facet name="header">
-					<h:outputText value="#{messages.addPlandatum}" />
-				</f:facet>
+				footerClass="tabelle_Ueberschrift" rowClasses="tabelle_Zeile1"
+				columnClasses="tabelle_Spalte, whiteSpalte">
+
 				<h:outputText value="#{messages.bezeichnung}" />
 				<h:inputText id="bezeichnung" value="#{plandatumBakingBean.name}"
 					required="true" maxlength="45">
@@ -38,9 +37,9 @@
 					weekRowClass="weekHeader" popupButtonStyleClass="standard_bold"
 					currentDayCellClass="currentDayCell"
 					value="#{plandatumBakingBean.wertstellung}" renderAsPopup="true"
-					popupTodayString="Heute: " popupDateFormat="MM/dd/yyyy"
+					popupTodayString="Heute: " popupDateFormat="dd.MM.yyyy"
 					popupWeekString="#{example_messages['popup_week_string']}"
-					helpText="MM/DD/YYYY" forceId="true" />
+					helpText="dd.MM.yyyy" forceId="true" />
 
 				<h:outputText value="#{messages.turnus}" />
 				<h:selectOneMenu id="turnus" value="#{plandatumBakingBean.turnus}">
@@ -61,21 +60,31 @@
 
 			</h:panelGrid>
 
-			<h:messages showSummary="false" showDetail="true" errorClass="error"
-				infoClass="info" />
+			<h:messages id="infos" showSummary="false" showDetail="true"
+				layout="table" errorClass="error" infoClass="info" />
 			<f:verbatim>
 				<br>
 			</f:verbatim>
-			
 
-			<h:commandLink id="add" value="#{messages.addPlandatum}"
-				action="#{plandatumBakingBean.addKPlandatum}" rendered="#{not plandatumBakingBean.editMode}" />
+			<h:panelGrid columns="2" styleClass="tabelle"
+				headerClass="tabelle_Ueberschrift"
+				footerClass="tabelle_Ueberschrift"
+				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+				columnClasses="whiteSpalte, whiteSpalte">
 
-			<h:commandLink id="update" value="#{messages.updatePlandatum}"
-				action="#{plandatumBakingBean.updatePlandatum}" rendered="#{plandatumBakingBean.editMode}"/>
-				
-			<t:commandLink value="#{messages.cancel}" immediate="true" action="#{plandatumBakingBean.cancelAction}"/>
+				<t:commandButton value="#{messages.cancel}" immediate="true"
+					action="#{plandatumBakingBean.cancelAction}" />
 
+
+				<h:commandButton id="add" value="#{messages.speichernPlandatum}"
+					action="#{plandatumBakingBean.addKPlandatum}"
+					rendered="#{not plandatumBakingBean.editMode}" />
+
+				<h:commandButton id="update" value="#{messages.speichernPlandatum}"
+					action="#{plandatumBakingBean.updatePlandatum}"
+					rendered="#{plandatumBakingBean.editMode}" />
+
+			</h:panelGrid>
 
 		</h:form>
 	</f:facet>

@@ -51,9 +51,8 @@ hr {
 h1.headline {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	border-bottom: 1px solid #0453CC;
-	padding: 0.5em;
-	margin-bottom: 10px;
+	padding: 0;
+	margin-bottom: 20px;
 }
 
 .headline1 {
@@ -90,6 +89,7 @@ h1.headline {
     border-color: #d0d0d0;
 	width: 600px;
 }
+
 
 .liquiplanTabelle {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -150,12 +150,12 @@ h1.headline {
 }
 
 .tabelle_Zeile2 {
-	background-color: #C7C7C7;
+	background-color: #DDDDDDb;
 		vertical-align: top;
 }
 
 .tabelle_Zeile1 {
-	background-color: #EBEBEB;
+	background-color: #DDDDDD;
 		vertical-align: top;
 }
 
@@ -212,14 +212,14 @@ h1.headline {
 	margin-top: 20px;
 }
 
-.error ul {
+#infos {
 	list-style-type: none;
 }	
 
 .info {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	color: #ff0000;
+	color: #black;
 	padding: 1em;
 	
 }

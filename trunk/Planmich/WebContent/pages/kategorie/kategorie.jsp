@@ -10,7 +10,6 @@
 
 		<h:form>
 
-
 			<d:Headline headline="#{messages.neueKategorie}" rendered="#{!kategorieBakingBean.editMode}" styleClass="headline"/>
 			<d:Headline headline="#{messages.updateKategorie}" rendered="#{kategorieBakingBean.editMode}" styleClass="headline"/>
 
