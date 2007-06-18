@@ -90,15 +90,16 @@ public class Kategorie implements Comparable {
 	public void setKategorieTyp(KategorieTyp t) {
 		this.typ = t;
 	}
-	
+
+	@Override
 	public boolean equals(Object b) {
-		return this.id == ((Kategorie)b).id;
+		return this.id == ((Kategorie) b).id;
 	}
 
 	public int compareTo(Object o) {
-		if(this.id == ((Kategorie)o).getId())
+		if (this.id == ((Kategorie) o).getId())
 			return 0;
-		
+
 		return -1;
 	}
 

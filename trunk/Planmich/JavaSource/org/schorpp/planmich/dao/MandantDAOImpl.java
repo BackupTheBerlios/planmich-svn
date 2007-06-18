@@ -26,13 +26,12 @@ public class MandantDAOImpl extends HibernateDaoSupport implements MandantDAO {
 	}
 
 	public Mandant getMandantByName(String name) {
-		List res = getHibernateTemplate().find(
+		final List res = getHibernateTemplate().find(
 				"from Mandant where name like ?", name);
-		if (res.size() > 0) {
+		if (res.size() > 0)
 			return (Mandant) res.get(0);
-		} else {
+		else
 			return null;
-		}
 	}
 
 	public void delete(Mandant m) {

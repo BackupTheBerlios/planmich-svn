@@ -1,9 +1,7 @@
 package org.schorpp.planmich.service;
 
 import java.util.Date;
-import java.util.List;
-
-import org.schorpp.planmich.domain.Mandant;
+import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.Plandatum;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,9 +18,6 @@ public interface PlandatumService {
 	@Transactional
 	public void delete(Plandatum p);
 
-	
-	
-
 	/**
 	 * Aktualisiert das Plandatum
 	 * 
@@ -31,8 +26,8 @@ public interface PlandatumService {
 	 * @param name
 	 * @param kommentar
 	 */
-	@Transactional(readOnly=false)
-	public void updatePlandatum(Plandatum p, String name, String kommentar, Date wertstellung, int turnus, double betrag);
-
+	@Transactional(readOnly = false)
+	public void updatePlandatum(Plandatum p, String name, String kommentar,
+			Date wertstellung, int turnus, double betrag, Kategorie k);
 
 }

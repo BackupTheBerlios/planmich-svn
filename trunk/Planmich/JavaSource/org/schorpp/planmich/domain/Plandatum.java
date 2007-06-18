@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 @Table(name = "plandatum")
 public class Plandatum {
@@ -38,7 +36,7 @@ public class Plandatum {
 	private int turnus;
 
 	@ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-	@JoinColumn(name="kategorie_fk")
+	@JoinColumn(name = "kategorie_fk")
 	private Kategorie kategorie;
 
 	// Default Konstruktor

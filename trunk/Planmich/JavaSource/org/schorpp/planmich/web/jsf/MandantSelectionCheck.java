@@ -22,8 +22,8 @@ public class MandantSelectionCheck implements PhaseListener {
 		// Ursprünglich aufgerufene Seite in der Sessin speichern
 		saveInSession("Redirect", renderedViewId);
 
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		UIViewRoot vr = facesContext.getApplication().getViewHandler()
+		final FacesContext facesContext = FacesContext.getCurrentInstance();
+		final UIViewRoot vr = facesContext.getApplication().getViewHandler()
 				.createView(facesContext, "/pages/mandant/selectMandant.jsp");
 		facesContext.setViewRoot(vr);
 		facesContext.renderResponse();
@@ -35,19 +35,18 @@ public class MandantSelectionCheck implements PhaseListener {
 	 */
 	public void beforePhase(PhaseEvent phaseEvent) {
 
-		FacesContext facesContext = phaseEvent.getFacesContext();
+		final FacesContext facesContext = phaseEvent.getFacesContext();
 
 		// catch a view definition in xml
-		String renderedViewId = facesContext.getViewRoot().getViewId();
+		final String renderedViewId = facesContext.getViewRoot().getViewId();
 
 		// Mandantenverwaltung von der Umleitnug ausnehmen
-		if(renderedViewId.startsWith("/pages/mandant/"))
+		if (renderedViewId.startsWith("/pages/mandant/"))
 			return;
-		
-		Integer mandantID = (Integer) getFromSession("Mandant");
-		if (mandantID == null) {
+
+		final Integer mandantID = (Integer) getFromSession("Mandant");
+		if (mandantID == null)
 			toMandantSelection(renderedViewId);
-		}
 
 		// if (!renderedViewId.equals("/login.jsp") &&
 		// !renderedViewId.equals("/error.jsp")) {

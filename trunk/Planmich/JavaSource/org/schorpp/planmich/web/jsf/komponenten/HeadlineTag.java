@@ -9,24 +9,23 @@ import javax.faces.webapp.UIComponentTag;
 public class HeadlineTag extends UIComponentTag {
 
 	private String headline;
+
 	private String styleClass;
 
 	@Override
 	protected void setProperties(UIComponent component) {
 		super.setProperties(component);
 
-		if (headline != null) {
+		if (headline != null)
 			if (isValueReference(headline)) {
-				FacesContext context = FacesContext.getCurrentInstance();
-				Application app = context.getApplication();
-				ValueBinding vb = app.createValueBinding(headline);
+				final FacesContext context = FacesContext.getCurrentInstance();
+				final Application app = context.getApplication();
+				final ValueBinding vb = app.createValueBinding(headline);
 				component.setValueBinding("headline", vb);
-			} else {
+			} else
 				component.getAttributes().put("headline", headline);
-			}
-		}
-		
-		if(styleClass != null)
+
+		if (styleClass != null)
 			component.getAttributes().put("styleClass", styleClass);
 	}
 

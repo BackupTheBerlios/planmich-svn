@@ -14,7 +14,6 @@ import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Turnus;
-import org.schorpp.planmich.service.KategorieService;
 import org.schorpp.planmich.service.MandantService;
 import org.schorpp.planmich.service.PlandatumService;
 
@@ -23,7 +22,7 @@ public class PlandatumBakingBean extends BaseBean {
 	private MandantService mandantService;
 
 	private PlandatumService plandatumService;
-	
+
 	private MandantDAO mandantDAO;
 
 	private String name;
@@ -37,16 +36,17 @@ public class PlandatumBakingBean extends BaseBean {
 	private double betrag;
 
 	private String kategorieAuswahl;
-	
+
 	private int turnusAuswahl;
-	
+
 	private boolean editMode = false;
-	
+
 	private Plandatum p;
 
-	private Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
-	private Map<Integer, Turnus> turnusMap = new HashMap<Integer, Turnus>();
-	
+	private final Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
+
+	private final Map<Integer, Turnus> turnusMap = new HashMap<Integer, Turnus>();
+
 	public PlandatumBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
 	}
@@ -80,94 +80,101 @@ public class PlandatumBakingBean extends BaseBean {
 	}
 
 	public List getTypListe() {
-		KategorieTyp[] values = KategorieTyp.values();
+		final KategorieTyp[] values = KategorieTyp.values();
 
-		List<SelectItem> items = new ArrayList<SelectItem>();
+		final List<SelectItem> items = new ArrayList<SelectItem>();
 
-		for (int i = 0; i < values.length; i++) {
-			items.add(new SelectItem(values[i]));
+		for (final KategorieTyp element : values) {
+			final SelectItem temp = new SelectItem(element);
+			if (turnusAuswahl == element.ordinal())
+				temp.setValue(temp);
+			items.add(temp);
 		}
 		return items;
 	}
 
-	
 	/*
 	 * Erzeugt eine Liste mit SelectItems zur Auswahl der Kategorie
 	 */
 	public List getKategorieListe() {
-		List categories = ((Mandant) mandantDAO.getMandantById(mandantId))
+		final List categories = (mandantDAO.getMandantById(mandantId))
 				.getKategorien();
-		List<SelectItem> ret = new ArrayList<SelectItem>();
+		final List<SelectItem> ret = new ArrayList<SelectItem>();
 
 		// erster Eintrag ist leer
 		ret.add(new SelectItem("dummy", ""));
 
 		for (int i = 0; i < categories.size(); i++) {
-			Kategorie aktKategorie = (Kategorie) categories.get(i);
-			String id = String.valueOf(aktKategorie.getId());
-			ret.add(new SelectItem(id, aktKategorie.getName()));
-			categoriesMap.put(id, aktKategorie); 
+			final Kategorie aktKategorie = (Kategorie) categories.get(i);
+			final String id = String.valueOf(aktKategorie.getId());
+			final SelectItem temp = new SelectItem(id, aktKategorie.getName());
+			if (kategorieAuswahl != null && kategorieAuswahl.equals(aktKategorie.getName()))
+				temp.setValue(kategorieAuswahl);
+			ret.add(temp);
+			categoriesMap.put(id, aktKategorie);
 		}
 
 		return ret;
 	}
-	
-/*
- * Erzeugt eine Liste von SelectItems zur Auswahl des Turnus
- */
+
+	/*
+	 * Erzeugt eine Liste von SelectItems zur Auswahl des Turnus
+	 */
 	public List getTurnusListe() {
-		
-		FacesContext context = FacesContext.getCurrentInstance( );
 
-		TurnusListe liste = (TurnusListe) context.getApplication().createValueBinding("#{turnusListe}").getValue(context);
+		final FacesContext context = FacesContext.getCurrentInstance();
 
-		List turnus = liste.turnus;
-		
-		List<SelectItem> ret = new ArrayList<SelectItem>();
+		final TurnusListe liste = (TurnusListe) context.getApplication()
+				.createValueBinding("#{turnusListe}").getValue(context);
+
+		final List turnus = liste.turnus;
+
+		final List<SelectItem> ret = new ArrayList<SelectItem>();
 
 		for (int i = 0; i < turnus.size(); i++) {
-			Turnus aktTurnus = (Turnus) turnus.get(i);
+			final Turnus aktTurnus = (Turnus) turnus.get(i);
 			ret.add(new SelectItem(i, aktTurnus.getName()));
-			turnusMap.put(i, aktTurnus); 
+			turnusMap.put(i, aktTurnus);
 		}
 
 		return ret;
 	}
 
 	public void addPlandatum() {
-		Plandatum p = new Plandatum();
+		final Plandatum p = new Plandatum();
 		p.setName(name);
 		p.setKommentar(kommentar);
 		p.setWertstellung(wertstellung);
 		p.setBetrag(betrag);
-		p.setKategorie((Kategorie) categoriesMap.get(kategorieAuswahl));
+		p.setKategorie(categoriesMap.get(kategorieAuswahl));
 		p.setTurnus(turnusAuswahl);
 
-		Mandant m = mandantService.getMandantById(mandantId);
+		final Mandant m = mandantService.getMandantById(mandantId);
 		m.addPlandatum(p);
 		mandantDAO.saveMandant(m);
 
 		displayInfo("Plandatum " + name + " wurde hinzugefügt.");
 
 	}
-		
+
 	/**
 	 * Löscht das selektierte Plandatum aus der Liste der Plandaten
-	 *
+	 * 
 	 */
 	public void deletePlandatum() {
 		mandantService.deletePlandatum(mandantId, p);
 	}
-	
+
 	/**
-	 * Aktualisiert das Plandatum indem die alte aus der Liste der 
-	 * Kategorien gelöscht wird und die Kategorie mit den neuen Daten angelegt wird.
+	 * Aktualisiert das Plandatum indem die alte aus der Liste der Kategorien
+	 * gelöscht wird und die Kategorie mit den neuen Daten angelegt wird.
 	 * 
 	 */
 	public void updatePlandatum() {
 
-		plandatumService.updatePlandatum(p, name, kommentar, wertstellung, turnusAuswahl, betrag);
-		
+		plandatumService.updatePlandatum(p, name, kommentar, wertstellung,
+				turnusAuswahl, betrag, categoriesMap.get(kategorieAuswahl));
+
 		displayInfo("Plandatum " + name + " wurde aktualisiert.");
 	}
 
@@ -202,9 +209,10 @@ public class PlandatumBakingBean extends BaseBean {
 	public void setTurnus(int turnusAuswahl) {
 		this.turnusAuswahl = turnusAuswahl;
 	}
-	
+
 	/**
 	 * Wählt das Plandatum aus und befüllt die Eigenschaften
+	 * 
 	 * @return
 	 */
 	public String selectPlandatum() {
@@ -213,10 +221,10 @@ public class PlandatumBakingBean extends BaseBean {
 		this.kommentar = p.getKommentar();
 		this.wertstellung = p.getWertstellung();
 		this.turnusAuswahl = p.getTurnus();
-		//this.kategorieAuswahl = p.getKategorie();
-		
+		this.kategorieAuswahl = p.getKategorie().getName();
+
 		editMode = true;
-		
+
 		return "success";
 	}
 
@@ -227,31 +235,28 @@ public class PlandatumBakingBean extends BaseBean {
 	public void setEditMode(boolean editMode) {
 		this.editMode = editMode;
 	}
-	
+
 	public Plandatum getPlandatum() {
 		return p;
 	}
-	
+
 	public void setPlandatum(Plandatum p) {
 		this.p = p;
 	}
-	
-	
-	
+
 	/**
 	 * Wird aufgerufen, wenn Cancel Button gedrückt wird
 	 * 
 	 */
-	
+
 	public void cancelAction() {
-	    redirect("/pages/plandatum/uebersicht.jsp");
-	  }
-	
-	
+		redirect("/pages/plandatum/uebersicht.jsp");
+	}
+
 	/**
 	 * Setzt das Plandatum auf Default Werte
 	 */
-	
+
 	public String clearPlandatum() {
 		this.p = new Plandatum();
 		this.name = null;
@@ -259,7 +264,9 @@ public class PlandatumBakingBean extends BaseBean {
 		this.kategorieAuswahl = "";
 		this.editMode = false;
 		this.turnusAuswahl = 0;
-		
+		this.betrag = 0;
+		this.wertstellung = new Date();
+
 		return "neuesPlandatum";
 	}
 

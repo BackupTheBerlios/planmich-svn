@@ -1,10 +1,7 @@
 package org.schorpp.planmich.service;
 
-import java.util.List;
-
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
-import org.schorpp.planmich.domain.Mandant;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +17,6 @@ public interface KategorieService {
 	@Transactional
 	public void delete(Kategorie k);
 
-	
-	
-
 	/**
 	 * Aktualisiert die Kategorie
 	 * 
@@ -32,8 +26,8 @@ public interface KategorieService {
 	 * @param kommentar
 	 * @param typ
 	 */
-	@Transactional(readOnly=false)
-	public void updateKategorie(Kategorie k, String name, String kommentar, KategorieTyp typ);
-
+	@Transactional(readOnly = false)
+	public void updateKategorie(Kategorie k, String name, String kommentar,
+			KategorieTyp typ);
 
 }

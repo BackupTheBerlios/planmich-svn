@@ -1,7 +1,5 @@
 package org.schorpp.planmich.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +15,6 @@ public class Turnus {
 	private int id;
 
 	private String name;
-
 
 	public Turnus(int id, String name) {
 		this.id = id;

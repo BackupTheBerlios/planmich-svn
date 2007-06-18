@@ -35,7 +35,10 @@
 					<f:facet name="header">
 						<h:outputText value="Datum" />
 					</f:facet>
-					<h:outputText value="#{plandate.wertstellung}" />
+					<h:outputText value="#{plandate.wertstellung}">
+					<f:convertDateTime timeZone="Europe/Berlin"/>
+					</h:outputText>
+					
 				</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -98,7 +101,8 @@
 			<d:Spacer />
 
 			<t:commandLink value="#{messages.addPlandatum}"
-				action="neuesPlandatum" />
+				action="neuesPlandatum" action="#{plandatumBakingBean.clearPlandatum}"/>
+
 
 		</h:form>
 

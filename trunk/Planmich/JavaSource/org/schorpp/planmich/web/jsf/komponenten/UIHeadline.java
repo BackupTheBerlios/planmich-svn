@@ -9,20 +9,19 @@ public class UIHeadline extends UIComponentBase {
 
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
-		ResponseWriter writer = context.getResponseWriter();
-		String headline = (String) getAttributes().get("headline");
+		final ResponseWriter writer = context.getResponseWriter();
+		final String headline = (String) getAttributes().get("headline");
 
 		writer.startElement("h1", this);
-		
+
 		writer.writeAttribute("id", getClientId(context), null);
-		
-		String styleClass = (String) getAttributes().get("styleClass");
-		if(styleClass!=null)
+
+		final String styleClass = (String) getAttributes().get("styleClass");
+		if (styleClass != null)
 			writer.writeAttribute("class", styleClass, null);
-		
-		if (headline != null) {
+
+		if (headline != null)
 			writer.writeText(headline, "headline");
-		}
 
 		writer.endElement("h1");
 	}

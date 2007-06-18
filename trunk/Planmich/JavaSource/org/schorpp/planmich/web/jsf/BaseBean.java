@@ -34,10 +34,10 @@ public class BaseBean {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, info, info));
 	}
-	
+
 	protected void redirect(String target) {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		UIViewRoot vr = facesContext.getApplication().getViewHandler()
+		final FacesContext facesContext = FacesContext.getCurrentInstance();
+		final UIViewRoot vr = facesContext.getApplication().getViewHandler()
 				.createView(facesContext, target);
 		facesContext.setViewRoot(vr);
 		facesContext.renderResponse();

@@ -15,33 +15,34 @@ public class NavigationMenu {
 	private static final Log log = LogFactory.getLog(NavigationMenu.class);
 
 	public List getMenuItems() {
-		List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
+		final List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
 
-		NavigationMenuItem plandateMenu = createMenuNavigationItem("Plandaten",
-				null);
+		final NavigationMenuItem plandateMenu = createMenuNavigationItem(
+				"Plandaten", null);
 		menu.add(plandateMenu);
 
-		NavigationMenuItem kategorieMenu = createMenuNavigationItem(
+		final NavigationMenuItem kategorieMenu = createMenuNavigationItem(
 				"Kategorien", null);
 		menu.add(kategorieMenu);
 		kategorieMenu.add(createMenuNavigationItem("Übersicht",
 				"kategorieUebersicht", "/pages/kategorie/uebersicht.jsp"));
 
-		kategorieMenu.add(createMenuNavigationItem("Neu", "#{kategorieBakingBean.clearKategorie}",
+		kategorieMenu.add(createMenuNavigationItem("Neu",
+				"#{kategorieBakingBean.clearKategorie}",
 				"/pages/kategorie/kategorie.jsp"));
 
-		NavigationMenuItem mandantMenu = createMenuNavigationItem("Mandanten",
-				null);
+		final NavigationMenuItem mandantMenu = createMenuNavigationItem(
+				"Mandanten", null);
 		menu.add(mandantMenu);
 		mandantMenu.add(createMenuNavigationItem("Mandantenübersicht",
 				"mandantUebersicht", "/pages/mandant/uebersicht.jsp"));
 
-		mandantMenu.add(createMenuNavigationItem("Neuer Mandant", "neuerMandant",
-				"/pages/mandant/neu.jsp"));
+		mandantMenu.add(createMenuNavigationItem("Neuer Mandant",
+				"neuerMandant", "/pages/mandant/neu.jsp"));
 
-		mandantMenu.add(createMenuNavigationItem("Mandant wechseln", "wechselnMandant",
-		"/pages/mandant/selectMandant.jsp"));
-		
+		mandantMenu.add(createMenuNavigationItem("Mandant wechseln",
+				"wechselnMandant", "/pages/mandant/selectMandant.jsp"));
+
 		plandateMenu.add(createMenuNavigationItem("Übersicht",
 				"plandatenUebersicht", "/pages/plandatum/uebersicht.jsp"));
 		plandateMenu.add(createMenuNavigationItem("neues Plandatum",
@@ -49,25 +50,22 @@ public class NavigationMenu {
 
 		return menu;
 	}
-	
+
 	public List getPlanMenuItems() {
-		List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
+		final List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
 
-
-		NavigationMenuItem planMenu = createMenuNavigationItem(
-				"Plan", null);
+		final NavigationMenuItem planMenu = createMenuNavigationItem("Plan",
+				null);
 		menu.add(planMenu);
 		planMenu.add(createMenuNavigationItem("Jahresplan",
 				"liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
-
-		
 
 		return menu;
 	}
 
 	private static NavigationMenuItem createMenuNavigationItem(String label,
 			String action) {
-		NavigationMenuItem item = new NavigationMenuItem(label, action);
+		final NavigationMenuItem item = new NavigationMenuItem(label, action);
 		item.setActionListener("#{menu.actionListener}");
 		item.setValue(label);
 		return item;
@@ -75,7 +73,7 @@ public class NavigationMenu {
 
 	private static NavigationMenuItem createMenuNavigationItem(String label,
 			String action, String viewId) {
-		NavigationMenuItem item = new NavigationMenuItem(label, action);
+		final NavigationMenuItem item = new NavigationMenuItem(label, action);
 		item.setActionListener("#{menu.actionListener}");
 		item.setValue(label);
 		item.setActiveOnViewIds(viewId);
@@ -93,7 +91,7 @@ public class NavigationMenu {
 							.getValue());
 			return getAction1();
 		} else {
-			String outcome = (String) ((HtmlCommandJSCookMenu) event
+			final String outcome = (String) ((HtmlCommandJSCookMenu) event
 					.getComponent()).getValue();
 			log.info("ActionListener: " + outcome);
 			return outcome;

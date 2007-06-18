@@ -3,7 +3,6 @@ package org.schorpp.planmich.web.jsf;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.faces.model.ArrayDataModel;
@@ -36,7 +35,7 @@ public class LiquiplanBakingBean extends BaseBean {
 		von = new Date();
 		bis = new Date();
 
-		Calendar temp = Calendar.getInstance();
+		final Calendar temp = Calendar.getInstance();
 		temp.setTime(bis);
 		temp.add(Calendar.MONTH, 12);
 		bis = temp.getTime();
@@ -46,15 +45,16 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	public void updatePlan() {
 
-		Mandant mandant = mandantDAO
+		final Mandant mandant = mandantDAO
 				.getMandantById((Integer) getFromSession("Mandant"));
 
-		String[][] plan = service.calculatePlanAsMap(mandant, von, bis,
+		final String[][] plan = service.calculatePlanAsMap(mandant, von, bis,
 				colHeaders);
 
 		data = new ArrayDataModel(plan);
 		columnHeaders = new ListDataModel(colHeaders);
 	}
+
 
 	public void setService(LiquiplanService service) {
 		this.service = service;
@@ -90,7 +90,7 @@ public class LiquiplanBakingBean extends BaseBean {
 	public Object getColumnValue() {
 		Object columnValue = null;
 		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
-			String[] rowData = (String[]) data.getRowData();
+			final String[] rowData = (String[]) data.getRowData();
 			columnValue = rowData[columnHeaders.getRowIndex()];
 
 		}
@@ -99,10 +99,8 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	@SuppressWarnings("unchecked")
 	public void setColumnValue(Object value) {
-		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
-			((List) data.getRowData()).set(columnHeaders.getRowIndex(),
-					(String) value);
-		}
+		if (data.isRowAvailable() && columnHeaders.isRowAvailable())
+			((List) data.getRowData()).set(columnHeaders.getRowIndex(), value);
 	}
 
 	public DataModel getColumnHeaders() {
@@ -127,7 +125,7 @@ public class LiquiplanBakingBean extends BaseBean {
 	}
 
 	public DefaultPieDataset getPieDataSet() {
-		DefaultPieDataset pieDataSet = new DefaultPieDataset();
+		final DefaultPieDataset pieDataSet = new DefaultPieDataset();
 		pieDataSet.setValue("A", 52);
 		pieDataSet.setValue("B", 18);
 		pieDataSet.setValue("C", 30);

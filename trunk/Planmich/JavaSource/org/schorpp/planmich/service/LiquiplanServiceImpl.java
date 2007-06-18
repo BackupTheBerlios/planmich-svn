@@ -2,13 +2,9 @@ package org.schorpp.planmich.service;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
@@ -31,10 +27,10 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	public String[][] calculatePlanAsMap(Mandant mandant, Date von, Date bis,
 			List<SpaltenUeberschrift> colHeaders) {
 
-		Calendar vonDatum = Calendar.getInstance();
+		final Calendar vonDatum = Calendar.getInstance();
 		vonDatum.setTime(von);
 
-		Calendar bisDatum = Calendar.getInstance();
+		final Calendar bisDatum = Calendar.getInstance();
 		bisDatum.setTime(bis);
 
 		Calendar tempvonDatum;
@@ -53,7 +49,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left", false));
 
 		// Soviele Zeile wie Kategorien vorhanden sind
-		String daten[][] = new String[kategorien.size() + 2][1000];
+		final String daten[][] = new String[kategorien.size() + 2][1000];
 
 		double endbestand = 0;
 		double anfangsbestand = 0;
@@ -62,7 +58,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 		tempvonDatum = (Calendar) vonDatum.clone();
 
-		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
+		for (final Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
 				.before(bisDatum); aktDatum.add(Calendar.MONTH, 1)) {
 
 			int y = 0;
@@ -72,24 +68,21 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 			anfangsbestand = endbestand;
 
-			for (Kategorie aktKategorie : kategorien) {
+			for (final Kategorie aktKategorie : kategorien) {
 
 				double wert = 0.0;
 
-				for (Plandatum aktPlandatum : plandaten) {
-					if (aktKategorie.equals(aktPlandatum.getKategorie())) {
-						for (Calendar kanditatDatum = (Calendar) tempvonDatum
+				for (final Plandatum aktPlandatum : plandaten)
+					if (aktKategorie.equals(aktPlandatum.getKategorie()))
+						for (final Calendar kanditatDatum = (Calendar) tempvonDatum
 								.clone(); kanditatDatum.before(aktDatum); kanditatDatum
-								.add(Calendar.DATE, 1)) {
+								.add(Calendar.DATE, 1))
 							if (pruefeDatumAufTurnus(kanditatDatum,
 									aktPlandatum))
 								if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
 									wert += aktPlandatum.getBetrag();
 								else
 									wert -= aktPlandatum.getBetrag();
-						}
-					}
-				}
 
 				daten[y][0] = aktKategorie.getName();
 				daten[y][1] = aktKategorie.getKategorieTyp().name();
@@ -118,9 +111,9 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		if (df.format(aktDatum.getTime()).equals(plandatum.getWertstellung()))
 			return true;
 
-		Date plandatumDatum = plandatum.getWertstellung();
+		final Date plandatumDatum = plandatum.getWertstellung();
 
-		Calendar aktCalendar = Calendar.getInstance();
+		final Calendar aktCalendar = Calendar.getInstance();
 		aktCalendar.setTime(plandatumDatum);
 
 		switch (plandatum.getTurnus()) {
@@ -172,8 +165,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 	private boolean matchByMonth(Calendar a, Calendar b) {
 
-		int taga = a.get(Calendar.DATE);
-		int tagb = b.get(Calendar.DATE);
+		final int taga = a.get(Calendar.DATE);
+		final int tagb = b.get(Calendar.DATE);
 
 		return taga == tagb;
 
@@ -185,8 +178,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 	private boolean matchByMonth(Calendar a, Calendar b, int dauer) {
 
-		int taga = a.get(Calendar.DATE);
-		int tagb = b.get(Calendar.DATE);
+		final int taga = a.get(Calendar.DATE);
+		final int tagb = b.get(Calendar.DATE);
 
 		return taga == tagb
 				&& Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH))
@@ -211,15 +204,6 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 	private boolean dateCompare(Calendar a, Calendar b) {
 		return (df.format(a.getTime())).equals((df.format(b.getTime())));
-	}
-
-	private Calendar clearTime(Calendar date) {
-		date.clear(Calendar.MILLISECOND);
-		date.clear(Calendar.SECOND);
-		date.clear(Calendar.MINUTE);
-		date.clear(Calendar.HOUR);
-
-		return date;
 	}
 
 }

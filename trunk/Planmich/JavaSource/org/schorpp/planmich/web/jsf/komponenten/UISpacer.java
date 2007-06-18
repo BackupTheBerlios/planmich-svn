@@ -9,8 +9,8 @@ public class UISpacer extends UIComponentBase {
 
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
-		ResponseWriter writer = context.getResponseWriter();
-		String size = (String) getAttributes().get("size");
+		final ResponseWriter writer = context.getResponseWriter();
+		final String size = (String) getAttributes().get("size");
 
 		writer.startElement("hr", this);
 		writer.endElement("hr");

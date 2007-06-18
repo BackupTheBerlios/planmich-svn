@@ -19,7 +19,7 @@ public class MandantBakingBean extends BaseBean {
 
 	private String kommentar;
 
-	private Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
+	private final Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
 
 	public String getName() {
 		return name;
@@ -38,20 +38,21 @@ public class MandantBakingBean extends BaseBean {
 	}
 
 	public List<SelectItem> getKategorien() {
-		List categories = ((Mandant) getFromSession("Mandant")).getKategorien();
-		List<SelectItem> ret = new ArrayList<SelectItem>();
+		final List categories = ((Mandant) getFromSession("Mandant"))
+				.getKategorien();
+		final List<SelectItem> ret = new ArrayList<SelectItem>();
 
 		// erster EintragI ist leer
 		ret.add(new SelectItem("dummy", ""));
 
 		for (int i = 0; i < categories.size(); i++) {
-			Kategorie aktKategorie = (Kategorie) categories.get(i);
-			String id = String.valueOf(aktKategorie.getId());
+			final Kategorie aktKategorie = (Kategorie) categories.get(i);
+			final String id = String.valueOf(aktKategorie.getId());
 			ret.add(new SelectItem(id, aktKategorie.getName()));
 			categoriesMap.put(id, aktKategorie); // aktuelles
-													// Kategorie-Objekt in
-													// Hashmap ablegen zum
-													// sp�teren wiederfinden.
+			// Kategorie-Objekt in
+			// Hashmap ablegen zum
+			// sp�teren wiederfinden.
 		}
 
 		return ret;
@@ -62,7 +63,7 @@ public class MandantBakingBean extends BaseBean {
 	}
 
 	public void addMandant() {
-		Mandant m = new Mandant();
+		final Mandant m = new Mandant();
 		m.setName(name);
 		m.setKommentar(kommentar);
 

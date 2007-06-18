@@ -14,7 +14,7 @@ public class KategorieTypConverter implements Converter {
 
 		try {
 			return KategorieTyp.valueOf(value);
-		} catch (IllegalArgumentException e) {
+		} catch (final IllegalArgumentException e) {
 			throw new ConverterException();
 		}
 	}

@@ -6,8 +6,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.el.ValueBinding;
 import javax.faces.webapp.UIComponentTag;
 
-
-
 public class SpacerTag extends UIComponentTag {
 
 	private String size;
@@ -16,16 +14,14 @@ public class SpacerTag extends UIComponentTag {
 	protected void setProperties(UIComponent component) {
 		super.setProperties(component);
 
-		if (size != null) {
+		if (size != null)
 			if (isValueReference(size)) {
-				FacesContext context = FacesContext.getCurrentInstance();
-				Application app = context.getApplication();
-				ValueBinding vb = app.createValueBinding(size);
+				final FacesContext context = FacesContext.getCurrentInstance();
+				final Application app = context.getApplication();
+				final ValueBinding vb = app.createValueBinding(size);
 				component.setValueBinding("size", vb);
-			} else {
+			} else
 				component.getAttributes().put("size", size);
-			}
-		}
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Kategorie;
-import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 
@@ -20,7 +19,7 @@ public class MandantServiceImpl implements MandantService {
 		// Dependency Injection
 		this.mandantDao = mandantDao;
 	}
-	
+
 	public void add(Mandant m) {
 		mandantDao.saveMandant(m);
 	}

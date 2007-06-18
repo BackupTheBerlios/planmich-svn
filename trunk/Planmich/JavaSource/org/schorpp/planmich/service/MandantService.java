@@ -3,7 +3,6 @@ package org.schorpp.planmich.service;
 import java.util.List;
 
 import org.schorpp.planmich.domain.Kategorie;
-import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 import org.springframework.transaction.annotation.Isolation;
