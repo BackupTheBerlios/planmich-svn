@@ -17,13 +17,14 @@
 				headerClass="pageHeader" navigationClass="pageNavigation"
 				bodyClass="pageBody">
 				<f:facet name="header">
-					<h:panelGrid columns="2" style="width: 100%"
+					<h:panelGrid columns="3" style="width: 100%"
 						styleClass="headerTable"
 						columnClasses="standardTable_ColumnLeft, standardTable_ColumnRight">
-						<f:verbatim>
-						</f:verbatim>
-						<h:outputText style="padding-right: 1em; color: black"
-							value="#{messages.mandant}:  #{sessionBean.mandant.name}" />
+						
+						<h:outputText style="padding: 1em; color: black" value="#{messages.planmich}" />
+						<h:outputText style="padding: 1em; color: black" value="#{messages.mandant}:" />
+						<h:outputText style="padding: 1em; color: black" value="#{sessionBean.mandant.name}" />
+							
 						<h:form>
 							<t:jscookMenu id="menu" layout="hbr" theme="ThemeOffice"
 								styleLocation="/css/jscookmenu">
@@ -31,18 +32,11 @@
 							</t:jscookMenu>
 						</h:form>
 
-						<f:verbatim></f:verbatim>
+						<h:outputText style="padding: 1em; color: black" 
+							value="#{messages.kommentar}:"/>
 
-						<h:form>
-							<t:jscookMenu id="menu" layout="hbr" theme="ThemeOffice"
-								styleLocation="/css/jscookmenu">
-								<t:navigationMenuItems id="planmenue"
-									value="#{menu.planMenuItems}" />
-							</t:jscookMenu>
-						</h:form>
-
-						<f:verbatim>
-						</f:verbatim>
+						<h:outputText style="padding: 1em; color: black" 
+							value="#{sessionBean.mandant.kommentar}"/>
 
 					</h:panelGrid>
 

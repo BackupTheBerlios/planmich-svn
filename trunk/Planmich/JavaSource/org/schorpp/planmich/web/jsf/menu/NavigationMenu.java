@@ -17,6 +17,13 @@ public class NavigationMenu {
 	public List getMenuItems() {
 		final List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
 
+		final NavigationMenuItem planMenu = createMenuNavigationItem("Plan",
+				null);
+		menu.add(planMenu);
+		planMenu.add(createMenuNavigationItem("Jahresplan",
+				"liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
+		
+		
 		final NavigationMenuItem plandateMenu = createMenuNavigationItem(
 				"Plandaten", null);
 		menu.add(plandateMenu);
@@ -47,18 +54,6 @@ public class NavigationMenu {
 				"plandatenUebersicht", "/pages/plandatum/uebersicht.jsp"));
 		plandateMenu.add(createMenuNavigationItem("neues Plandatum",
 				"neuesPlandatum", "/pages/plandatum/neu.jsp"));
-
-		return menu;
-	}
-
-	public List getPlanMenuItems() {
-		final List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
-
-		final NavigationMenuItem planMenu = createMenuNavigationItem("Plan",
-				null);
-		menu.add(planMenu);
-		planMenu.add(createMenuNavigationItem("Jahresplan",
-				"liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
 
 		return menu;
 	}

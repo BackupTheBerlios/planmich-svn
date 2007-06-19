@@ -50,7 +50,7 @@ public class PlandatumBakingBean extends BaseBean {
 	public PlandatumBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -80,12 +80,12 @@ public class PlandatumBakingBean extends BaseBean {
 	}
 
 	public List getTypListe() {
-		final KategorieTyp[] values = KategorieTyp.values();
+		KategorieTyp[] values = KategorieTyp.values();
 
-		final List<SelectItem> items = new ArrayList<SelectItem>();
+		List<SelectItem> items = new ArrayList<SelectItem>();
 
-		for (final KategorieTyp element : values) {
-			final SelectItem temp = new SelectItem(element);
+		for (KategorieTyp element : values) {
+			SelectItem temp = new SelectItem(element);
 			if (turnusAuswahl == element.ordinal())
 				temp.setValue(temp);
 			items.add(temp);
@@ -97,17 +97,17 @@ public class PlandatumBakingBean extends BaseBean {
 	 * Erzeugt eine Liste mit SelectItems zur Auswahl der Kategorie
 	 */
 	public List getKategorieListe() {
-		final List categories = (mandantDAO.getMandantById(mandantId))
-				.getKategorien();
-		final List<SelectItem> ret = new ArrayList<SelectItem>();
+		List categories = (mandantDAO.getMandantById(mandantId))
+			.getKategorien();
+		List<SelectItem> ret = new ArrayList<SelectItem>();
 
 		// erster Eintrag ist leer
 		ret.add(new SelectItem("dummy", ""));
 
 		for (int i = 0; i < categories.size(); i++) {
-			final Kategorie aktKategorie = (Kategorie) categories.get(i);
-			final String id = String.valueOf(aktKategorie.getId());
-			final SelectItem temp = new SelectItem(id, aktKategorie.getName());
+			Kategorie aktKategorie = (Kategorie) categories.get(i);
+			String id = String.valueOf(aktKategorie.getId());
+			SelectItem temp = new SelectItem(id, aktKategorie.getName());
 			if (kategorieAuswahl != null && kategorieAuswahl.equals(aktKategorie.getName()))
 				temp.setValue(kategorieAuswahl);
 			ret.add(temp);
@@ -132,7 +132,7 @@ public class PlandatumBakingBean extends BaseBean {
 		final List<SelectItem> ret = new ArrayList<SelectItem>();
 
 		for (int i = 0; i < turnus.size(); i++) {
-			final Turnus aktTurnus = (Turnus) turnus.get(i);
+			Turnus aktTurnus = (Turnus) turnus.get(i);
 			ret.add(new SelectItem(i, aktTurnus.getName()));
 			turnusMap.put(i, aktTurnus);
 		}
