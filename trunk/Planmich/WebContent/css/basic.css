@@ -116,7 +116,7 @@ h1.headline {
 	font-family: verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: #ffffff;
-	padding: 1em;
+	padding: 5px;
 	
 }
 
@@ -129,6 +129,17 @@ h1.headline {
 	text-align: left;
 	border: none;
 	background: white url(/Planmich/images/verlauf.jpg) repeat-x 0 0;
+}
+
+.headerTable {
+	color: white;
+	padding: 1em;
+	margin: 0;
+	text-align: left;
+	border: none;
+	background-color: #C6D3EF;
+	height: 50px;
+	
 }
 
 .tabelle_Ueberschrift a {
@@ -231,14 +242,15 @@ h1.headline {
 }
 
 .pageHeader {
-	background-color: #A4CAFC;
+	background-color: #EFEBDE;
 	text-align: center;
 	vertical-align: middle;
 	height: 30px;
 	overflow: visible;
 	color: #FFFFFF;
-	padding: 0px;
+	padding: 0;
 	margin: 0px;
+	margin-bottom: 1em;
 }
 
 .pageHeader1 {
@@ -258,9 +270,9 @@ h1.headline {
 	text-align: left;
 	vertical-align: top;
 	border: 0px solid #ffffff;
-	width: 150px;
+	width: 200px;
 	margin: 0;
-	padding-right: 0;
+	padding: 0em;
 }
 
 .pageBody {

@@ -43,9 +43,9 @@ public class PlandatumBakingBean extends BaseBean {
 
 	private Plandatum p;
 
-	private final Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
+	private Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
 
-	private final Map<Integer, Turnus> turnusMap = new HashMap<Integer, Turnus>();
+	private Map<Integer, Turnus> turnusMap = new HashMap<Integer, Turnus>();
 
 	public PlandatumBakingBean() {
 		mandantId = (Integer) getFromSession("Mandant");
@@ -172,8 +172,10 @@ public class PlandatumBakingBean extends BaseBean {
 	 */
 	public void updatePlandatum() {
 
+		Kategorie k = categoriesMap.get(kategorieAuswahl);
+		
 		plandatumService.updatePlandatum(p, name, kommentar, wertstellung,
-				turnusAuswahl, betrag, categoriesMap.get(kategorieAuswahl));
+				turnusAuswahl, betrag, k);
 
 		displayInfo("Plandatum " + name + " wurde aktualisiert.");
 	}
@@ -221,7 +223,7 @@ public class PlandatumBakingBean extends BaseBean {
 		this.kommentar = p.getKommentar();
 		this.wertstellung = p.getWertstellung();
 		this.turnusAuswahl = p.getTurnus();
-		this.kategorieAuswahl = p.getKategorie().getName();
+		this.kategorieAuswahl = String.valueOf(p.getKategorie().getId());
 
 		editMode = true;
 
