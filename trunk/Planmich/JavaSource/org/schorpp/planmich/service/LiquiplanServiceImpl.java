@@ -7,16 +7,25 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Wiederholung;
 import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
+import org.schorpp.planmich.web.jsf.menu.NavigationMenu;
 
 public class LiquiplanServiceImpl implements LiquiplanService {
 
-	SimpleDateFormat df = new SimpleDateFormat("MMM.yyyy");
+	private static final Log log = LogFactory.getLog(LiquiplanService.class);
+
+	SimpleDateFormat df = new SimpleDateFormat("MM. yyyy");
+
+	SimpleDateFormat ddf = new SimpleDateFormat("dd. MM. yyyy");
 
 	DecimalFormat nf = new DecimalFormat("###,##0.00");
 
@@ -40,10 +49,10 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		List<Plandatum> plandaten = null;
 
 		List<Kategorie> kategorien = null;
-			
+
 		plandaten = mandant.getPlandaten();
 		kategorien = mandant.getKategorien();
-		
+
 		Collections.sort(kategorien, new Comparator<Kategorie>() {
 
 			public int compare(Kategorie a, Kategorie b) {
@@ -66,14 +75,16 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		int x = 0;
 
 		tempvonDatum = (Calendar) vonDatum.clone();
+		Calendar aktDatum = (Calendar) vonDatum.clone();
+		
+		do { 
 
-		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
-				.before(bisDatum); aktDatum.add(Calendar.MONTH, 1)) {
-
+			aktDatum.add(Calendar.MONTH, 1);
+			
 			int y = 0;
 
 			colHeaders.add(new SpaltenUeberschrift(df
-					.format(aktDatum.getTime()), "400", "right", false));
+					.format(tempvonDatum.getTime()), "400", "right", false));
 
 			anfangsbestand = endbestand;
 
@@ -81,20 +92,32 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 				double wert = 0.0;
 
-				for (Plandatum aktPlandatum : plandaten)
-					if (aktKategorie.equals(aktPlandatum.getKategorie()))
+				log.debug(tempvonDatum.getTime() + " bis " + aktDatum.getTime());
+				
+				for (Plandatum aktPlandatum : plandaten) {
+					if (aktKategorie.equals(aktPlandatum.getKategorie())) {
 						for (Calendar kanditatDatum = (Calendar) tempvonDatum
 								.clone(); kanditatDatum.before(aktDatum); kanditatDatum
-								.add(Calendar.DATE, 1))
-							if (pruefeDatumAufTurnus(kanditatDatum,
-									aktPlandatum))
-									wert += aktPlandatum.getBetrag();
+								.add(Calendar.DATE, 1)) {
+							
 								
+							
+								boolean match = pruefeDatumAufTurnus(kanditatDatum,
+										aktPlandatum);
+								
+							if (match) {
+								wert += aktPlandatum.getBetrag();
+							}
+						}
+					}
+				}
 
 				daten[y][0] = aktKategorie.getName();
 				daten[y][1] = aktKategorie.getKategorieTyp().name();
 				daten[y][x + 2] = nf.format(wert);
 
+				// Wenn es sich um eine Einnahme handelt, dann Betrag addieren,
+				// sonst Substrahieren
 				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
 					anfangsbestand += wert;
 				else
@@ -112,14 +135,14 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 			tempvonDatum = (Calendar) aktDatum.clone();
 
-		}
+		} while (aktDatum.before(bisDatum));
 
 		return daten;
 	}
 
 	private boolean pruefeDatumAufTurnus(Calendar aktDatum, Plandatum plandatum) {
-		if (df.format(aktDatum.getTime()).equals(plandatum.getWertstellung()))
-			return true;
+		 if (ddf.format(aktDatum.getTime()).equals(ddf.format(plandatum.getWertstellung())))
+		 return true;
 
 		final Date plandatumDatum = plandatum.getWertstellung();
 

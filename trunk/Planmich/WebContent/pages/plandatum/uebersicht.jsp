@@ -18,7 +18,7 @@
 				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
 				footerClass="tabelle_Ueberschrift"
 				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
-				columnClasses="tabelle_Spalte,tabelle_SpalteCentered,tabelle_Spalte" sortable="true" preserveDataModel="false">
+				columnClasses="tabelle_Spalte,tabelle_SpalteRight,tabelle_Spalte, tabelle_Spalte, tabelle_Spalte" sortable="true" preserveDataModel="false">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Bezeichnung" />

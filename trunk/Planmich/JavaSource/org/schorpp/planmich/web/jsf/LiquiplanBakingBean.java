@@ -33,9 +33,17 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	public LiquiplanBakingBean() {
 		von = new Date();
-		bis = new Date();
 
-		final Calendar temp = Calendar.getInstance();
+		Calendar temp = Calendar.getInstance();
+		
+		temp.setTime(von);
+		temp.roll(Calendar.MONTH, 1);
+		temp.set(Calendar.DATE, 1);
+		
+		von = temp.getTime();
+		
+		bis = (Date)(von.clone());
+		
 		temp.setTime(bis);
 		temp.add(Calendar.MONTH, 12);
 		bis = temp.getTime();

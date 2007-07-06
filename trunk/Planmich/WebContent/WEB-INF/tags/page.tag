@@ -19,21 +19,26 @@
 				<f:facet name="header">
 					<h:panelGrid columns="1" style="width: 100%">
 
-						<h:panelGrid columns="3" styleClass="headerTable"  style="width: 100%"
-							columnClasses="standardTable_ColumnLeft, standardTable_ColumnRight">
+						<h:panelGrid columns="2" styleClass="kopfzeile" columnClasses="kopfSpalteLinks,kopfSpalteRechts">
 
-							<h:outputText style="padding: 1em; color: black"
-								value="#{messages.planmich}" />
-							<h:outputText style="padding: 1em; color: black"
-								value="#{messages.mandant}:" />
-							
-							<h:outputText style="padding: 1em; color: black"
-								value="#{sessionBean.mandant.name}" />
-								<f:verbatim> </f:verbatim>
-							<h:outputText style="padding: 1em; color: black"
-								value="#{messages.kommentar}:" />
-							<h:outputText style="padding: 1em; color: black"
-								value="#{sessionBean.mandant.kommentar}" />
+							<h:panelGrid columns="1" styleClass="kopfZeileLinks">
+								<h:graphicImage url="/images/logo.jpg" />
+							</h:panelGrid>
+
+							<h:panelGrid columns="2"
+								 styleClass="kopfZeileRechts">
+
+								<h:outputText style="padding: 1em; color: black;"
+									value="#{messages.mandant}:" />
+
+								<h:outputText style="padding: 1em; color: black"
+									value="#{sessionBean.mandant.name}" />
+								<h:outputText style="padding: 1em; color: black"
+									value="#{messages.kommentar}:" />
+								<h:outputText style="padding: 1em; color: black"
+									value="#{sessionBean.mandant.kommentar}" />
+							</h:panelGrid>
+
 						</h:panelGrid>
 
 						<h:form>
@@ -46,6 +51,7 @@
 					</h:panelGrid>
 
 
+
 				</f:facet>
 
 
@@ -54,6 +60,6 @@
 			</t:panelLayout>
 
 		</f:view>
-		
+
 	</body>
 </html>

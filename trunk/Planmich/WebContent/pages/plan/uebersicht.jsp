@@ -45,7 +45,7 @@
 
 
 
-			<t:div style="overflow-y:scroll;height:100%;overflow:auto;max-width:950px;width:expression(document.body.clientWidth > 950? '950px': (document.body.clientWidth-50)+'px');">
+			<t:div style="overflow-y:scroll;height:100%;overflow:auto;max-width:expression((document.body.clientWidth-50)+'px');width:expression((document.body.clientWidth-50)+'px');">
 
 						<t:dataTable value="#{liquiplanBakingBean.planData}"
 							rendered="true" border="0" rows="10" var="daten"

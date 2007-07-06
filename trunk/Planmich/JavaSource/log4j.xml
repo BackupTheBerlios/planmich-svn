@@ -53,6 +53,10 @@
   	<level value="ERROR"/>
   </logger>
   
+  <logger name="org.acegisecurity">
+  	<level value="ERROR"/>
+  </logger>
+  
   <!--
     Alle Logmeldungen werden an den Appender STDOUT geschickt.
     Es gibt ein zusaetzliches Threshold im Appender STDOUT

@@ -12,7 +12,6 @@ import org.apache.myfaces.custom.navmenu.htmlnavmenu.HtmlCommandNavigationItem;
 import org.apache.myfaces.custom.navmenu.jscookmenu.HtmlCommandJSCookMenu;
 
 public class NavigationMenu {
-	private static final Log log = LogFactory.getLog(NavigationMenu.class);
 
 	public List getMenuItems() {
 		final List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
@@ -81,14 +80,10 @@ public class NavigationMenu {
 
 	public String actionListener(ActionEvent event) {
 		if (event.getComponent() instanceof HtmlCommandNavigationItem) {
-			log.info("ActionListener: "
-					+ ((HtmlCommandNavigationItem) event.getComponent())
-							.getValue());
 			return getAction1();
 		} else {
 			final String outcome = (String) ((HtmlCommandJSCookMenu) event
 					.getComponent()).getValue();
-			log.info("ActionListener: " + outcome);
 			return outcome;
 		}
 	}
