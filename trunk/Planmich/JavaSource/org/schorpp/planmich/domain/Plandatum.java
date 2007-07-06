@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "plandatum")
-public class Plandatum {
+public class Plandatum implements Comparable<Plandatum> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -103,6 +103,15 @@ public class Plandatum {
 
 	public void setTurnus(int turnus) {
 		this.turnus = turnus;
+	}
+
+	public int compareTo(Plandatum p) {
+		if(this.kategorie.getKategorieTyp().ordinal() > p.kategorie.getKategorieTyp().ordinal())
+			return 1;
+		else if (this.kategorie.getKategorieTyp().ordinal() < p.kategorie.getKategorieTyp().ordinal())
+			return -1;
+		
+		return 0;
 	}
 
 }

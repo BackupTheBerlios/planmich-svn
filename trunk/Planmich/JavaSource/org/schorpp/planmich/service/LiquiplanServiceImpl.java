@@ -3,6 +3,8 @@ package org.schorpp.planmich.service;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import org.schorpp.planmich.domain.Kategorie;
@@ -38,9 +40,16 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		List<Plandatum> plandaten = null;
 
 		List<Kategorie> kategorien = null;
-
+			
 		plandaten = mandant.getPlandaten();
 		kategorien = mandant.getKategorien();
+		
+		Collections.sort(kategorien, new Comparator<Kategorie>() {
+
+			public int compare(Kategorie a, Kategorie b) {
+				return a.getKategorieTyp().compareTo(b.getKategorieTyp());
+			}
+		});
 
 		// Liste der Uberschriften Löschen
 		colHeaders.clear();
@@ -58,7 +67,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 		tempvonDatum = (Calendar) vonDatum.clone();
 
-		for (final Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
+		for (Calendar aktDatum = (Calendar) vonDatum.clone(); aktDatum
 				.before(bisDatum); aktDatum.add(Calendar.MONTH, 1)) {
 
 			int y = 0;
@@ -68,27 +77,28 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 			anfangsbestand = endbestand;
 
-			for (final Kategorie aktKategorie : kategorien) {
+			for (Kategorie aktKategorie : kategorien) {
 
 				double wert = 0.0;
 
-				for (final Plandatum aktPlandatum : plandaten)
+				for (Plandatum aktPlandatum : plandaten)
 					if (aktKategorie.equals(aktPlandatum.getKategorie()))
-						for (final Calendar kanditatDatum = (Calendar) tempvonDatum
+						for (Calendar kanditatDatum = (Calendar) tempvonDatum
 								.clone(); kanditatDatum.before(aktDatum); kanditatDatum
 								.add(Calendar.DATE, 1))
 							if (pruefeDatumAufTurnus(kanditatDatum,
 									aktPlandatum))
-								if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
 									wert += aktPlandatum.getBetrag();
-								else
-									wert -= aktPlandatum.getBetrag();
+								
 
 				daten[y][0] = aktKategorie.getName();
 				daten[y][1] = aktKategorie.getKategorieTyp().name();
 				daten[y][x + 2] = nf.format(wert);
 
-				anfangsbestand += wert;
+				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+					anfangsbestand += wert;
+				else
+					anfangsbestand -= wert;
 
 				y += 1;
 

@@ -54,6 +54,6 @@
 			</t:panelLayout>
 
 		</f:view>
-		:panelGrid&gt;
+		
 	</body>
 </html>

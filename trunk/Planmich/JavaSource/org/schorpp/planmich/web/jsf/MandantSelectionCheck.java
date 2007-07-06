@@ -41,7 +41,7 @@ public class MandantSelectionCheck implements PhaseListener {
 		final String renderedViewId = facesContext.getViewRoot().getViewId();
 
 		// Mandantenverwaltung von der Umleitnug ausnehmen
-		if (renderedViewId.startsWith("/pages/mandant/"))
+		if (renderedViewId.startsWith("/pages/mandant/") || renderedViewId.equals("/login.jsp"))
 			return;
 
 		final Integer mandantID = (Integer) getFromSession("Mandant");

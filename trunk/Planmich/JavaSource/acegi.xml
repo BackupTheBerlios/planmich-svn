@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd"
+	default-autowire="byType">
+	
+<bean id="filterSecurityInterceptor"
+	class="org.acegisecurity.intercept.web.FilterSecurityInterceptor">
+	<property name="authenticationManager" ref="authenticationManager" />
+	<property name="accessDecisionManager" ref="accessDecisionManager" />
+	<property name="objectDefinitionSource">
+		<value>
+			CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+			PATTERN_TYPE_APACHE_ANT
+			/pages/**=ROLE_USER
+		</value>
+	</property>	
+</bean>	
+	
+<bean id="authenticationManager" class="org.acegisecurity.providers.ProviderManager">
+	<property name="providers">
+		<list>
+			<ref local="userAuthenticationProvider" />
+		</list>
+	</property>
+</bean>
+
+<bean id="userAuthenticationDAO" class="org.acegisecurity.userdetails.memory.InMemoryDaoImpl">
+	<property name="userMap">
+		<value>admin=perry58,ROLE_USER</value>
+	</property>
+</bean>
+
+<bean id="userAuthenticationProvider" class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
+	<property name="userDetailsService" ref="userAuthenticationDAO" />
+</bean>
+
+<bean id="accessDecisionManager" class="org.acegisecurity.vote.UnanimousBased">
+	<property name="decisionVoters">
+		<list>
+			<ref local="roleVoter" />
+		</list>
+	</property>
+</bean>
+	
+<bean id="roleVoter" class="org.acegisecurity.vote.RoleVoter" />
+
+<bean id="httpSessionContextIntegrationFilter" class="org.acegisecurity.context.HttpSessionContextIntegrationFilter">
+	<property name="context" value="org.acegisecurity.context.SecurityContextImpl"/>
+</bean>
+
+<bean id="exceptionTranslationFilter" class="org.acegisecurity.ui.ExceptionTranslationFilter">
+	<property name="authenticationEntryPoint" ref="authenticationEntryPoint" />
+	<property name="accessDeniedHandler" ref="accessDeniedHandler" />
+</bean>
+
+<bean id="accessDeniedHandler" class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
+	<property name="errorPage" value="/nono.jsf" />
+</bean>
+
+<!-- <bean id="authenticationEntryPoint" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+	<property name="loginFormUrl" value="/login.jsf" />
+	<property name="forceHttps" value="false" />
+</bean>
+-->
+<!-- 
+<bean id="authenticationProcessingFilter" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+	<property name="authenticationManager" ref="authenticationManager" />
+	<property name="authenticationFailureUrl" value="/login.jsf" />
+	<property name="defaultTargetUrl" value="/acegiforward.jsp" />
+	<property name="alwaysUseDefaultTargetUrl" value="true" />
+</bean>
+-->
+
+<bean id="basicProcessingFilter" class="org.acegisecurity.ui.basicauth.BasicProcessingFilter">
+  <property name="authenticationManager"><ref bean="authenticationManager"/></property>
+  <property name="authenticationEntryPoint"><ref bean="authenticationEntryPoint"/></property>
+</bean>
+
+<bean id="authenticationEntryPoint" class="org.acegisecurity.ui.basicauth.BasicProcessingFilterEntryPoint">
+  <property name="realmName"><value>Planmich</value></property>
+</bean>
+
+<bean id="filterChainProxy" class="org.acegisecurity.util.FilterChainProxy">
+	<property name="filterInvocationDefinitionSource">
+		<value>
+			CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+			PATTERN_TYPE_APACHE_ANT
+			/**=httpSessionContextIntegrationFilter,basicProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
+		</value>
+	</property>
+</bean>
+			
+
+</beans>	
