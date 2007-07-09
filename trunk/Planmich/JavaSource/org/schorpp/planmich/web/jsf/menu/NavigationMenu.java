@@ -3,6 +3,7 @@ package org.schorpp.planmich.web.jsf.menu;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.logging.Log;
@@ -10,13 +11,21 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.myfaces.custom.navmenu.NavigationMenuItem;
 import org.apache.myfaces.custom.navmenu.htmlnavmenu.HtmlCommandNavigationItem;
 import org.apache.myfaces.custom.navmenu.jscookmenu.HtmlCommandJSCookMenu;
+import org.schorpp.planmich.web.jsf.BaseBean;
 
-public class NavigationMenu {
+public class NavigationMenu extends BaseBean {
 
-	public List getMenuItems() {
-		final List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
-
-		final NavigationMenuItem planMenu = createMenuNavigationItem("Plan",
+	private List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
+	private NavigationMenuItem planMenu;
+	
+	private List<NavigationMenuItem> planContextMenu = new ArrayList<NavigationMenuItem>();
+	
+	public NavigationMenu() {
+	
+		planContextMenu.add(createMenuNavigationItem("Jahresplan", null));
+		planContextMenu.add(createMenuNavigationItem("Diagramm", null));
+		
+		planMenu = createMenuNavigationItem("Plan",
 				null);
 		menu.add(planMenu);
 		planMenu.add(createMenuNavigationItem("Jahresplan",
@@ -54,6 +63,9 @@ public class NavigationMenu {
 		plandateMenu.add(createMenuNavigationItem("neues Plandatum",
 				"neuesPlandatum", "/pages/plandatum/neu.jsp"));
 
+	}
+	
+	public List getMenuItems() {
 		return menu;
 	}
 
@@ -102,5 +114,19 @@ public class NavigationMenu {
 
 	public boolean getDisabled() {
 		return true;
+	}
+	
+	
+	public List<NavigationMenuItem> getContextMenu() {
+		
+		//der Namen der Seite
+		final String viewId = getFacesContext().getViewRoot().getViewId();
+		
+		if(viewId.startsWith("/pages/plan/")) {
+			return planContextMenu;
+		}
+			
+		//Kein Menü
+		return new ArrayList<NavigationMenuItem>();
 	}
 }

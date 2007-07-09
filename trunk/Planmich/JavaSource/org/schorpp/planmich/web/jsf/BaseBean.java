@@ -43,4 +43,8 @@ public class BaseBean {
 		facesContext.renderResponse();
 	}
 
+	protected FacesContext getFacesContext() {
+		return FacesContext.getCurrentInstance();
+	}
+	
 }
