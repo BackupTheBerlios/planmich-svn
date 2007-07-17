@@ -56,8 +56,10 @@ public class LiquiplanBakingBean extends BaseBean {
 		final Mandant mandant = mandantDAO
 				.getMandantById((Integer) getFromSession("Mandant"));
 
-		final String[][] plan = service.calculatePlanAsMap(mandant, von, bis,
-				colHeaders);
+		final String plan[][] = new String[20 + 2][1000];;
+			
+			service.calculatePlanAsMap(mandant, von, bis,
+				colHeaders, plan, plan);
 
 		data = new ArrayDataModel(plan);
 		columnHeaders = new ListDataModel(colHeaders);

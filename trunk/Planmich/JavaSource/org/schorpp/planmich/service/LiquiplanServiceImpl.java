@@ -22,7 +22,7 @@ import org.schorpp.planmich.web.jsf.menu.NavigationMenu;
 public class LiquiplanServiceImpl implements LiquiplanService {
 
 	private static final Log log = LogFactory.getLog(LiquiplanService.class);
-
+	
 	SimpleDateFormat df = new SimpleDateFormat("MM. yyyy");
 
 	SimpleDateFormat ddf = new SimpleDateFormat("dd. MM. yyyy");
@@ -36,7 +36,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 *      java.util.Calendar)
 	 */
 	public String[][] calculatePlanAsMap(Mandant mandant, Date von, Date bis,
-			List<SpaltenUeberschrift> colHeaders) {
+			List<SpaltenUeberschrift> colHeaders, String[][] e, String[][] a) {
 
 		final Calendar vonDatum = Calendar.getInstance();
 		vonDatum.setTime(von);
@@ -67,13 +67,14 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left", false));
 
 		// Soviele Zeile wie Kategorien vorhanden sind
-		final String daten[][] = new String[kategorien.size() + 2][1000];
-
+		final String einnahmen[][] = new String[kategorien.size() + 2][1000];
+		final String ausgaben[][] = new String[kategorien.size() + 2][1000];
+		
 		double endbestand = 0;
 		double anfangsbestand = 0;
 
 		int x = 0;
-
+		
 		tempvonDatum = (Calendar) vonDatum.clone();
 		Calendar aktDatum = (Calendar) vonDatum.clone();
 		
@@ -112,22 +113,28 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 					}
 				}
 
-				daten[y][0] = aktKategorie.getName();
-				daten[y][1] = aktKategorie.getKategorieTyp().name();
-				daten[y][x + 2] = nf.format(wert);
 
 				// Wenn es sich um eine Einnahme handelt, dann Betrag addieren,
 				// sonst Substrahieren
-				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme) {
+					einnahmen[y][0] = aktKategorie.getName();
+					einnahmen[y][1] = aktKategorie.getKategorieTyp().name();
+					einnahmen[y][x + 2] = nf.format(wert);
+				
 					anfangsbestand += wert;
-				else
+				}
+				else {
 					anfangsbestand -= wert;
+					ausgaben[y][0] = aktKategorie.getName();
+					ausgaben[y][1] = aktKategorie.getKategorieTyp().name();
+					ausgaben[y][x + 2] = nf.format(wert);
+				}
 
 				y += 1;
 
 			}
 
-			daten[y + 1][x + 2] = nf.format(anfangsbestand);
+			einnahmen[y + 1][x + 2] = nf.format(anfangsbestand);
 
 			x += 1;
 
@@ -137,7 +144,10 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 		} while (aktDatum.before(bisDatum));
 
-		return daten;
+		e = einnahmen;
+		a = ausgaben;
+		
+		return einnahmen;
 	}
 
 	private boolean pruefeDatumAufTurnus(Calendar aktDatum, Plandatum plandatum) {
