@@ -61,4 +61,62 @@
 			</description>
 		</attribute>
 	</tag>
+		<tag>
+		<name>Liquiplan</name>
+		<tag-class>
+			org.schorpp.planmich.web.jsf.komponenten.LiquiplanTag
+		</tag-class>
+		<attribute>
+			<name>binding</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				A value binding that points to a bean property
+			</description>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>The client id of this component</description>
+		</attribute>
+		<attribute>
+			<name>rendered</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>Is this component rendered?</description>
+		</attribute>
+		<attribute>
+			<name>header</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				a custom message for the Component
+			</description>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				a custom message for the Component
+			</description>
+		</attribute>
+		<attribute>
+			<name>rowClasses</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				a custom message for the Component
+			</description>
+		</attribute>	
+		<attribute>
+			<name>styleClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				a custom message for the Component
+			</description>
+		</attribute>	
+				<attribute>
+			<name>headerClass</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				a custom message for the Component
+			</description>
+		</attribute>	
+	</tag>
 </taglib>

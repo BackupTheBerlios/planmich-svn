@@ -2,6 +2,7 @@ package org.schorpp.planmich.service;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -35,8 +36,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 * @see org.schorpp.planmich.service.Liquidiplan#getPlanAsMap(java.util.Calendar,
 	 *      java.util.Calendar)
 	 */
-	public String[][] calculatePlanAsMap(Mandant mandant, Date von, Date bis,
-			List<SpaltenUeberschrift> colHeaders, String[][] e, String[][] a) {
+	public boolean calculatePlanAsMap(Mandant mandant, Date von, Date bis,
+			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen) {
 
 		final Calendar vonDatum = Calendar.getInstance();
 		vonDatum.setTime(von);
@@ -70,6 +71,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		final String einnahmen[][] = new String[kategorien.size() + 2][1000];
 		final String ausgaben[][] = new String[kategorien.size() + 2][1000];
 		
+		List<String> zeilenEinnahmen;
+		
 		double endbestand = 0;
 		double anfangsbestand = 0;
 
@@ -81,6 +84,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		do { 
 
 			aktDatum.add(Calendar.MONTH, 1);
+			
+			zeilenEinnahmen = new ArrayList<String>();
 			
 			int y = 0;
 
@@ -119,8 +124,10 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme) {
 					einnahmen[y][0] = aktKategorie.getName();
 					einnahmen[y][1] = aktKategorie.getKategorieTyp().name();
-					einnahmen[y][x + 2] = nf.format(wert);
+					zeilenEinnahmen.add(nf.format(wert));
 				
+					
+					
 					anfangsbestand += wert;
 				}
 				else {
@@ -141,13 +148,12 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			endbestand = anfangsbestand;
 
 			tempvonDatum = (Calendar) aktDatum.clone();
+			
+			spalteEinnahmen.add(zeilenEinnahmen);
 
 		} while (aktDatum.before(bisDatum));
-
-		e = einnahmen;
-		a = ausgaben;
 		
-		return einnahmen;
+		return true;
 	}
 
 	private boolean pruefeDatumAufTurnus(Calendar aktDatum, Plandatum plandatum) {

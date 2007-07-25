@@ -42,7 +42,9 @@ public class PersistenceTest extends
 		
 		bis.add(Calendar.DATE, 1);
 		
-		String[][] plan = planService.calculatePlanAsMap(m, von.getTime(), bis.getTime(), colHeaders);
+		if (planService.calculatePlanAsMap(m, von.getTime(), bis.getTime(), colHeaders)) {
+			plan = planService.getEinnahmen();
+		}
 		
 		
 		

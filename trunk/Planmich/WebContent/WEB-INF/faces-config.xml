@@ -14,6 +14,12 @@
 			org.schorpp.planmich.web.jsf.komponenten.UISpacer
 		</component-class>
 	</component>
+		<component>
+		<component-type>Liquiplan</component-type>
+		<component-class>
+			org.schorpp.planmich.web.jsf.komponenten.UILiquiplan
+		</component-class>
+	</component>
 	<converter>
 		<converter-for-class>
 			org.schorpp.planmich.domain.KategorieTyp

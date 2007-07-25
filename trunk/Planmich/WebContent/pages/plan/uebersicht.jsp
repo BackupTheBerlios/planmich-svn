@@ -44,25 +44,12 @@
 			</f:verbatim>
 
 
+			<d:Liquiplan header="#{liquiplanBakingBean.columnHeaders}" value="#{liquiplanBakingBean.planData}" rowClasses="tabelle_Zeile1,tabelle_Zeile2" styleClass="tabelle"  headerClass="tabelle_Ueberschrift" />
+
 
 			<t:div style="overflow-y:scroll;height:100%;overflow:auto;max-width:expression((document.body.clientWidth-50)+'px');width:expression((document.body.clientWidth-50)+'px');">
 
-						<t:dataTable value="#{liquiplanBakingBean.planData}"
-							rendered="true" border="0" rows="10" var="daten"
-							id="showPlandates" styleClass="liquiplanTabelle"
-							headerClass="liquiplantabelle_Ueberschrift"
-							rowClasses="tabelle_Zeile1,tabelle_Zeile2"
-							columnClasses="liquiplantabelle_Spalte">
- 
-							<t:columns value="#{liquiplanBakingBean.columnHeaders}"
-								var="columnHeader" style="width: #{liquiplanBakingBean.columnWidth}px; text-align: #{liquiplanBakingBean.columnAlign}">
-								<f:facet name="header">
-									<h:outputText value="#{columnHeader.label}"/>
-								</f:facet>
-								<h:outputText value="#{liquiplanBakingBean.columnValue}" />
-							</t:columns>
-
-						</t:dataTable>
+				
 
 						<f:verbatim>
 							<br>

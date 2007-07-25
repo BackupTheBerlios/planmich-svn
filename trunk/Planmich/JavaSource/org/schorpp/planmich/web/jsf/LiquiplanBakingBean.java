@@ -35,15 +35,15 @@ public class LiquiplanBakingBean extends BaseBean {
 		von = new Date();
 
 		Calendar temp = Calendar.getInstance();
-		
+
 		temp.setTime(von);
 		temp.roll(Calendar.MONTH, 1);
 		temp.set(Calendar.DATE, 1);
-		
+
 		von = temp.getTime();
-		
-		bis = (Date)(von.clone());
-		
+
+		bis = (Date) (von.clone());
+
 		temp.setTime(bis);
 		temp.add(Calendar.MONTH, 12);
 		bis = temp.getTime();
@@ -53,18 +53,17 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	public void updatePlan() {
 
+		List<List> einnahmen = new ArrayList<List>();
+		
 		final Mandant mandant = mandantDAO
 				.getMandantById((Integer) getFromSession("Mandant"));
 
-		final String plan[][] = new String[20 + 2][1000];;
-			
-			service.calculatePlanAsMap(mandant, von, bis,
-				colHeaders, plan, plan);
+		if (service.calculatePlanAsMap(mandant, von, bis, colHeaders, einnahmen)) {
 
-		data = new ArrayDataModel(plan);
-		columnHeaders = new ListDataModel(colHeaders);
+			data = new ListDataModel(einnahmen);
+			columnHeaders = new ListDataModel(colHeaders);
+		}
 	}
-
 
 	public void setService(LiquiplanService service) {
 		this.service = service;
