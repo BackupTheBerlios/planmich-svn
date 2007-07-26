@@ -67,11 +67,29 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				false));
 		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left", false));
 
+		
+		List<String> zeilenEinnahmen;
+		
+		zeilenEinnahmen = new ArrayList<String>();
+		for(Kategorie aktKategorie : kategorien) {
+			if(aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+				zeilenEinnahmen.add(aktKategorie.getName());
+		}
+		
+		spalteEinnahmen.add(zeilenEinnahmen);
+		
+		zeilenEinnahmen = new ArrayList<String>();
+		for(Kategorie aktKategorie : kategorien) {
+			if(aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+				zeilenEinnahmen.add("E");
+		}
+		
+		spalteEinnahmen.add(zeilenEinnahmen);
+		
 		// Soviele Zeile wie Kategorien vorhanden sind
 		final String einnahmen[][] = new String[kategorien.size() + 2][1000];
 		final String ausgaben[][] = new String[kategorien.size() + 2][1000];
-		
-		List<String> zeilenEinnahmen;
+
 		
 		double endbestand = 0;
 		double anfangsbestand = 0;
@@ -86,6 +104,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			aktDatum.add(Calendar.MONTH, 1);
 			
 			zeilenEinnahmen = new ArrayList<String>();
+
 			
 			int y = 0;
 
@@ -95,7 +114,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			anfangsbestand = endbestand;
 
 			for (Kategorie aktKategorie : kategorien) {
-
+				
 				double wert = 0.0;
 
 				log.debug(tempvonDatum.getTime() + " bis " + aktDatum.getTime());
@@ -122,8 +141,9 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				// Wenn es sich um eine Einnahme handelt, dann Betrag addieren,
 				// sonst Substrahieren
 				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme) {
-					einnahmen[y][0] = aktKategorie.getName();
-					einnahmen[y][1] = aktKategorie.getKategorieTyp().name();
+
+					
+					
 					zeilenEinnahmen.add(nf.format(wert));
 				
 					
