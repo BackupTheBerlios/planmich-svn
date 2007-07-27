@@ -27,7 +27,7 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	private DataModel columnHeaders;
 
-	private DataModel data;
+	private DataModel einnahmenData, ausgabenData;
 
 	private List<SpaltenUeberschrift> colHeaders;
 
@@ -54,13 +54,15 @@ public class LiquiplanBakingBean extends BaseBean {
 	public void updatePlan() {
 
 		List<List> einnahmen = new ArrayList<List>();
+		List<List> ausgaben = new ArrayList<List>();
 		
 		final Mandant mandant = mandantDAO
 				.getMandantById((Integer) getFromSession("Mandant"));
 
-		if (service.calculatePlanAsMap(mandant, von, bis, colHeaders, einnahmen)) {
+		if (service.calculatePlanAsMap(mandant, von, bis, colHeaders, einnahmen, ausgaben)) {
 
-			data = new ListDataModel(einnahmen);
+			einnahmenData = new ListDataModel(einnahmen);
+			ausgabenData = new ListDataModel(ausgaben);
 			columnHeaders = new ListDataModel(colHeaders);
 		}
 	}
@@ -73,11 +75,12 @@ public class LiquiplanBakingBean extends BaseBean {
 		this.mandantDAO = mandantDAO;
 	}
 
-	public DataModel getPlanData() {
-
-		// return null;
-
-		return data;
+	public DataModel getEinnahmen() {
+		return einnahmenData;
+	}
+	
+	public DataModel getAusgaben() {
+		return ausgabenData;
 	}
 
 	public Date getBis() {
@@ -96,42 +99,11 @@ public class LiquiplanBakingBean extends BaseBean {
 		this.von = von;
 	}
 
-	public Object getColumnValue() {
-		Object columnValue = null;
-		if (data.isRowAvailable() && columnHeaders.isRowAvailable()) {
-			final String[] rowData = (String[]) data.getRowData();
-			columnValue = rowData[columnHeaders.getRowIndex()];
-
-		}
-		return columnValue;
-	}
-
-	@SuppressWarnings("unchecked")
-	public void setColumnValue(Object value) {
-		if (data.isRowAvailable() && columnHeaders.isRowAvailable())
-			((List) data.getRowData()).set(columnHeaders.getRowIndex(), value);
-	}
-
 	public DataModel getColumnHeaders() {
 		updatePlan();
 		return columnHeaders;
 	}
 
-	public String getColumnWidth() {
-		if (data.isRowAvailable() && columnHeaders.isRowAvailable())
-			return ((SpaltenUeberschrift) columnHeaders.getRowData())
-					.getWidth();
-
-		return null;
-	}
-
-	public String getColumnAlign() {
-		if (data.isRowAvailable() && columnHeaders.isRowAvailable())
-			return ((SpaltenUeberschrift) columnHeaders.getRowData())
-					.getTextAlign();
-
-		return null;
-	}
 
 	public DefaultPieDataset getPieDataSet() {
 		final DefaultPieDataset pieDataSet = new DefaultPieDataset();

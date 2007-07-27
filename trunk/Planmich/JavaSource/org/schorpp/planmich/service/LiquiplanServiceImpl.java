@@ -37,7 +37,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 *      java.util.Calendar)
 	 */
 	public boolean calculatePlanAsMap(Mandant mandant, Date von, Date bis,
-			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen) {
+			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen, List<List> spalteAusgaben) {
 
 		final Calendar vonDatum = Calendar.getInstance();
 		vonDatum.setTime(von);
@@ -68,6 +68,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left", false));
 
 		
+		
+		
 		List<String> zeilenEinnahmen;
 		
 		zeilenEinnahmen = new ArrayList<String>();
@@ -86,9 +88,27 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		
 		spalteEinnahmen.add(zeilenEinnahmen);
 		
-		// Soviele Zeile wie Kategorien vorhanden sind
-		final String einnahmen[][] = new String[kategorien.size() + 2][1000];
-		final String ausgaben[][] = new String[kategorien.size() + 2][1000];
+		
+		
+		List<String> zeilenAusgaben;
+		
+		zeilenAusgaben = new ArrayList<String>();
+		
+		for(Kategorie aktKategorie : kategorien) {
+			if(aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+				zeilenAusgaben.add(aktKategorie.getName());
+		}
+		
+		spalteAusgaben.add(zeilenAusgaben);
+		
+		zeilenAusgaben = new ArrayList<String>();
+		for(Kategorie aktKategorie : kategorien) {
+			if(aktKategorie.getKategorieTyp() == KategorieTyp.Ausgabe)
+				zeilenAusgaben.add("A");
+		}
+		
+		spalteAusgaben.add(zeilenAusgaben);
+		
 
 		
 		double endbestand = 0;
@@ -104,7 +124,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			aktDatum.add(Calendar.MONTH, 1);
 			
 			zeilenEinnahmen = new ArrayList<String>();
-
+			zeilenAusgaben = new ArrayList<String>();
 			
 			int y = 0;
 
@@ -141,27 +161,19 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				// Wenn es sich um eine Einnahme handelt, dann Betrag addieren,
 				// sonst Substrahieren
 				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme) {
-
-					
-					
 					zeilenEinnahmen.add(nf.format(wert));
-				
-					
-					
+
 					anfangsbestand += wert;
 				}
 				else {
 					anfangsbestand -= wert;
-					ausgaben[y][0] = aktKategorie.getName();
-					ausgaben[y][1] = aktKategorie.getKategorieTyp().name();
-					ausgaben[y][x + 2] = nf.format(wert);
+
+					zeilenAusgaben.add(nf.format(wert));
 				}
 
 				y += 1;
 
 			}
-
-			einnahmen[y + 1][x + 2] = nf.format(anfangsbestand);
 
 			x += 1;
 
@@ -170,6 +182,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			tempvonDatum = (Calendar) aktDatum.clone();
 			
 			spalteEinnahmen.add(zeilenEinnahmen);
+			spalteAusgaben.add(zeilenAusgaben);
 
 		} while (aktDatum.before(bisDatum));
 		

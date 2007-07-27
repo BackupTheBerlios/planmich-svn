@@ -91,7 +91,14 @@
 			</description>
 		</attribute>
 		<attribute>
-			<name>value</name>
+			<name>einnahmen</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				a custom message for the Component
+			</description>
+		</attribute>
+				<attribute>
+			<name>ausgaben</name>
 			<rtexprvalue>false</rtexprvalue>
 			<description>
 				a custom message for the Component

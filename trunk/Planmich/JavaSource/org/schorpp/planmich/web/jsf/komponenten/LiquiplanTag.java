@@ -13,7 +13,8 @@ import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 public class LiquiplanTag extends UIComponentTag {
 
 	private String header;
-	private String value;
+	private String einnahmen;
+	private String ausgaben;
 	private String styleClass;
 	private String headerClass;
 	private String rowClasses;
@@ -30,12 +31,20 @@ public class LiquiplanTag extends UIComponentTag {
 				component.setValueBinding("header", vb);
 			} 
 	
-		if (value != null)
-			if (isValueReference(value)) {
+		if (einnahmen != null)
+			if (isValueReference(einnahmen)) {
 				final FacesContext context = FacesContext.getCurrentInstance();
 				final Application app = context.getApplication();
-				final ValueBinding vb = app.createValueBinding(value);
-				component.setValueBinding("value", vb);
+				final ValueBinding vb = app.createValueBinding(einnahmen);
+				component.setValueBinding("einnahmen", vb);
+			} 
+		
+		if (ausgaben != null)
+			if (isValueReference(ausgaben)) {
+				final FacesContext context = FacesContext.getCurrentInstance();
+				final Application app = context.getApplication();
+				final ValueBinding vb = app.createValueBinding(ausgaben);
+				component.setValueBinding("ausgaben", vb);
 			} 
 		
 		if (rowClasses != null)
@@ -53,7 +62,8 @@ public class LiquiplanTag extends UIComponentTag {
 	public void release() {
 		super.release();
 		header = null;
-		value = null;
+		einnahmen = null;
+		ausgaben = null;
 		rowClasses = null;
 	}
 
@@ -61,10 +71,14 @@ public class LiquiplanTag extends UIComponentTag {
 		this.header = header;
 	}
 	
-	public void setValue(String value) {
-		this.value = value;
+	public void setEinnahmen(String einnahmen) {
+		this.einnahmen = einnahmen;
 	}
 	
+	
+	public void setAusgaben(String ausgaben) {
+		this.ausgaben = ausgaben;
+	}
 	public void setRowClasses(String rowClasses) {
 		this.rowClasses = rowClasses;
 	}

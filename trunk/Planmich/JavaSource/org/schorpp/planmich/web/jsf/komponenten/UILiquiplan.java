@@ -23,17 +23,28 @@ public class UILiquiplan extends UIOutput {
 	public void encodeBegin(FacesContext context) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
 		List<SpaltenUeberschrift> header = (List<SpaltenUeberschrift>) ((ListDataModel) getAttributes().get("header")).getWrappedData();
-		List<List> value = (List<List>) ((ListDataModel)getAttributes().get("value")).getWrappedData();
+		List<List> einnahmen = (List<List>) ((ListDataModel)getAttributes().get("einnahmen")).getWrappedData();
+		List<List> ausgaben = (List<List>) ((ListDataModel)getAttributes().get("ausgaben")).getWrappedData();
+		
 		String rowClasses = (String) getAttributes().get("rowClasses");
 		String styleClass = (String) getAttributes().get("styleClass");
 		String headerClass = (String) getAttributes().get("headerClass");
 		
 		String[] rowClassesArray = StringUtils.splitShortString(rowClasses, ',');
 		
-		List<List> rows = new ArrayList<List>();
+		
+		
+		/*
+		 * Einnahmen
+		 * 
+		 * 
+		 */
+		
+		List<List> rowsEinnahmen = new ArrayList<List>();
+		
 		List<String> colList;
 		
-		int ySize = value.get(0).size();
+		int ySize = einnahmen.get(0).size();
 		
 		int i=0;
 		
@@ -41,14 +52,48 @@ public class UILiquiplan extends UIOutput {
 			
 			colList = new ArrayList<String>();
 			
-			for (int x = 0; x<value.size(); x++) {
-				colList.add((String) ((List) value.get(x)).get(y));
+			for (int x = 0; x<einnahmen.size(); x++) {
+				colList.add((String) ((List) einnahmen.get(x)).get(y));
 			}
 			
-			rows.add(colList);
+			rowsEinnahmen.add(colList);
 			
 		}
 		
+
+		
+		
+		
+		/*
+		 * Ausgaben
+		 * 
+		 * 
+		 */
+		
+		List<List> rowsAusgaben = new ArrayList<List>();
+		
+		i=0;
+		
+		ySize = ausgaben.get(0).size();
+		
+		for(int y=0; y<ySize; y++) {
+			
+			colList = new ArrayList<String>();
+			
+			for (int x = 0; x<ausgaben.size(); x++) {
+				colList.add((String) ((List) ausgaben.get(x)).get(y));
+			}
+			
+			rowsAusgaben.add(colList);
+			
+		}		
+		
+		
+		
+		/*
+		 * Tabellenüberschriften
+		 * 
+		 */
 		
 		writer.startElement("table", this);
 		writer.writeAttribute("class", styleClass, "class");
@@ -66,9 +111,19 @@ public class UILiquiplan extends UIOutput {
 		
 		
 		
+		writer.startElement("tr", this);
+		writer.startElement("th", this);
+		writer.writeAttribute("colspan", einnahmen.size(), null);
+		writer.writeText("Einnahmen", null);
+		writer.endElement("th");
+		writer.endElement("tr");
 		
+		/*
+		 * Einnahmen
+		 * 
+		 */
 		
-		for(List<String> row : rows) {
+		for(List<String> row : rowsEinnahmen) {
 					
 			writer.startElement("tr", this);
 			
@@ -89,6 +144,42 @@ public class UILiquiplan extends UIOutput {
 			writer.endElement("tr");
 		}
 		
+		
+		
+		writer.startElement("tr", this);
+		writer.startElement("th", this);
+		writer.writeAttribute("colspan", einnahmen.size(), null);
+		writer.writeText("Ausgaben", null);
+		writer.endElement("th");
+		writer.endElement("tr");
+		
+		
+		/*
+		 * Ausgaben
+		 * 
+		 * 
+		 */
+		
+		for(List<String> row : rowsAusgaben) {
+					
+			writer.startElement("tr", this);
+			
+			for(String entry : row) {
+				writer.startElement("td", this);
+				writer.writeAttribute("class", rowClassesArray[i], "class");
+				
+				writer.writeText(entry, null);
+				
+				writer.endElement("td");
+				
+				i++;
+				if(i<rowClassesArray.length)
+					i=0;
+			}
+			
+			
+			writer.endElement("tr");
+		}
 		
 		
 		writer.endElement("table");
