@@ -26,6 +26,8 @@ public class UILiquiplan extends UIOutput {
 		List<List> einnahmen = (List<List>) ((ListDataModel)getAttributes().get("einnahmen")).getWrappedData();
 		List<List> ausgaben = (List<List>) ((ListDataModel)getAttributes().get("ausgaben")).getWrappedData();
 		
+		List<String> salden = (List<String>) ((ListDataModel) getAttributes().get("salden")).getWrappedData();
+		
 		String rowClasses = (String) getAttributes().get("rowClasses");
 		String styleClass = (String) getAttributes().get("styleClass");
 		String headerClass = (String) getAttributes().get("headerClass");
@@ -108,14 +110,14 @@ public class UILiquiplan extends UIOutput {
 		}
 		
 		writer.endElement("tr");
-		
-		
+
 		
 		writer.startElement("tr", this);
-		writer.startElement("th", this);
-		writer.writeAttribute("colspan", einnahmen.size(), null);
+		writer.startElement("td", this);
+		//writer.writeAttribute("class", , arg2)
+		//writer.writeAttribute("colspan", einnahmen.size(), null);
 		writer.writeText("Einnahmen", null);
-		writer.endElement("th");
+		writer.endElement("td");
 		writer.endElement("tr");
 		
 		/*
@@ -144,13 +146,11 @@ public class UILiquiplan extends UIOutput {
 			writer.endElement("tr");
 		}
 		
-		
-		
 		writer.startElement("tr", this);
-		writer.startElement("th", this);
-		writer.writeAttribute("colspan", einnahmen.size(), null);
+		writer.startElement("td", this);
+		//writer.writeAttribute("colspan", einnahmen.size(), null);
 		writer.writeText("Ausgaben", null);
-		writer.endElement("th");
+		writer.endElement("td");
 		writer.endElement("tr");
 		
 		
@@ -181,6 +181,17 @@ public class UILiquiplan extends UIOutput {
 			writer.endElement("tr");
 		}
 		
+		
+		writer.startElement("tr", this);
+		
+		for(int x=0; x<salden.size(); x++) {
+			writer.startElement("td", this);
+			//writer.writeAttribute("class", saldenClass, "class");
+			writer.writeText(salden.get(x), null);
+			writer.endElement("td");
+		}
+		
+		writer.endElement("tr");
 		
 		writer.endElement("table");
 	}

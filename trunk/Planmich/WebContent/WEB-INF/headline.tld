@@ -125,5 +125,12 @@
 				a custom message for the Component
 			</description>
 		</attribute>	
+			<attribute>
+			<name>salden</name>
+			<rtexprvalue>false</rtexprvalue>
+			<description>
+				a custom message for the Component
+			</description>
+		</attribute>	
 	</tag>
 </taglib>

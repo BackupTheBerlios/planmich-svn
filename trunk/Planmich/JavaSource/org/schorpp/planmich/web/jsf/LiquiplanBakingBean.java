@@ -25,11 +25,11 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	private Date bis;
 
-	private DataModel columnHeaders;
+	private DataModel ueberschriftenDM;
 
-	private DataModel einnahmenData, ausgabenData;
+	private DataModel einnahmenDM, ausgabenDM, saldenDM;
 
-	private List<SpaltenUeberschrift> colHeaders;
+	private List<SpaltenUeberschrift> spaltenUeberschriften;
 
 	public LiquiplanBakingBean() {
 		von = new Date();
@@ -48,22 +48,24 @@ public class LiquiplanBakingBean extends BaseBean {
 		temp.add(Calendar.MONTH, 12);
 		bis = temp.getTime();
 
-		colHeaders = new ArrayList<SpaltenUeberschrift>();
+		spaltenUeberschriften = new ArrayList<SpaltenUeberschrift>();
 	}
 
 	public void updatePlan() {
 
 		List<List> einnahmen = new ArrayList<List>();
 		List<List> ausgaben = new ArrayList<List>();
+		List<String> salden = new ArrayList<String>();
 		
 		final Mandant mandant = mandantDAO
 				.getMandantById((Integer) getFromSession("Mandant"));
 
-		if (service.calculatePlanAsMap(mandant, von, bis, colHeaders, einnahmen, ausgaben)) {
+		if (service.calculatePlanAsMap(mandant, von, bis, spaltenUeberschriften, einnahmen, ausgaben, salden)) {
 
-			einnahmenData = new ListDataModel(einnahmen);
-			ausgabenData = new ListDataModel(ausgaben);
-			columnHeaders = new ListDataModel(colHeaders);
+			einnahmenDM = new ListDataModel(einnahmen);
+			ausgabenDM = new ListDataModel(ausgaben);
+			ueberschriftenDM = new ListDataModel(spaltenUeberschriften);
+			saldenDM = new ListDataModel(salden);
 		}
 	}
 
@@ -76,11 +78,11 @@ public class LiquiplanBakingBean extends BaseBean {
 	}
 
 	public DataModel getEinnahmen() {
-		return einnahmenData;
+		return einnahmenDM;
 	}
 	
 	public DataModel getAusgaben() {
-		return ausgabenData;
+		return ausgabenDM;
 	}
 
 	public Date getBis() {
@@ -101,7 +103,7 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	public DataModel getColumnHeaders() {
 		updatePlan();
-		return columnHeaders;
+		return ueberschriftenDM;
 	}
 
 
@@ -112,5 +114,9 @@ public class LiquiplanBakingBean extends BaseBean {
 		pieDataSet.setValue("C", 30);
 
 		return pieDataSet;
+	}
+
+	public DataModel getSalden() {
+		return saldenDM;
 	}
 }

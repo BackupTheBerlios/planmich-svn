@@ -44,7 +44,7 @@
 			</f:verbatim>
 
 
-			<d:Liquiplan header="#{liquiplanBakingBean.columnHeaders}" einnahmen="#{liquiplanBakingBean.einnahmen}" ausgaben="#{liquiplanBakingBean.ausgaben}" rowClasses="tabelle_Zeile1,tabelle_Zeile2" styleClass="tabelle"  headerClass="tabelle_Ueberschrift" />
+			<d:Liquiplan header="#{liquiplanBakingBean.columnHeaders}" einnahmen="#{liquiplanBakingBean.einnahmen}" ausgaben="#{liquiplanBakingBean.ausgaben}" salden="#{liquiplanBakingBean.salden}" rowClasses="tabelle_Zeile1,tabelle_Zeile2" styleClass="tabelle"  headerClass="tabelle_Ueberschrift" />
 
 
 			<t:div style="overflow-y:scroll;height:100%;overflow:auto;max-width:expression((document.body.clientWidth-50)+'px');width:expression((document.body.clientWidth-50)+'px');">

@@ -18,6 +18,7 @@ public class LiquiplanTag extends UIComponentTag {
 	private String styleClass;
 	private String headerClass;
 	private String rowClasses;
+	private String salden;
 
 	@Override
 	protected void setProperties(UIComponent component) {
@@ -47,6 +48,14 @@ public class LiquiplanTag extends UIComponentTag {
 				component.setValueBinding("ausgaben", vb);
 			} 
 		
+		if (salden != null)
+			if (isValueReference(salden)) {
+				final FacesContext context = FacesContext.getCurrentInstance();
+				final Application app = context.getApplication();
+				final ValueBinding vb = app.createValueBinding(salden);
+				component.setValueBinding("salden", vb);
+			} 
+		
 		if (rowClasses != null)
 			component.getAttributes().put("rowClasses", rowClasses);
 		
@@ -65,6 +74,7 @@ public class LiquiplanTag extends UIComponentTag {
 		einnahmen = null;
 		ausgaben = null;
 		rowClasses = null;
+		salden = null;
 	}
 
 	public void setHeader(String header) {
@@ -75,6 +85,9 @@ public class LiquiplanTag extends UIComponentTag {
 		this.einnahmen = einnahmen;
 	}
 	
+	public void setSalden(String salden) {
+		this.salden = salden;
+	}
 	
 	public void setAusgaben(String ausgaben) {
 		this.ausgaben = ausgaben;
