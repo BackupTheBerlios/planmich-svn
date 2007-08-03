@@ -17,7 +17,8 @@
 				headerClass="pageHeader" navigationClass="pageNavigation"
 				bodyClass="pageBody">
 				<f:facet name="header">
-					<h:panelGrid columns="1" style="width: 100%; margin: 0; border: none;">
+					<h:panelGrid columns="1"
+						style="width: 100%; margin: 0; border: none;">
 
 						<h:panelGrid columns="2" styleClass="kopfzeile"
 							columnClasses="kopfSpalteLinks,kopfSpalteRechts">
@@ -40,7 +41,7 @@
 							</h:panelGrid>
 
 						</h:panelGrid>
-						
+
 						<h:form>
 							<t:jscookMenu id="menu" layout="hbr" theme="ThemeOffice"
 								styleLocation="/css/jscookmenu">
@@ -52,15 +53,15 @@
 
 					</h:panelGrid>
 
-
-
 				</f:facet>
 
 				<f:facet name="navigation">
 					<h:form>
-					<t:panelNavigation2 id="menu2" layout="list" styleClass="contextMenu" itemClass="contextItem">
-						<t:navigationMenuItems id="contextMenu" value="#{menu.contextMenu}" />
-					</t:panelNavigation2>
+						<t:panelNavigation2 id="menu2" layout="list"
+							styleClass="contextMenu" itemClass="contextItem">
+							<t:navigationMenuItems id="contextMenu"
+								value="#{menu.contextMenu}" />
+						</t:panelNavigation2>
 					</h:form>
 				</f:facet>
 

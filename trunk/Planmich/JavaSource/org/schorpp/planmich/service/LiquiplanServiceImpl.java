@@ -17,6 +17,7 @@ import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Wiederholung;
+import org.schorpp.planmich.util.Util;
 import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 import org.schorpp.planmich.web.jsf.menu.NavigationMenu;
 
@@ -27,8 +28,6 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	SimpleDateFormat df = new SimpleDateFormat("MM. yyyy");
 
 	SimpleDateFormat ddf = new SimpleDateFormat("dd. MM. yyyy");
-
-	DecimalFormat nf = new DecimalFormat("###,##0.00");
 
 	/*
 	 * (non-Javadoc)
@@ -97,7 +96,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 		zeilenAusgaben = new ArrayList<String>();
 		
 		for(Kategorie aktKategorie : kategorien) {
-			if(aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+			if(aktKategorie.getKategorieTyp() == KategorieTyp.Ausgabe)
 				zeilenAusgaben.add(aktKategorie.getName());
 		}
 		
@@ -163,14 +162,14 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				// Wenn es sich um eine Einnahme handelt, dann Betrag addieren,
 				// sonst Substrahieren
 				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme) {
-					zeilenEinnahmen.add(nf.format(wert));
+					zeilenEinnahmen.add(Util.nf.format(wert));
 
 					anfangsbestand += wert;
 				}
 				else {
 					anfangsbestand -= wert;
 
-					zeilenAusgaben.add(nf.format(wert));
+					zeilenAusgaben.add(Util.nf.format(wert));
 				}
 
 				y += 1;
@@ -179,7 +178,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 			x += 1;
 
-			salden.add(nf.format(anfangsbestand));
+			salden.add(Util.nf.format(anfangsbestand));
 			
 			endbestand = anfangsbestand;
 
