@@ -1,0 +1,66 @@
+grammar MT940;
+
+@header {
+	package org.schorpp;
+	import java.util.HashMap;
+}
+
+@lexer::header {package org.schorpp;}
+
+@members {
+	HashMap sta = new HashMap();
+
+}
+
+
+prog:   (zeile20 zeile25 zeile28c zeile60f (zeile61 zeile86)* zeile62f zeile64 (DASH)?)+ EOF ;
+
+
+zeile20	:	FELD20 text { System.out.println($FELD20.getText() + ": " + $text.value); };
+zeile25	:	FELD25 v=text { System.out.println(v.split("/")[0]); };
+zeile28c:	FELD28C text { System.out.println($FELD28C.getText() + ": " + $text.value); };
+zeile60f:	FELD60F flag text*;
+zeile61	:	FELD61 text { System.out.println($FELD61.getText() + ": " + $text.value); };
+zeile86	:	FELD86 text { System.out.println($FELD86.getText() + ": " + $text.value); };
+zeile62f:	FELD62F text { System.out.println($FELD62F.getText() + ": " + $text.value); };
+zeile64	:	FELD64 text { System.out.println($FELD64.getText() + ": " + $text.value); };
+
+flag:
+	'D'
+	;
+	
+datum:
+	DIGIT+
+	;
+
+anfangssaldo
+	:	v=text { v.split("/"); }
+	;
+
+text returns [String value]:
+	TEXT { value = $TEXT.getText(); }
+	;
+
+FELD25	:	':25:';
+FELD20	:	':20:';
+FELD28C	:	':28C:';
+FELD60F	:	':60F:';
+FELD61	:	':61:';
+FELD86	:	':86:';
+
+FELD62F	:	':62F:';
+FELD64	:	':64:';
+
+TEXT	:	LITERALS;
+
+
+LITERALS:	('a'..'z'|'0'..'9'|'A'..'Z'|','|'?'|' '|'-'| '/')+ ;
+
+SLASH	:	'/';
+
+NEWLINE :	'\r\n' { skip();} ;
+
+SPACE	:	' ' { skip(); } ;
+
+DIGIT	:	'0'..'9';
+DASH: '-';
