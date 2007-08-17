@@ -38,6 +38,14 @@
 
 			</h:panelGrid>
 
+
+			<h:panelGrid columns="2">
+				<h:inputText id="anfangsbestand" value="#{liquiplanBakingBean.anfangsbestand}" />
+							<h:commandLink id="submit" action="liquiplanUebersicht"
+					value="Aktualisieren">
+					<h:outputText>Aktualisieren</h:outputText>
+				</h:commandLink>
+			</h:panelGrid>
 			<f:verbatim>
 				<br>
 				<br>

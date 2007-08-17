@@ -31,6 +31,8 @@ public class Mandant {
 
 	private List<Kategorie> kategorien = new ArrayList<Kategorie>();
 
+	private double anfangsbestand;
+	
 	/* Default-Konstruktor */
 	public Mandant() {
 	}
@@ -143,6 +145,14 @@ public class Mandant {
 
 	public boolean equals(Mandant m) {
 		return id == m.getId();
+	}
+
+	public double getAnfangsbestand() {
+		return anfangsbestand;
+	}
+
+	public void setAnfangsbestand(double anfangsbestand) {
+		this.anfangsbestand = anfangsbestand;
 	}
 
 }

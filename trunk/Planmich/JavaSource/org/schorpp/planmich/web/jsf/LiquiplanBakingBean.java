@@ -119,4 +119,12 @@ public class LiquiplanBakingBean extends BaseBean {
 	public DataModel getSalden() {
 		return saldenDM;
 	}
+	
+	public double getAnfangsbestand() {
+		final Mandant mandant = mandantDAO
+		.getMandantById((Integer) getFromSession("Mandant"));
+		
+		return mandant.getAnfangsbestand();
+
+	}
 }

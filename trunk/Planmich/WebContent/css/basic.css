@@ -3,6 +3,10 @@
 	margin: 0;
 }
 
+table {
+	border: 0;
+}
+
 body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
@@ -313,8 +317,9 @@ h1.headline {
 	text-align: left;
 	vertical-align: top;
 	border: 0;
-	border-right: 1px solid #C6D3EF;
-	width: 200px;
+	border-right: none;
+	border-top: none; 
+	width: 150px;
 	margin: 0;
 	padding: 0em;
 	padding-top: 1em;
@@ -335,7 +340,7 @@ h1.headline {
 }
 
 .contextMenu {
-	padding: 1em;
+	padding: 0;
 }
 
 .contextMenu li {
@@ -344,6 +349,13 @@ h1.headline {
 
 .contextItem {
 	background-color: #C6D3EF;
+	padding: 0.3em;
+	width: 130px;
+	border-top: 1px solid #EFEBDE;
+}
+
+.activeContextItem {
+	background-color: white;
 	padding: 0.3em;
 	width: 130px;
 	border-top: 1px solid #EFEBDE;

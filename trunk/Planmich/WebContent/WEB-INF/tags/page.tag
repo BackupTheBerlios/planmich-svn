@@ -15,7 +15,7 @@
 
 			<t:panelLayout id="page" styleClass="pageLayout"
 				headerClass="pageHeader" navigationClass="pageNavigation"
-				bodyClass="pageBody">
+				bodyClass="pageBody" border="0" cellpadding="0" cellspacing="0">
 				<f:facet name="header">
 					<h:panelGrid columns="1"
 						style="width: 100%; margin: 0; border: none;">
@@ -58,7 +58,7 @@
 				<f:facet name="navigation">
 					<h:form>
 						<t:panelNavigation2 id="menu2" layout="list"
-							styleClass="contextMenu" itemClass="contextItem">
+							styleClass="contextMenu" itemClass="contextItem" openItemClass="activeContextItem" activeItemClass="activeContextItem">
 							<t:navigationMenuItems id="contextMenu"
 								value="#{menu.contextMenu}" />
 						</t:panelNavigation2>
