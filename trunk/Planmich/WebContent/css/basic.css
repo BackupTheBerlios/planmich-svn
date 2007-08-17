@@ -7,6 +7,8 @@ table {
 	border: 0;
 }
 
+
+
 body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 11px;
@@ -367,3 +369,12 @@ h1.headline {
 	font-size: 11px;
 	font-style: none;
 } 
+
+.button {
+	border: 0;
+	align: right;
+	}
+	
+.kommandoTabelle {
+	width: 200px;
+}
