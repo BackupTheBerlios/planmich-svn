@@ -10,16 +10,13 @@
 
 		<h:form>
 
-			<d:Headline headline="#{messages.neuermandant}" styleClass="headline"/>
+			<d:Headline headline="#{messages.neuermandant}" styleClass="headline" />
 
 			<h:panelGrid columns="2" styleClass="tabelle"
 				headerClass="tabelle_Ueberschrift"
-				footerClass="tabelle_Ueberschrift"
-				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
-				columnClasses="tabelle_Spalte">
-				<f:facet name="header">
-					<h:outputText value="Neuer Mandant:" />
-				</f:facet>
+				footerClass="tabelle_Ueberschrift" rowClasses="tabelle_Zeile1"
+				columnClasses="tabelle_Spalte, whiteSpalte">
+
 				<h:outputText value="#{messages.bezeichnung}" />
 				<h:inputText id="bezeichnung" value="#{mandantBakingBean.name}"
 					required="true" maxlength="45">
@@ -40,8 +37,9 @@
 				<br>
 			</f:verbatim>
 
-			<h:commandLink id="submit" value="#{messages.neuermandant}"
-				action="#{mandantBakingBean.addMandant}" />
+			<h:commandLink id="submit" action="#{mandantBakingBean.addMandant}">
+				<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
+			</h:commandLink>
 
 		</h:form>
 	</f:facet>

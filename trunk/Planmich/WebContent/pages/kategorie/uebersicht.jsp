@@ -13,7 +13,7 @@
 			<d:Headline headline="#{messages.uebersichtKategorie}" styleClass="headline"/>
 
 			<t:dataTable value="#{sessionBean.mandant.kategorien}"
-				rendered="true" border="0" rows="15" var="kategorie" id="kategorien"
+				rendered="true" border="0" rows="25" var="kategorie" id="kategorien"
 				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
 				footerClass="tabelle_Footer"
 				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
@@ -57,7 +57,7 @@
 			</f:verbatim>
 			<t:dataScroller for="kategorien" fastStep="10"
 				pageCountVar="pageCount" pageIndexVar="pageIndex"
-				styleClass="scroller" paginator="true" paginatorMaxPages="9"
+				styleClass="scroller" paginator="false" 
 				paginatorTableClass="paginator"
 				paginatorActiveColumnStyle="font-weight:bold;">
 				<f:facet name="first">
@@ -79,11 +79,6 @@
 					<t:graphicImage url="/images/arrow-fr.gif" border="1" />
 				</f:facet>
 			</t:dataScroller>
-
-			<d:Spacer />
-
-			<t:commandLink value="Neue Kategorie" action="#{kategorieBakingBean.clearKategorie}" />
-
 
 		</h:form>
 

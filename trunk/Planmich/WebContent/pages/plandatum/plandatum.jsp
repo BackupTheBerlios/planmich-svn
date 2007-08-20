@@ -66,25 +66,30 @@
 				<br>
 			</f:verbatim>
 
-			<h:panelGrid columns="2" styleClass="tabelle"
-				headerClass="tabelle_Ueberschrift"
-				footerClass="tabelle_Ueberschrift"
-				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
-				columnClasses="whiteSpalte, whiteSpalte">
-
-				<t:commandButton value="#{messages.cancel}" immediate="true"
-					action="#{plandatumBakingBean.cancelAction}" />
 
 
-				<h:commandButton id="add" value="#{messages.speichernPlandatum}"
+		<h:panelGrid columns="2" styleClass="kommandoTabelle">
+
+				<t:commandLink immediate="true"
+					action="#{plandatumBakingBean.cancelAction}">
+					<h:graphicImage value="/images/abbrechen.PNG" styleClass="button" />
+				</t:commandLink>
+
+
+				<h:commandLink id="add" 
 					action="#{plandatumBakingBean.addPlandatum}"
-					rendered="#{not plandatumBakingBean.editMode}" />
+					rendered="#{not plandatumBakingBean.editMode}">
+					<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
+				</h:commandLink>
 
-				<h:commandButton id="update" value="#{messages.speichernPlandatum}"
+				<h:commandLink id="update" 
 					action="#{plandatumBakingBean.updatePlandatum}"
-					rendered="#{plandatumBakingBean.editMode}" />
-
+					rendered="#{plandatumBakingBean.editMode}">
+					<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
+				</h:commandLink>
+				
 			</h:panelGrid>
+
 
 		</h:form>
 	</f:facet>

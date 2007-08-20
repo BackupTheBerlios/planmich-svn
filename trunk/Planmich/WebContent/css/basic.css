@@ -219,6 +219,7 @@ h1.headline {
 .tabelle_Spalte {
 	padding: 0.3em;
 	text-align:left;
+	width: 100px;
 }
 
 
@@ -376,5 +377,6 @@ h1.headline {
 	}
 	
 .kommandoTabelle {
-	width: 200px;
+	padding-top: 1em;
+	width: 350px;
 }

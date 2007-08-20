@@ -19,11 +19,17 @@ public class NavigationMenu extends BaseBean {
 	private NavigationMenuItem planMenu;
 	
 	private List<NavigationMenuItem> planContextMenu = new ArrayList<NavigationMenuItem>();
+	private List<NavigationMenuItem> kategorieContextMenu = new ArrayList<NavigationMenuItem>();
 	
 	public NavigationMenu() {
 	
 		planContextMenu.add(createMenuNavigationItem("Jahresplan", null));
 		planContextMenu.add(createMenuNavigationItem("Diagramm", null));
+		
+		kategorieContextMenu.add(createMenuNavigationItem("Neue Kategorie",
+				"#{kategorieBakingBean.clearKategorie}",
+		"/pages/kategorie/kategorie.jsp"));
+		
 		
 		planMenu = createMenuNavigationItem("Plan",
 				null);
@@ -61,7 +67,7 @@ public class NavigationMenu extends BaseBean {
 		plandateMenu.add(createMenuNavigationItem("Übersicht",
 				"plandatenUebersicht", "/pages/plandatum/uebersicht.jsp"));
 		plandateMenu.add(createMenuNavigationItem("neues Plandatum",
-				"neuesPlandatum", "/pages/plandatum/neu.jsp"));
+				"#{plandatumBakingBean.clearPlandatum}", "/pages/plandatum/plandatum.jsp"));
 
 	}
 	
@@ -124,6 +130,10 @@ public class NavigationMenu extends BaseBean {
 		
 		if(viewId.startsWith("/pages/plan/")) {
 			return planContextMenu;
+		}
+		
+		if(viewId.startsWith("/pages/kategorie/uebersicht")) {
+			return kategorieContextMenu;
 		}
 			
 		//Kein Menü

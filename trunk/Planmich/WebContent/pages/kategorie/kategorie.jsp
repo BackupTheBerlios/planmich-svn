@@ -17,8 +17,7 @@
 
 			<h:panelGrid columns="2" styleClass="tabelle"
 				headerClass="tabelle_Ueberschrift"
-				footerClass="tabelle_Ueberschrift"
-				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
+				footerClass="tabelle_Ueberschrift" rowClasses="tabelle_Zeile1"
 				columnClasses="tabelle_Spalte, whiteSpalte">
 
 				<h:outputText value="#{messages.bezeichnung}" />
@@ -48,7 +47,7 @@
 			</f:verbatim>
 
 
-			<h:panelGrid columns="3" styleClass="kommandoTabelle">
+			<h:panelGrid columns="2" styleClass="kommandoTabelle">
 
 			<t:commandLink immediate="true"
 				action="#{kategorieBakingBean.cancelAction}">
