@@ -23,8 +23,8 @@ public class NavigationMenu extends BaseBean {
 	
 	public NavigationMenu() {
 	
-		planContextMenu.add(createMenuNavigationItem("Jahresplan", null));
-		planContextMenu.add(createMenuNavigationItem("Diagramm", null));
+		planContextMenu.add(createMenuNavigationItem("Jahresplan", "liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
+		planContextMenu.add(createMenuNavigationItem("Diagramm", "liquiplanDiagramm", "/pages/plan/diagramm.jsp"));
 		
 		kategorieContextMenu.add(createMenuNavigationItem("Neue Kategorie",
 				"#{kategorieBakingBean.clearKategorie}",

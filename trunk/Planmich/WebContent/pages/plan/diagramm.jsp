@@ -54,16 +54,10 @@
 
 
 
-
 			<t:div styleClass="plan">
 
 
-			<d:Liquiplan header="#{liquiplanBakingBean.columnHeaders}"
-				einnahmen="#{liquiplanBakingBean.einnahmen}"
-				ausgaben="#{liquiplanBakingBean.ausgaben}"
-				salden="#{liquiplanBakingBean.salden}"
-				rowClasses="tabelle_Zeile1,tabelle_Zeile2" styleClass="tabelle"
-				headerClass="tabelle_Ueberschrift" />
+<c:chart id="chart1" datasource="#{liquiplanBakingBean.pieDataSet}" type="bar" is3d="true" antialias="true" title="Liquiditätsverlauf" xlabel="X Label" ylabel="Y Label" height="300" width="800"></c:chart>
 
 
 

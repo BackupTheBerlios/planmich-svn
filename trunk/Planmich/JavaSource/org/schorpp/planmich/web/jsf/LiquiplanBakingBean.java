@@ -9,6 +9,7 @@ import javax.faces.model.ArrayDataModel;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.schorpp.planmich.dao.MandantDAO;
 import org.schorpp.planmich.domain.Mandant;
@@ -107,13 +108,39 @@ public class LiquiplanBakingBean extends BaseBean {
 	}
 
 
-	public DefaultPieDataset getPieDataSet() {
-		final DefaultPieDataset pieDataSet = new DefaultPieDataset();
-		pieDataSet.setValue("A", 52);
-		pieDataSet.setValue("B", 18);
-		pieDataSet.setValue("C", 30);
+	public DefaultCategoryDataset getPieDataSet() {
+		DefaultCategoryDataset categoryDataSet;
 
-		return pieDataSet;
+		// row keys...
+		String series1 = "First";
+		String series2 = "Second";
+		String series3 = "Third";
+		// column keys...
+		String category1 = "A";
+		String category2 = "B";
+		String category3 = "C";
+		String category4 = "D";
+		String category5 = "E";
+
+		// create the dataset...
+		categoryDataSet = new DefaultCategoryDataset();
+		categoryDataSet.addValue(1.0, series1, category1);
+		categoryDataSet.addValue(4.0, series1, category2);
+		categoryDataSet.addValue(3.0, series1, category3);
+		categoryDataSet.addValue(5.0, series1, category4);
+		categoryDataSet.addValue(5.0, series1, category5);
+		categoryDataSet.addValue(5.0, series2, category1);
+		categoryDataSet.addValue(7.0, series2, category2);
+		categoryDataSet.addValue(6.0, series2, category3);
+		categoryDataSet.addValue(8.0, series2, category4);
+		categoryDataSet.addValue(4.0, series2, category5);
+		categoryDataSet.addValue(4.0, series3, category1);
+		categoryDataSet.addValue(3.0, series3, category2);
+		categoryDataSet.addValue(2.0, series3, category3);
+		categoryDataSet.addValue(3.0, series3, category4);
+		categoryDataSet.addValue(6.0, series3, category5);
+		return categoryDataSet;
+
 	}
 
 	public DataModel getSalden() {

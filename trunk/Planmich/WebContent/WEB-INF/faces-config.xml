@@ -14,7 +14,7 @@
 			org.schorpp.planmich.web.jsf.komponenten.UISpacer
 		</component-class>
 	</component>
-		<component>
+	<component>
 		<component-type>Liquiplan</component-type>
 		<component-class>
 			org.schorpp.planmich.web.jsf.komponenten.UILiquiplan
@@ -162,6 +162,11 @@
 		<navigation-case>
 			<from-outcome>liquiplanUebersicht</from-outcome>
 			<to-view-id>/pages/plan/uebersicht.jsp</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>liquiplanDiagramm</from-outcome>
+			<to-view-id>/pages/plan/diagramm.jsp</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
