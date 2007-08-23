@@ -154,4 +154,12 @@ public class LiquiplanBakingBean extends BaseBean {
 		return mandant.getAnfangsbestand();
 
 	}
+	
+	public void setAnfangsbestand(double anfangsbestand) {
+		final Mandant mandant = mandantDAO
+		.getMandantById((Integer) getFromSession("Mandant"));
+		mandant.setAnfangsbestand(anfangsbestand);
+		
+		mandantDAO.save(mandant);
+	}
 }

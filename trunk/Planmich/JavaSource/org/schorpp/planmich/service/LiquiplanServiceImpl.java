@@ -1,6 +1,5 @@
 package org.schorpp.planmich.service;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,7 +10,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.schorpp.planmich.domain.Mandant;
@@ -19,7 +17,6 @@ import org.schorpp.planmich.domain.Plandatum;
 import org.schorpp.planmich.domain.Wiederholung;
 import org.schorpp.planmich.util.Util;
 import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
-import org.schorpp.planmich.web.jsf.menu.NavigationMenu;
 
 public class LiquiplanServiceImpl implements LiquiplanService {
 
