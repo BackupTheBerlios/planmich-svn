@@ -28,7 +28,7 @@
 			org.schorpp.planmich.web.jsf.konverter.KategorieTypConverter
 		</converter-class>
 	</converter>
-	<managed-bean>
+<!-- 	<managed-bean>
 		<managed-bean-name>sessionBean</managed-bean-name>
 		<managed-bean-class>
 			org.schorpp.planmich.web.jsf.Session
@@ -39,6 +39,8 @@
 			<value>#{mandantService}</value>
 		</managed-property>
 	</managed-bean>
+-->
+	
 	<managed-bean>
 		<managed-bean-name>menu</managed-bean-name>
 		<managed-bean-class>

@@ -120,7 +120,7 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	public DefaultCategoryDataset getPieDataSet() {
 		DefaultCategoryDataset categoryDataSet;
-
+		
 		if (planChanged)
 			updatePlan();
 

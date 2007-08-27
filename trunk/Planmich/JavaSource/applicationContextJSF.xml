@@ -12,4 +12,9 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		class="org.schorpp.planmich.web.jsf.MandantenListe" scope="session">
 		<property name="mandantDAO" ref="mandantDAO" />
 	</bean>
+	
+	<bean name="sessionBean"
+		class="org.schorpp.planmich.web.jsf.Session" scope="session">
+		<property name="service" ref="mandantService" />
+	</bean>
 </beans>
