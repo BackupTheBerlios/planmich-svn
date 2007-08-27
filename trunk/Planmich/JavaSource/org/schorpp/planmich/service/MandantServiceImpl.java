@@ -12,7 +12,7 @@ public class MandantServiceImpl implements MandantService {
 	private MandantDAO mandantDao;
 
 	public void createMandant(String name) {
-		mandantDao.saveMandant(new Mandant(name));
+		mandantDao.save(new Mandant(name));
 	}
 
 	public void setMandantDAO(MandantDAO mandantDao) {
@@ -21,7 +21,7 @@ public class MandantServiceImpl implements MandantService {
 	}
 
 	public void add(Mandant m) {
-		mandantDao.saveMandant(m);
+		mandantDao.save(m);
 	}
 
 	public Mandant getMandantById(Integer id) {

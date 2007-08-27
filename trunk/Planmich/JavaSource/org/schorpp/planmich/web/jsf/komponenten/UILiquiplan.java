@@ -31,6 +31,7 @@ public class UILiquiplan extends UIOutput {
 		String rowClasses = (String) getAttributes().get("rowClasses");
 		String styleClass = (String) getAttributes().get("styleClass");
 		String headerClass = (String) getAttributes().get("headerClass");
+		String saldoClass = (String) getAttributes().get("saldoClass");	
 		
 		String[] rowClassesArray = StringUtils.splitShortString(rowClasses, ',');
 		
@@ -184,9 +185,15 @@ public class UILiquiplan extends UIOutput {
 		
 		writer.startElement("tr", this);
 		
+		writer.startElement("td", this);
+		writer.writeAttribute("colspan", "2", "colspan");
+		writer.writeAttribute("class", saldoClass, "class");
+		writer.writeText("Liquiditätssaldo", null);
+		writer.endElement("td");
+		
 		for(int x=0; x<salden.size(); x++) {
 			writer.startElement("td", this);
-			//writer.writeAttribute("class", saldenClass, "class");
+			writer.writeAttribute("class", saldoClass, "class");
 			writer.writeText(salden.get(x), null);
 			writer.endElement("td");
 		}

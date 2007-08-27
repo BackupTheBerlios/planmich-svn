@@ -10,7 +10,8 @@
 
 	<f:facet name="body">
 		<h:form>
-			<d:Headline headline="#{messages.plandatumUebersicht}" styleClass="headline"/>
+			<d:Headline headline="#{messages.plandatumUebersicht}"
+				styleClass="headline" />
 
 
 			<t:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
@@ -18,7 +19,8 @@
 				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
 				footerClass="tabelle_Ueberschrift"
 				rowClasses="tabelle_Zeile1,tabelle_Zeile2"
-				columnClasses="tabelle_Spalte,tabelle_SpalteRight,tabelle_Spalte, tabelle_Spalte, tabelle_Spalte" sortable="true" preserveDataModel="false">
+				columnClasses="tabelle_Spalte,tabelle_SpalteRight,tabelle_Spalte, tabelle_Spalte, tabelle_Spalte"
+				sortable="true" preserveDataModel="false">
 				<h:column>
 					<f:facet name="header">
 						<h:outputText value="Bezeichnung" />
@@ -36,9 +38,9 @@
 						<h:outputText value="Datum" />
 					</f:facet>
 					<h:outputText value="#{plandate.wertstellung}">
-					<f:convertDateTime timeZone="Europe/Berlin"/>
+						<f:convertDateTime timeZone="Europe/Berlin" />
 					</h:outputText>
-					
+
 				</h:column>
 				<h:column>
 					<f:facet name="header">
@@ -56,17 +58,19 @@
 					<t:commandLink action="#{plandatumBakingBean.deletePlandatum}"
 						immediate="false">
 						<h:outputText value="Löschen" />
-						<t:updateActionListener property="#{plandatumBakingBean.plandatum}"
-							value="#{plandate}" />
-					</t:commandLink><f:verbatim> </f:verbatim>
+						<t:updateActionListener
+							property="#{plandatumBakingBean.plandatum}" value="#{plandate}" />
+					</t:commandLink>
+					<f:verbatim>
+					</f:verbatim>
 					<t:commandLink action="#{plandatumBakingBean.selectPlandatum}"
 						immediate="false">
 						<h:outputText value="Bearbeiten" />
-						<t:updateActionListener property="#{plandatumBakingBean.plandatum}"
-							value="#{plandate}" />
+						<t:updateActionListener
+							property="#{plandatumBakingBean.plandatum}" value="#{plandate}" />
 					</t:commandLink>
-				</h:column>		
-		</t:dataTable>
+				</h:column>
+			</t:dataTable>
 
 
 			<f:verbatim>
@@ -101,7 +105,8 @@
 			<d:Spacer />
 
 			<t:commandLink value="#{messages.addPlandatum}"
-				action="neuesPlandatum" action="#{plandatumBakingBean.clearPlandatum}"/>
+				action="neuesPlandatum"
+				action="#{plandatumBakingBean.clearPlandatum}" />
 
 
 		</h:form>

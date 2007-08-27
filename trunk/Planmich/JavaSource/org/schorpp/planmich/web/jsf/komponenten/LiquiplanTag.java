@@ -18,6 +18,7 @@ public class LiquiplanTag extends UIComponentTag {
 	private String styleClass;
 	private String headerClass;
 	private String rowClasses;
+	private String saldoClass;
 	private String salden;
 
 	@Override
@@ -64,7 +65,9 @@ public class LiquiplanTag extends UIComponentTag {
 	
 		if (headerClass != null)
 			component.getAttributes().put("headerClass", headerClass);
-	
+
+		if (saldoClass != null)
+			component.getAttributes().put("saldoClass", saldoClass);
 	}
 
 	@Override
@@ -74,6 +77,7 @@ public class LiquiplanTag extends UIComponentTag {
 		einnahmen = null;
 		ausgaben = null;
 		rowClasses = null;
+		saldoClass = null;
 		salden = null;
 	}
 
@@ -102,6 +106,11 @@ public class LiquiplanTag extends UIComponentTag {
 
 	public void setHeaderClass(String headerClass) {
 		this.headerClass =headerClass;
+	}
+	
+
+	public void setSaldoClass(String saldoClass) {
+		this.saldoClass = saldoClass;
 	}
 	
 	@Override

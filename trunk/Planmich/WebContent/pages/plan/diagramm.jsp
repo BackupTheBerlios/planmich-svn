@@ -57,7 +57,9 @@
 			<t:div styleClass="plan">
 
 
-<c:chart id="chart1" datasource="#{liquiplanBakingBean.pieDataSet}" type="bar" is3d="true" antialias="true" title="Liquiditätsverlauf" xlabel="X Label" ylabel="Y Label" height="300" width="800"></c:chart>
+				<c:chart id="chart1" datasource="#{liquiplanBakingBean.pieDataSet}"
+					type="bar" is3d="true" antialias="true" title="Liquiditätsverlauf"
+					xlabel="X Label" ylabel="Y Label" height="300" width="800"></c:chart>
 
 
 

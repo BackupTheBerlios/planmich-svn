@@ -49,22 +49,22 @@
 
 			<h:panelGrid columns="2" styleClass="kommandoTabelle">
 
-			<t:commandLink immediate="true"
-				action="#{kategorieBakingBean.cancelAction}">
-				<h:graphicImage value="/images/abbrechen.PNG" styleClass="button" />
-			</t:commandLink>
+				<t:commandLink immediate="true"
+					action="#{kategorieBakingBean.cancelAction}">
+					<h:graphicImage value="/images/abbrechen.PNG" styleClass="button" />
+				</t:commandLink>
 
-			<h:commandLink id="add" action="#{kategorieBakingBean.addKategorie}"
-				rendered="#{not kategorieBakingBean.editMode}">
-				<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
-			</h:commandLink>
+				<h:commandLink id="add" action="#{kategorieBakingBean.addKategorie}"
+					rendered="#{not kategorieBakingBean.editMode}">
+					<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
+				</h:commandLink>
 
-			<h:commandLink id="update"
-				action="#{kategorieBakingBean.updateKategorie}"
-				rendered="#{kategorieBakingBean.editMode}">
-				<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
-			</h:commandLink>
-			
+				<h:commandLink id="update"
+					action="#{kategorieBakingBean.updateKategorie}"
+					rendered="#{kategorieBakingBean.editMode}">
+					<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
+				</h:commandLink>
+
 			</h:panelGrid>
 
 

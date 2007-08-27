@@ -8,16 +8,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Entity
 @Table(name = "kategorie")
+@Transactional(readOnly = false)
 public class Kategorie implements Comparable<Kategorie> {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
+	@Basic(optional = false)
+	@Column(name = "name", unique = true)
 	private String name;
 
+	@Basic(optional = true)
 	private String kommentar;
 
+	@Basic(optional = false)
 	private KategorieTyp typ;
 
 	/* Default-Konstruktor */
@@ -37,8 +46,7 @@ public class Kategorie implements Comparable<Kategorie> {
 	/**
 	 * @return the id
 	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+
 	public int getId() {
 		return id;
 	}
@@ -54,8 +62,7 @@ public class Kategorie implements Comparable<Kategorie> {
 	/**
 	 * @return the name
 	 */
-	@Basic(optional = false)
-	@Column(name = "name", unique = true)
+
 	public String getName() {
 		return name;
 	}

@@ -52,20 +52,15 @@
 			</f:verbatim>
 
 
-
-
-
 			<t:div styleClass="plan">
 
 
-			<d:Liquiplan header="#{liquiplanBakingBean.columnHeaders}"
-				einnahmen="#{liquiplanBakingBean.einnahmen}"
-				ausgaben="#{liquiplanBakingBean.ausgaben}"
-				salden="#{liquiplanBakingBean.salden}"
-				rowClasses="tabelle_Zeile1,tabelle_Zeile2" styleClass="tabelle"
-				headerClass="tabelle_Ueberschrift" />
-
-
+				<d:Liquiplan header="#{liquiplanBakingBean.columnHeaders}"
+					einnahmen="#{liquiplanBakingBean.einnahmen}"
+					ausgaben="#{liquiplanBakingBean.ausgaben}"
+					salden="#{liquiplanBakingBean.salden}"
+					rowClasses="tabelle_Zeile1,tabelle_Zeile2" styleClass="tabelle"
+					headerClass="tabelle_Ueberschrift" saldoClass="liquiplan_Saldo" />
 
 			</t:div>
 

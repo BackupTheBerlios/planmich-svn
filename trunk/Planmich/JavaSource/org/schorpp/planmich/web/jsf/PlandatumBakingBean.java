@@ -151,7 +151,7 @@ public class PlandatumBakingBean extends BaseBean {
 
 		final Mandant m = mandantService.getMandantById(mandantId);
 		m.addPlandatum(p);
-		mandantDAO.saveMandant(m);
+		mandantDAO.save(m);
 
 		displayInfo("Plandatum " + name + " wurde hinzugefügt.");
 

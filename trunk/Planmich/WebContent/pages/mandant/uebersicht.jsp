@@ -10,7 +10,8 @@
 	<f:facet name="body">
 		<h:form>
 
-			<d:Headline headline="#{messages.mandantenuebersicht}" styleClass="headline"/>
+			<d:Headline headline="#{messages.mandantenuebersicht}"
+				styleClass="headline" />
 
 			<t:dataTable value="#{mandantDAO.mandanten}" rendered="true"
 				border="0" rows="5" var="mandant" id="mandanten"

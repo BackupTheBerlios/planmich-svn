@@ -10,7 +10,7 @@ public class MandantDAOTest extends
 
 	public void testSelectByNameOneResult() {
 
-		Mandant m = mandantDao.getMandantById(1);
+		Mandant m = mandantDao.findById(1);
 
 		Plandatum p = m.getPlandaten().get(0);
 

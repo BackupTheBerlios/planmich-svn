@@ -68,7 +68,7 @@
 
 
 
-		<h:panelGrid columns="2" styleClass="kommandoTabelle">
+			<h:panelGrid columns="2" styleClass="kommandoTabelle">
 
 				<t:commandLink immediate="true"
 					action="#{plandatumBakingBean.cancelAction}">
@@ -76,18 +76,17 @@
 				</t:commandLink>
 
 
-				<h:commandLink id="add" 
-					action="#{plandatumBakingBean.addPlandatum}"
+				<h:commandLink id="add" action="#{plandatumBakingBean.addPlandatum}"
 					rendered="#{not plandatumBakingBean.editMode}">
 					<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
 				</h:commandLink>
 
-				<h:commandLink id="update" 
+				<h:commandLink id="update"
 					action="#{plandatumBakingBean.updatePlandatum}"
 					rendered="#{plandatumBakingBean.editMode}">
 					<h:graphicImage value="/images/uebernehmen.PNG" styleClass="button" />
 				</h:commandLink>
-				
+
 			</h:panelGrid>
 
 

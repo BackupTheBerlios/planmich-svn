@@ -69,5 +69,9 @@ public class MandantBakingBean extends BaseBean {
 
 		service.add(m);
 	}
+	
+	public List getMandanten() {
+		return service.getAll();
+	}
 
 }

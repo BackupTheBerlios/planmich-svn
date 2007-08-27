@@ -33,7 +33,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 *      java.util.Calendar)
 	 */
 	public boolean calculatePlanAsMap(Mandant mandant, Date von, Date bis,
-			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen, List<List> spalteAusgaben, List<String> salden) {
+			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen, List<List> spalteAusgaben, List<Double> salden) {
 
 		final Calendar vonDatum = Calendar.getInstance();
 		vonDatum.setTime(von);
@@ -63,9 +63,6 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				false));
 		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left", false));
 
-		
-		salden.add("Liquiditätssaldo");
-		salden.add("");
 		
 		
 		List<String> zeilenEinnahmen;
@@ -175,7 +172,7 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 			x += 1;
 
-			salden.add(Util.nf.format(anfangsbestand));
+			salden.add(anfangsbestand);
 			
 			endbestand = anfangsbestand;
 

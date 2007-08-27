@@ -32,6 +32,12 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	private List<SpaltenUeberschrift> spaltenUeberschriften;
 
+	private List<List> einnahmen = new ArrayList<List>();
+	private List<List> ausgaben = new ArrayList<List>();
+	private List<Double> salden = new ArrayList<Double>();
+
+	private boolean planChanged = true;
+
 	public LiquiplanBakingBean() {
 		von = new Date();
 
@@ -54,20 +60,24 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	public void updatePlan() {
 
-		List<List> einnahmen = new ArrayList<List>();
-		List<List> ausgaben = new ArrayList<List>();
-		List<String> salden = new ArrayList<String>();
-		
+		salden.clear();
+		einnahmen.clear();
+		ausgaben.clear();
+
 		final Mandant mandant = mandantDAO
 				.getMandantById((Integer) getFromSession("Mandant"));
 
-		if (service.calculatePlanAsMap(mandant, von, bis, spaltenUeberschriften, einnahmen, ausgaben, salden)) {
+		if (service.calculatePlanAsMap(mandant, von, bis,
+				spaltenUeberschriften, einnahmen, ausgaben, salden)) {
 
 			einnahmenDM = new ListDataModel(einnahmen);
 			ausgabenDM = new ListDataModel(ausgaben);
 			ueberschriftenDM = new ListDataModel(spaltenUeberschriften);
 			saldenDM = new ListDataModel(salden);
 		}
+
+		planChanged = false;
+
 	}
 
 	public void setService(LiquiplanService service) {
@@ -81,7 +91,7 @@ public class LiquiplanBakingBean extends BaseBean {
 	public DataModel getEinnahmen() {
 		return einnahmenDM;
 	}
-	
+
 	public DataModel getAusgaben() {
 		return ausgabenDM;
 	}
@@ -103,42 +113,24 @@ public class LiquiplanBakingBean extends BaseBean {
 	}
 
 	public DataModel getColumnHeaders() {
-		updatePlan();
+		if (planChanged)
+			updatePlan();
 		return ueberschriftenDM;
 	}
-
 
 	public DefaultCategoryDataset getPieDataSet() {
 		DefaultCategoryDataset categoryDataSet;
 
-		// row keys...
-		String series1 = "First";
-		String series2 = "Second";
-		String series3 = "Third";
-		// column keys...
-		String category1 = "A";
-		String category2 = "B";
-		String category3 = "C";
-		String category4 = "D";
-		String category5 = "E";
+		if (planChanged)
+			updatePlan();
 
-		// create the dataset...
 		categoryDataSet = new DefaultCategoryDataset();
-		categoryDataSet.addValue(1.0, series1, category1);
-		categoryDataSet.addValue(4.0, series1, category2);
-		categoryDataSet.addValue(3.0, series1, category3);
-		categoryDataSet.addValue(5.0, series1, category4);
-		categoryDataSet.addValue(5.0, series1, category5);
-		categoryDataSet.addValue(5.0, series2, category1);
-		categoryDataSet.addValue(7.0, series2, category2);
-		categoryDataSet.addValue(6.0, series2, category3);
-		categoryDataSet.addValue(8.0, series2, category4);
-		categoryDataSet.addValue(4.0, series2, category5);
-		categoryDataSet.addValue(4.0, series3, category1);
-		categoryDataSet.addValue(3.0, series3, category2);
-		categoryDataSet.addValue(2.0, series3, category3);
-		categoryDataSet.addValue(3.0, series3, category4);
-		categoryDataSet.addValue(6.0, series3, category5);
+
+		for (int i = 0; i < 12; i++) {
+			categoryDataSet.addValue(salden.get(i), "Liquisaldo",
+					spaltenUeberschriften.get(i + 2).getLabel());
+		}
+
 		return categoryDataSet;
 
 	}
@@ -146,14 +138,15 @@ public class LiquiplanBakingBean extends BaseBean {
 	public DataModel getSalden() {
 		return saldenDM;
 	}
-	
+
 	public double getAnfangsbestand() {
 		final Mandant mandant = mandantDAO
-		.getMandantById((Integer) getFromSession("Mandant"));
-		
+				.getMandantById((Integer) getFromSession("Mandant"));
+
 		return mandant.getAnfangsbestand();
 
 	}
+
 	
 	public void setAnfangsbestand(double anfangsbestand) {
 		final Mandant mandant = mandantDAO
@@ -162,4 +155,5 @@ public class LiquiplanBakingBean extends BaseBean {
 		
 		mandantDAO.save(mandant);
 	}
+
 }
