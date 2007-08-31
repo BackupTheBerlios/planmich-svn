@@ -28,8 +28,8 @@
 					<t:commandLink action="#{sessionBean.selectMandant}"
 						immediate="true">
 						<h:outputText value="#{mandant.name}" />
-						<t:updateActionListener property="#{sessionBean.mandantId}"
-							value="#{mandant.id}" />
+						<t:updateActionListener property="#{sessionBean.mandant}"
+							value="#{mandant}" />
 					</t:commandLink>
 
 				</h:column>

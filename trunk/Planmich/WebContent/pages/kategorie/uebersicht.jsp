@@ -13,7 +13,7 @@
 			<d:Headline headline="#{messages.uebersichtKategorie}"
 				styleClass="headline" />
 
-			<t:dataTable value="#{sessionBean.mandant.kategorien}"
+			<t:dataTable value="#{kategorieBakingBean.kategorien}"
 				rendered="true" border="0" rows="25" var="kategorie" id="kategorien"
 				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
 				footerClass="tabelle_Footer"

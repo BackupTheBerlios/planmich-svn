@@ -17,4 +17,8 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 		class="org.schorpp.planmich.web.jsf.Session" scope="session">
 		<property name="service" ref="mandantService" />
 	</bean>
+	
+	<bean name="loginBackingBean"
+		class="org.schorpp.planmich.web.jsf.LoginBackingBean" scope="request">
+	</bean>
 </beans>

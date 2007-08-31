@@ -15,66 +15,12 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
-	<!-- deklarative Transaktion 
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="get*" read-only="true"
-				propagation="REQUIRED" />
-			<tx:method name="select*" read-only="true"
-				propagation="REQUIRED" />
-			<tx:method name="*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>-->
-
-	<!-- deklarative Transaktion fuer den *Service 
-	<aop:config>
-		<aop:pointcut id="txMethods"
-			expression="execution(* org.schorpp.planmich.service.*Service*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="txMethods" />
-	</aop:config>
--->
 	
 	<aop:aspectj-autoproxy />
-
-
-
-	<!-- AOP-Praxisbeispiel: Logging -->
-	<!--
-		<aop:config>	
-		<aop:aspect id="loggingAspect" ref="loggingService">
-		<aop:pointcut id="techLogPc" expression="execution(* de.hanser.buch.opiz.dao.*Dao*.*(..))"/>
-		<aop:after-throwing method="logTechnical" pointcut="execution(* techLogPc(..))" throwing="ex" />
-		</aop:aspect>
-		</aop:config>
-		
-		<aop:config>
-		<aop:aspect id="countAgeCalls" ref="countingAdvice">
-		<aop:after-throwing
-		pointcut="execution(int getAge(..))" 
-		method="myAfterThrowingAdvice" 
-		throwing="ex"/>
-		</aop:aspect>
-		
-		</aop:config>
-	-->
-
-	<!--
-		<bean name="loggingService" class="de.hanser.buch.opiz.service.LoggingService">
-		</bean>
-	-->
 
 	<bean name="transactionTemplate"
 		class="org.springframework.transaction.support.TransactionTemplate">
 		<property name="transactionManager" ref="transactionManager" />
 	</bean>
 
-	<!-- DebugIntercepter von Spring -->
-	<!-- this gets in the way of a test of pizzaDao.update, since it's calling toString on pizza
-		<bean id="debugInterceptor" class="org.springframework.aop.interceptor.DebugInterceptor"/>
-		<aop:config>
-		<aop:pointcut id="debugPointcut" expression="execution(* de.hanser.buch.opiz.dao.*Dao*.*(..))"/>
-		<aop:advisor advice-ref="debugInterceptor" pointcut-ref="debugPointcut"/>
-		</aop:config>
-	-->
 </beans>

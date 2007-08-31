@@ -1,5 +1,7 @@
 package org.schorpp.planmich.service;
 
+import java.util.List;
+
 import org.schorpp.planmich.dao.KategorieDAO;
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
@@ -36,6 +38,10 @@ public class KategorieServiceImpl implements KategorieService {
 		k.setKategorieTyp(typ);
 
 		kategorieDAO.save(k);
+	}
+	
+	public List<Kategorie> getAll() {
+		return kategorieDAO.findAll();
 	}
 
 }

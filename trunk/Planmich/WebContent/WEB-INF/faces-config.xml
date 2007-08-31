@@ -192,6 +192,14 @@
 			<to-view-id>/pages/plandatum/plandatum.jsp</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/login.jsp</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/j_acegi_security_check.jsp</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 	<application>
 		<variable-resolver>
@@ -201,7 +209,6 @@
 			org.schorpp.planmich.web.resources
 		</message-bundle>
 		<locale-config>
-			<default-locale>de_DE</default-locale>
 			<supported-locale>de</supported-locale>
 			<supported-locale>en</supported-locale>
 		</locale-config>

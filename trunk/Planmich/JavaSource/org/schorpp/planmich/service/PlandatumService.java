@@ -1,6 +1,8 @@
 package org.schorpp.planmich.service;
 
 import java.util.Date;
+import java.util.List;
+
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.Plandatum;
 import org.springframework.transaction.annotation.Isolation;
@@ -29,5 +31,7 @@ public interface PlandatumService {
 	@Transactional(readOnly = false)
 	public void updatePlandatum(Plandatum p, String name, String kommentar,
 			Date wertstellung, int turnus, double betrag, Kategorie k);
+	
+	public List<Plandatum> getAll();
 
 }

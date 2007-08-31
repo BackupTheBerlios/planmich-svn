@@ -55,10 +55,10 @@ public interface MandantService {
 	public void delete(Mandant m);
 
 	@Transactional
-	public void deleteKategorie(Integer mandantId, Kategorie k);
+	public void deleteKategorie(Mandant mandant, Kategorie k);
 
 	@Transactional
-	public void deletePlandatum(Integer mandantId, Plandatum p);
+	public void deletePlandatum(Mandant mandant, Plandatum p);
 
 	@Transactional(readOnly = false)
 	public void update(Mandant m);

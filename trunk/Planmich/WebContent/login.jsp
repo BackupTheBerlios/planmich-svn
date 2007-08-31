@@ -11,7 +11,11 @@
 
 		<h:form id="plandatum" styleClass="eingabeForm">
 
-			<t:inputText id="j_username" forceId="true"/>
+			<t:inputText id="j_username" forceId="true" value="#{loginBackingBean.username}"/>
+			<p/>
+			<t:inputSecret id="j_password" forceId="true" value="#{loginBackingBean.password}"/>
+			<p/>
+			<h:commandLink action="login" value="Anmelden" />
 
 		</h:form>
 	</f:facet>

@@ -54,7 +54,7 @@
   </logger>
   
   <logger name="org.acegisecurity">
-  	<level value="ERROR"/>
+  	<level value="INFO"/>
   </logger>
   
   <!--

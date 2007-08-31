@@ -40,12 +40,12 @@ public class MandantServiceImpl implements MandantService {
 		mandantDao.delete(m);
 	}
 
-	public void deleteKategorie(Integer mandantId, Kategorie k) {
-		getMandantById(mandantId).getKategorien().remove(k);
+	public void deleteKategorie(Mandant mandant, Kategorie k) {
+		mandant.getKategorien().remove(k);
 	}
 
-	public void deletePlandatum(Integer mandantId, Plandatum p) {
-		getMandantById(mandantId).getPlandaten().remove(p);
+	public void deletePlandatum(Mandant mandant, Plandatum p) {
+		mandant.getPlandaten().remove(p);
 	}
 	
 	public void update(Mandant m) {

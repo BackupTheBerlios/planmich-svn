@@ -59,38 +59,36 @@ http://www.springframework.org/schema/jee http://www.springframework.org/schema/
 </bean>
 
 <bean id="accessDeniedHandler" class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
-	<property name="errorPage" value="/nono.jsf" />
+	<property name="errorPage" value="/nono.jsp" />
 </bean>
 
-<!-- <bean id="authenticationEntryPoint" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+ <bean id="authenticationEntryPoint" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
 	<property name="loginFormUrl" value="/login.jsf" />
 	<property name="forceHttps" value="false" />
 </bean>
--->
-<!-- 
+
+ 
 <bean id="authenticationProcessingFilter" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+	<property name="filterProcessesUrl" value="/j_acegi_security_check.jsp" />
 	<property name="authenticationManager" ref="authenticationManager" />
-	<property name="authenticationFailureUrl" value="/login.jsf" />
-	<property name="defaultTargetUrl" value="/acegiforward.jsp" />
-	<property name="alwaysUseDefaultTargetUrl" value="true" />
-</bean>
--->
-
-<bean id="basicProcessingFilter" class="org.acegisecurity.ui.basicauth.BasicProcessingFilter">
-  <property name="authenticationManager"><ref bean="authenticationManager"/></property>
-  <property name="authenticationEntryPoint"><ref bean="authenticationEntryPoint"/></property>
+	<property name="authenticationFailureUrl" value="/error.jsf" />
+	<property name="defaultTargetUrl" value="/" />
+	<property name="alwaysUseDefaultTargetUrl" value="false" />
 </bean>
 
+
+
+<!-- 
 <bean id="authenticationEntryPoint" class="org.acegisecurity.ui.basicauth.BasicProcessingFilterEntryPoint">
   <property name="realmName"><value>Planmich</value></property>
 </bean>
-
+-->
 <bean id="filterChainProxy" class="org.acegisecurity.util.FilterChainProxy">
 	<property name="filterInvocationDefinitionSource">
 		<value>
 			CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 			PATTERN_TYPE_APACHE_ANT
-			/**=httpSessionContextIntegrationFilter,basicProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
+			/**=httpSessionContextIntegrationFilter,authenticationProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
 		</value>
 	</property>
 </bean>

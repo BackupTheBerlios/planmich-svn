@@ -1,5 +1,7 @@
 package org.schorpp.planmich.service;
 
+import java.util.List;
+
 import org.schorpp.planmich.domain.Kategorie;
 import org.schorpp.planmich.domain.KategorieTyp;
 import org.springframework.transaction.annotation.Isolation;
@@ -30,4 +32,5 @@ public interface KategorieService {
 	public void updateKategorie(Kategorie k, String name, String kommentar,
 			KategorieTyp typ);
 
+	public List<Kategorie> getAll();
 }

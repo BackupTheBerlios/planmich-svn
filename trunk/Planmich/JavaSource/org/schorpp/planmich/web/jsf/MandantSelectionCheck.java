@@ -7,6 +7,8 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpServletRequest;
 
+import org.schorpp.planmich.domain.Mandant;
+
 public class MandantSelectionCheck implements PhaseListener {
 
 	/**
@@ -41,11 +43,14 @@ public class MandantSelectionCheck implements PhaseListener {
 		final String renderedViewId = facesContext.getViewRoot().getViewId();
 
 		// Mandantenverwaltung von der Umleitnug ausnehmen
-		if (renderedViewId.startsWith("/pages/mandant/") || renderedViewId.equals("/login.jsp"))
+		if (renderedViewId.startsWith("/pages/mandant/"))
 			return;
 
-		final Integer mandantID = (Integer) getFromSession("Mandant");
-		if (mandantID == null)
+		if(!renderedViewId.startsWith("/pages/"))
+			return;
+		
+		final Mandant mandant = (Mandant) getFromSession("Mandant");
+		if (mandant == null)
 			toMandantSelection(renderedViewId);
 
 		// if (!renderedViewId.equals("/login.jsp") &&

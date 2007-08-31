@@ -14,7 +14,7 @@
 				styleClass="headline" />
 
 
-			<t:dataTable value="#{sessionBean.mandant.plandaten}" rendered="true"
+			<t:dataTable value="#{plandatumBakingBean.plandaten}" rendered="true"
 				border="0" rows="10" var="plandate" id="showPlandates"
 				styleClass="tabelle" headerClass="tabelle_Ueberschrift"
 				footerClass="tabelle_Ueberschrift"

@@ -29,8 +29,6 @@ public class PlandatumBakingBean extends BaseBean {
 
 	private String kommentar;
 
-	private Integer mandantId;
-
 	private Date wertstellung;
 
 	private double betrag;
@@ -46,10 +44,6 @@ public class PlandatumBakingBean extends BaseBean {
 	private Map<String, Kategorie> categoriesMap = new HashMap<String, Kategorie>();
 
 	private Map<Integer, Turnus> turnusMap = new HashMap<Integer, Turnus>();
-
-	public PlandatumBakingBean() {
-		mandantId = (Integer) getFromSession("Mandant");
-	}
 	
 	public String getName() {
 		return name;
@@ -97,8 +91,7 @@ public class PlandatumBakingBean extends BaseBean {
 	 * Erzeugt eine Liste mit SelectItems zur Auswahl der Kategorie
 	 */
 	public List getKategorieListe() {
-		List categories = (mandantDAO.getMandantById(mandantId))
-			.getKategorien();
+		List categories = ((Mandant)getFromSession("Mandant")).getKategorien();
 		List<SelectItem> ret = new ArrayList<SelectItem>();
 
 		// erster Eintrag ist leer
@@ -149,7 +142,7 @@ public class PlandatumBakingBean extends BaseBean {
 		p.setKategorie(categoriesMap.get(kategorieAuswahl));
 		p.setTurnus(turnusAuswahl);
 
-		final Mandant m = mandantService.getMandantById(mandantId);
+		final Mandant m = (Mandant)getFromSession("Mandant");
 		m.addPlandatum(p);
 		mandantDAO.save(m);
 
@@ -162,7 +155,7 @@ public class PlandatumBakingBean extends BaseBean {
 	 * 
 	 */
 	public void deletePlandatum() {
-		mandantService.deletePlandatum(mandantId, p);
+		mandantService.deletePlandatum((Mandant)getFromSession("Mandant"), p);
 	}
 
 	/**
@@ -272,4 +265,8 @@ public class PlandatumBakingBean extends BaseBean {
 		return "neuesPlandatum";
 	}
 
+	
+	public List<Plandatum> getPlandaten() {
+		return plandatumService.getAll();
+	}
 }

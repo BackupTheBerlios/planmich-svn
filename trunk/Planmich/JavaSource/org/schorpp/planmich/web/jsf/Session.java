@@ -5,17 +5,17 @@ import org.schorpp.planmich.service.MandantService;
 
 public class Session extends BaseBean {
 
-	private int mandantId;
+	private Mandant mandant;
 
 	private MandantService service;
 
-	public int getMandantId() {
-		return mandantId;
+	public Mandant getMandant() {
+		return mandant;
 	}
 
-	public void setMandantId(int mandantId) {
-		this.mandantId = mandantId;
-		saveInSession("Mandant", mandantId);
+	public void setMandant(Mandant mandant) {
+		this.mandant = mandant;
+		saveInSession("Mandant", mandant);
 
 		final String forward = (String) getFromSession("Redirect");
 		if (forward != null)
@@ -23,9 +23,6 @@ public class Session extends BaseBean {
 
 	}
 
-	public Mandant getMandant() {
-		return service.getMandantById(mandantId);
-	}
 
 	public void setService(MandantService service) {
 		this.service = service;

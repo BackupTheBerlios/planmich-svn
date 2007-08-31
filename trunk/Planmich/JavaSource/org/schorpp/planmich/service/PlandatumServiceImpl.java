@@ -1,6 +1,7 @@
 package org.schorpp.planmich.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.schorpp.planmich.dao.PlandatumDAO;
 import org.schorpp.planmich.domain.Kategorie;
@@ -40,6 +41,11 @@ public class PlandatumServiceImpl implements PlandatumService {
 		p.setBetrag(betrag);
 		p.setKategorie(k);
 		plandatumDAO.save(p);
+	}
+
+	@Override
+	public List<Plandatum> getAll() {
+		return plandatumDAO.findAll();
 	}
 
 }

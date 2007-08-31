@@ -28,15 +28,9 @@ public class KategorieBakingBean extends BaseBean {
 
 	private KategorieTyp typ = KategorieTyp.Ausgabe;
 
-	private Integer mandantId;
-
 	private Kategorie k;
 
 	private boolean editMode = false;
-
-	public KategorieBakingBean() {
-		mandantId = (Integer) getFromSession("Mandant");
-	}
 
 	public String getName() {
 		return name;
@@ -114,9 +108,8 @@ public class KategorieBakingBean extends BaseBean {
 	 */
 	public void addKategorie() {
 
-		mandantId = (Integer) getFromSession("Mandant");
-		final Mandant m = mandantService.getMandantById(mandantId);
-
+		Mandant m = (Mandant) getFromSession("Mandant");
+		
 		k = new Kategorie();
 
 		k.setName(name);
@@ -146,7 +139,7 @@ public class KategorieBakingBean extends BaseBean {
 	 * 
 	 */
 	public void deleteKategorie() {
-		mandantService.deleteKategorie(mandantId, k);
+		mandantService.deleteKategorie((Mandant)getFromSession("Mandant"), k);
 	}
 
 	/**
@@ -186,6 +179,10 @@ public class KategorieBakingBean extends BaseBean {
 
 	public void cancelAction() {
 		redirect("/pages/kategorie/uebersicht.jsp");
+	}
+	
+	public List<Kategorie> getKategorien() {
+		return kategorieService.getAll();
 	}
 
 }
