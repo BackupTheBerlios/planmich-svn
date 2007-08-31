@@ -124,7 +124,7 @@ public class KategorieBakingBean extends BaseBean {
 		k.setKategorieTyp(typ);
 
 		m.addKategorie(k);
-		mandantDAO.save(m);
+		mandantService.update(m);
 
 		displayInfo("Kategorie " + name + " wurde hinzugefügt.");
 	}

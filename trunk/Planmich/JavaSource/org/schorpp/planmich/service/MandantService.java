@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.REPEATABLE_READ, readOnly = true)
+@Transactional
 public interface MandantService {
 
 	@Transactional(readOnly = false)
@@ -60,4 +60,6 @@ public interface MandantService {
 	@Transactional
 	public void deletePlandatum(Integer mandantId, Plandatum p);
 
+	@Transactional(readOnly = false)
+	public void update(Mandant m);
 }

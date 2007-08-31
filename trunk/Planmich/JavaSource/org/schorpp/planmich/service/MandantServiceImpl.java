@@ -47,5 +47,9 @@ public class MandantServiceImpl implements MandantService {
 	public void deletePlandatum(Integer mandantId, Plandatum p) {
 		getMandantById(mandantId).getPlandaten().remove(p);
 	}
+	
+	public void update(Mandant m) {
+		mandantDao.save(m);
+	}
 
 }

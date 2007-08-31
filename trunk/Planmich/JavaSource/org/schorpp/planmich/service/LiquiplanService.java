@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 import org.schorpp.planmich.domain.Mandant;
 import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public interface LiquiplanService {
 
 	/**

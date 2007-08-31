@@ -9,13 +9,14 @@
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<!-- deklarative Transaktion -->
+	<!-- deklarative Transaktion 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"
@@ -24,32 +25,16 @@
 				propagation="REQUIRED" />
 			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
-	</tx:advice>
+	</tx:advice>-->
 
-	<!-- deklarative Transaktion fuer den *Service -->
+	<!-- deklarative Transaktion fuer den *Service 
 	<aop:config>
 		<aop:pointcut id="txMethods"
 			expression="execution(* org.schorpp.planmich.service.*Service*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txMethods" />
 	</aop:config>
-
-	<!-- deklarative Transaktion fuer DAOs: fuer die Webanwendung erforderlich -->
-	<aop:config>
-		<aop:pointcut id="daoMethods1"
-			expression="execution(* org.schorpp.planmich.dao.MandantDAO*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods1" />
-	</aop:config>
-	<aop:config>
-		<aop:pointcut id="daoMethods2"
-			expression="execution(* org.schorpp.planmich.dao.PlandatumDAO*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods2" />
-	</aop:config>
-	<aop:config>
-		<aop:pointcut id="daoMethods3"
-			expression="execution(* org.schorpp.planmich.dao.KategorieDAO*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods3" />
-	</aop:config>
-
+-->
+	
 	<aop:aspectj-autoproxy />
 
 
