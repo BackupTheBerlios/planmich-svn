@@ -2,6 +2,7 @@ package org.schorpp.planmich.dao;
 
 import java.util.List;
 
+import org.hibernate.LockMode;
 import org.schorpp.planmich.domain.Mandant;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -40,6 +41,10 @@ public class MandantDAOImpl extends HibernateDaoSupport implements MandantDAO {
 
 	public void save(Mandant m) {
 		getHibernateTemplate().saveOrUpdate(m);
+	}
+	
+	public void attach(Mandant m) {
+		getHibernateTemplate().lock(m, LockMode.NONE);
 	}
 
 }

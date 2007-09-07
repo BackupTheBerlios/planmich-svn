@@ -32,28 +32,27 @@ public class PersistenceTest extends
 
 		m = mandantService.getMandantByName("Test");
 		assertTrue(m != null);
-		
+
 		System.out.println(m.getName());
 
 		List<SpaltenUeberschrift> colHeaders = new ArrayList<SpaltenUeberschrift>();
-		
+
 		Calendar von = Calendar.getInstance();
 		Calendar bis = Calendar.getInstance();
-		
+
 		bis.add(Calendar.DATE, 1);
-		
-		/*if (planService.calculatePlanAsMap(m, von.getTime(), bis.getTime(), colHeaders)) {
-			plan = planService.getEinnahmen();
-		}
-		*/
-		
-		
+
+		/*
+		 * if (planService.calculatePlanAsMap(m, von.getTime(), bis.getTime(),
+		 * colHeaders)) { plan = planService.getEinnahmen(); }
+		 */
+
 	}
 
 	public void setMandantSevice(MandantService mandantService) {
 		PersistenceTest.mandantService = mandantService;
 	}
-	
+
 	public void setPlanService(LiquiplanService planService) {
 		this.planService = planService;
 	}

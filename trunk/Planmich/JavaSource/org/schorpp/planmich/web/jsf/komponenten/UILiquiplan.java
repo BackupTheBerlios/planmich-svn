@@ -16,190 +16,180 @@ import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 
 public class UILiquiplan extends UIOutput {
 
-	
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
-		List<SpaltenUeberschrift> header = (List<SpaltenUeberschrift>) ((ListDataModel) getAttributes().get("header")).getWrappedData();
-		List<List> einnahmen = (List<List>) ((ListDataModel)getAttributes().get("einnahmen")).getWrappedData();
-		List<List> ausgaben = (List<List>) ((ListDataModel)getAttributes().get("ausgaben")).getWrappedData();
-		
-		List<String> salden = (List<String>) ((ListDataModel) getAttributes().get("salden")).getWrappedData();
-		
+		List<SpaltenUeberschrift> header = (List<SpaltenUeberschrift>) ((ListDataModel) getAttributes()
+				.get("header")).getWrappedData();
+		List<List> einnahmen = (List<List>) ((ListDataModel) getAttributes()
+				.get("einnahmen")).getWrappedData();
+		List<List> ausgaben = (List<List>) ((ListDataModel) getAttributes()
+				.get("ausgaben")).getWrappedData();
+
+		List<String> salden = (List<String>) ((ListDataModel) getAttributes()
+				.get("salden")).getWrappedData();
+
 		String rowClasses = (String) getAttributes().get("rowClasses");
 		String styleClass = (String) getAttributes().get("styleClass");
 		String headerClass = (String) getAttributes().get("headerClass");
-		String saldoClass = (String) getAttributes().get("saldoClass");	
-		
-		String[] rowClassesArray = StringUtils.splitShortString(rowClasses, ',');
-		
-		
-		
+		String saldoClass = (String) getAttributes().get("saldoClass");
+
+		String[] rowClassesArray = StringUtils
+				.splitShortString(rowClasses, ',');
+
 		/*
 		 * Einnahmen
 		 * 
 		 * 
 		 */
-		
+
 		List<List> rowsEinnahmen = new ArrayList<List>();
-		
+
 		List<String> colList;
-		
+
 		int ySize = einnahmen.get(0).size();
-		
-		int i=0;
-		
-		for(int y=0; y<ySize; y++) {
-			
+
+		int i = 0;
+
+		for (int y = 0; y < ySize; y++) {
+
 			colList = new ArrayList<String>();
-			
-			for (int x = 0; x<einnahmen.size(); x++) {
+
+			for (int x = 0; x < einnahmen.size(); x++) {
 				colList.add((String) ((List) einnahmen.get(x)).get(y));
 			}
-			
-			rowsEinnahmen.add(colList);
-			
-		}
-		
 
-		
-		
-		
+			rowsEinnahmen.add(colList);
+
+		}
+
 		/*
 		 * Ausgaben
 		 * 
 		 * 
 		 */
-		
+
 		List<List> rowsAusgaben = new ArrayList<List>();
-		
-		i=0;
-		
+
+		i = 0;
+
 		ySize = ausgaben.get(0).size();
-		
-		for(int y=0; y<ySize; y++) {
-			
+
+		for (int y = 0; y < ySize; y++) {
+
 			colList = new ArrayList<String>();
-			
-			for (int x = 0; x<ausgaben.size(); x++) {
+
+			for (int x = 0; x < ausgaben.size(); x++) {
 				colList.add((String) ((List) ausgaben.get(x)).get(y));
 			}
-			
+
 			rowsAusgaben.add(colList);
-			
-		}		
-		
-		
-		
+
+		}
+
 		/*
 		 * Tabellenüberschriften
 		 * 
 		 */
-		
+
 		writer.startElement("table", this);
 		writer.writeAttribute("class", styleClass, "class");
-		
+
 		writer.startElement("tr", this);
-		
-		for(int x=0; x<header.size(); x++) {
+
+		for (int x = 0; x < header.size(); x++) {
 			writer.startElement("th", this);
 			writer.writeAttribute("class", headerClass, "class");
 			writer.writeText(header.get(x).getLabel(), null);
 			writer.endElement("th");
 		}
-		
+
 		writer.endElement("tr");
 
-		
 		writer.startElement("tr", this);
 		writer.startElement("td", this);
-		//writer.writeAttribute("class", , arg2)
-		//writer.writeAttribute("colspan", einnahmen.size(), null);
+		// writer.writeAttribute("class", , arg2)
+		// writer.writeAttribute("colspan", einnahmen.size(), null);
 		writer.writeText("Einnahmen", null);
 		writer.endElement("td");
 		writer.endElement("tr");
-		
+
 		/*
 		 * Einnahmen
 		 * 
 		 */
-		
-		for(List<String> row : rowsEinnahmen) {
-					
+
+		for (List<String> row : rowsEinnahmen) {
+
 			writer.startElement("tr", this);
-			
-			for(String entry : row) {
+
+			for (String entry : row) {
 				writer.startElement("td", this);
 				writer.writeAttribute("class", rowClassesArray[i], "class");
-				
+
 				writer.writeText(entry, null);
-				
+
 				writer.endElement("td");
-				
+
 				i++;
-				if(i<rowClassesArray.length)
-					i=0;
+				if (i < rowClassesArray.length)
+					i = 0;
 			}
-			
-			
+
 			writer.endElement("tr");
 		}
-		
+
 		writer.startElement("tr", this);
 		writer.startElement("td", this);
-		//writer.writeAttribute("colspan", einnahmen.size(), null);
+		// writer.writeAttribute("colspan", einnahmen.size(), null);
 		writer.writeText("Ausgaben", null);
 		writer.endElement("td");
 		writer.endElement("tr");
-		
-		
+
 		/*
 		 * Ausgaben
 		 * 
 		 * 
 		 */
-		
-		for(List<String> row : rowsAusgaben) {
-					
+
+		for (List<String> row : rowsAusgaben) {
+
 			writer.startElement("tr", this);
-			
-			for(String entry : row) {
+
+			for (String entry : row) {
 				writer.startElement("td", this);
 				writer.writeAttribute("class", rowClassesArray[i], "class");
-				
+
 				writer.writeText(entry, null);
-				
+
 				writer.endElement("td");
-				
+
 				i++;
-				if(i<rowClassesArray.length)
-					i=0;
+				if (i < rowClassesArray.length)
+					i = 0;
 			}
-			
-			
+
 			writer.endElement("tr");
 		}
-		
-		
+
 		writer.startElement("tr", this);
-		
+
 		writer.startElement("td", this);
 		writer.writeAttribute("colspan", "2", "colspan");
 		writer.writeAttribute("class", saldoClass, "class");
 		writer.writeText("Liquiditätssaldo", null);
 		writer.endElement("td");
-		
-		for(int x=0; x<salden.size(); x++) {
+
+		for (int x = 0; x < salden.size(); x++) {
 			writer.startElement("td", this);
 			writer.writeAttribute("class", saldoClass, "class");
 			writer.writeText(salden.get(x), null);
 			writer.endElement("td");
 		}
-		
+
 		writer.endElement("tr");
-		
+
 		writer.endElement("table");
 	}
 

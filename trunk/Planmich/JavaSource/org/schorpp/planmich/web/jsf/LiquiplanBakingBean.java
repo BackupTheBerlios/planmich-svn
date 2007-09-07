@@ -120,7 +120,7 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	public DefaultCategoryDataset getPieDataSet() {
 		DefaultCategoryDataset categoryDataSet;
-		
+
 		if (planChanged)
 			updatePlan();
 
@@ -147,12 +147,11 @@ public class LiquiplanBakingBean extends BaseBean {
 
 	}
 
-	
 	public void setAnfangsbestand(double anfangsbestand) {
 		final Mandant mandant = mandantDAO
-		.getMandantById((Integer) getFromSession("Mandant"));
+				.getMandantById((Integer) getFromSession("Mandant"));
 		mandant.setAnfangsbestand(anfangsbestand);
-		
+
 		mandantDAO.save(mandant);
 	}
 

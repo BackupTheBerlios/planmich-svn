@@ -106,11 +106,13 @@ public class Plandatum implements Comparable<Plandatum> {
 	}
 
 	public int compareTo(Plandatum p) {
-		if(this.kategorie.getKategorieTyp().ordinal() > p.kategorie.getKategorieTyp().ordinal())
+		if (this.kategorie.getKategorieTyp().ordinal() > p.kategorie
+				.getKategorieTyp().ordinal())
 			return 1;
-		else if (this.kategorie.getKategorieTyp().ordinal() < p.kategorie.getKategorieTyp().ordinal())
+		else if (this.kategorie.getKategorieTyp().ordinal() < p.kategorie
+				.getKategorieTyp().ordinal())
 			return -1;
-		
+
 		return 0;
 	}
 

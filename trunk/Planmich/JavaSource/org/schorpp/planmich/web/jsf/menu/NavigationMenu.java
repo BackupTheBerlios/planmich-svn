@@ -17,27 +17,26 @@ public class NavigationMenu extends BaseBean {
 
 	private List<NavigationMenuItem> menu = new ArrayList<NavigationMenuItem>();
 	private NavigationMenuItem planMenu;
-	
+
 	private List<NavigationMenuItem> planContextMenu = new ArrayList<NavigationMenuItem>();
 	private List<NavigationMenuItem> kategorieContextMenu = new ArrayList<NavigationMenuItem>();
-	
+
 	public NavigationMenu() {
-	
-		planContextMenu.add(createMenuNavigationItem("Jahresplan", "liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
-		planContextMenu.add(createMenuNavigationItem("Diagramm", "liquiplanDiagramm", "/pages/plan/diagramm.jsp"));
-		
+
+		planContextMenu.add(createMenuNavigationItem("Jahresplan",
+				"liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
+		planContextMenu.add(createMenuNavigationItem("Diagramm",
+				"liquiplanDiagramm", "/pages/plan/diagramm.jsp"));
+
 		kategorieContextMenu.add(createMenuNavigationItem("Neue Kategorie",
 				"#{kategorieBakingBean.clearKategorie}",
-		"/pages/kategorie/kategorie.jsp"));
-		
-		
-		planMenu = createMenuNavigationItem("Plan",
-				null);
+				"/pages/kategorie/kategorie.jsp"));
+
+		planMenu = createMenuNavigationItem("Plan", null);
 		menu.add(planMenu);
 		planMenu.add(createMenuNavigationItem("Jahresplan",
 				"liquiplanUebersicht", "/pages/plan/uebersicht.jsp"));
-		
-		
+
 		final NavigationMenuItem plandateMenu = createMenuNavigationItem(
 				"Plandaten", null);
 		menu.add(plandateMenu);
@@ -67,10 +66,11 @@ public class NavigationMenu extends BaseBean {
 		plandateMenu.add(createMenuNavigationItem("Übersicht",
 				"plandatenUebersicht", "/pages/plandatum/uebersicht.jsp"));
 		plandateMenu.add(createMenuNavigationItem("neues Plandatum",
-				"#{plandatumBakingBean.clearPlandatum}", "/pages/plandatum/plandatum.jsp"));
+				"#{plandatumBakingBean.clearPlandatum}",
+				"/pages/plandatum/plandatum.jsp"));
 
 	}
-	
+
 	public List getMenuItems() {
 		return menu;
 	}
@@ -121,22 +121,21 @@ public class NavigationMenu extends BaseBean {
 	public boolean getDisabled() {
 		return true;
 	}
-	
-	
+
 	public List<NavigationMenuItem> getContextMenu() {
-		
-		//der Namen der Seite
+
+		// der Namen der Seite
 		final String viewId = getFacesContext().getViewRoot().getViewId();
-		
-		if(viewId.startsWith("/pages/plan/")) {
+
+		if (viewId.startsWith("/pages/plan/")) {
 			return planContextMenu;
 		}
-		
-		if(viewId.startsWith("/pages/kategorie/uebersicht")) {
+
+		if (viewId.startsWith("/pages/kategorie/uebersicht")) {
 			return kategorieContextMenu;
 		}
-			
-		//Kein Menü
+
+		// Kein Menü
 		return new ArrayList<NavigationMenuItem>();
 	}
 }

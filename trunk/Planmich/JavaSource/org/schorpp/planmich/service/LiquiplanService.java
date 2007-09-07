@@ -18,8 +18,7 @@ public interface LiquiplanService {
 	 * @return
 	 */
 	public boolean calculatePlanAsMap(Mandant mandant, Date von, Date bis,
-			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen, List<List> spalteAusgaben, List<Double> salden);
+			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen,
+			List<List> spalteAusgaben, List<Double> salden);
 
-	
-	
 }

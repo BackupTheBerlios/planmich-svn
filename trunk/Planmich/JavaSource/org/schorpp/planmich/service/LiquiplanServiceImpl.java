@@ -21,7 +21,7 @@ import org.schorpp.planmich.web.jsf.liquiplan.SpaltenUeberschrift;
 public class LiquiplanServiceImpl implements LiquiplanService {
 
 	private static final Log log = LogFactory.getLog(LiquiplanService.class);
-	
+
 	SimpleDateFormat df = new SimpleDateFormat("MM. yyyy");
 
 	SimpleDateFormat ddf = new SimpleDateFormat("dd. MM. yyyy");
@@ -33,7 +33,8 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 	 *      java.util.Calendar)
 	 */
 	public boolean calculatePlanAsMap(Mandant mandant, Date von, Date bis,
-			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen, List<List> spalteAusgaben, List<Double> salden) {
+			List<SpaltenUeberschrift> colHeaders, List<List> spalteEinnahmen,
+			List<List> spalteAusgaben, List<Double> salden) {
 
 		final Calendar vonDatum = Calendar.getInstance();
 		vonDatum.setTime(von);
@@ -63,88 +64,82 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 				false));
 		colHeaders.add(new SpaltenUeberschrift("E/A", "30", "left", false));
 
-		
-		
 		List<String> zeilenEinnahmen;
-		
+
 		zeilenEinnahmen = new ArrayList<String>();
-		for(Kategorie aktKategorie : kategorien) {
-			if(aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+		for (Kategorie aktKategorie : kategorien) {
+			if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
 				zeilenEinnahmen.add(aktKategorie.getName());
 		}
-		
+
 		spalteEinnahmen.add(zeilenEinnahmen);
-		
+
 		zeilenEinnahmen = new ArrayList<String>();
-		for(Kategorie aktKategorie : kategorien) {
-			if(aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
+		for (Kategorie aktKategorie : kategorien) {
+			if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme)
 				zeilenEinnahmen.add("E");
 		}
-		
+
 		spalteEinnahmen.add(zeilenEinnahmen);
-		
-		
-		
+
 		List<String> zeilenAusgaben;
-		
+
 		zeilenAusgaben = new ArrayList<String>();
-		
-		for(Kategorie aktKategorie : kategorien) {
-			if(aktKategorie.getKategorieTyp() == KategorieTyp.Ausgabe)
+
+		for (Kategorie aktKategorie : kategorien) {
+			if (aktKategorie.getKategorieTyp() == KategorieTyp.Ausgabe)
 				zeilenAusgaben.add(aktKategorie.getName());
 		}
-		
+
 		spalteAusgaben.add(zeilenAusgaben);
-		
+
 		zeilenAusgaben = new ArrayList<String>();
-		for(Kategorie aktKategorie : kategorien) {
-			if(aktKategorie.getKategorieTyp() == KategorieTyp.Ausgabe)
+		for (Kategorie aktKategorie : kategorien) {
+			if (aktKategorie.getKategorieTyp() == KategorieTyp.Ausgabe)
 				zeilenAusgaben.add("A");
 		}
-		
-		spalteAusgaben.add(zeilenAusgaben);
-		
 
-		
+		spalteAusgaben.add(zeilenAusgaben);
+
 		double endbestand = 0;
 		double anfangsbestand = 0;
 
 		int x = 0;
-		
+
 		tempvonDatum = (Calendar) vonDatum.clone();
 		Calendar aktDatum = (Calendar) vonDatum.clone();
-		
-		do { 
+
+		do {
 
 			aktDatum.add(Calendar.MONTH, 1);
-			
+
 			zeilenEinnahmen = new ArrayList<String>();
 			zeilenAusgaben = new ArrayList<String>();
-			
+
 			int y = 0;
 
-			colHeaders.add(new SpaltenUeberschrift(df
-					.format(tempvonDatum.getTime()), "400", "right", false));
+			colHeaders.add(new SpaltenUeberschrift(df.format(tempvonDatum
+					.getTime()), "400", "right", false));
 
 			anfangsbestand = endbestand;
 
 			for (Kategorie aktKategorie : kategorien) {
-				
+
 				double wert = 0.0;
 
-				log.debug(tempvonDatum.getTime() + " bis " + aktDatum.getTime());
-				
+				log
+						.debug(tempvonDatum.getTime() + " bis "
+								+ aktDatum.getTime());
+
 				for (Plandatum aktPlandatum : plandaten) {
 					if (aktKategorie.equals(aktPlandatum.getKategorie())) {
 						for (Calendar kanditatDatum = (Calendar) tempvonDatum
 								.clone(); kanditatDatum.before(aktDatum); kanditatDatum
 								.add(Calendar.DATE, 1)) {
-							
-								
-							
-								boolean match = pruefeDatumAufTurnus(kanditatDatum,
-										aktPlandatum);
-								
+
+							boolean match = pruefeDatumAufTurnus(kanditatDatum,
+									aktPlandatum);
+
 							if (match) {
 								wert += aktPlandatum.getBetrag();
 							}
@@ -152,15 +147,13 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 					}
 				}
 
-
 				// Wenn es sich um eine Einnahme handelt, dann Betrag addieren,
 				// sonst Substrahieren
 				if (aktKategorie.getKategorieTyp() == KategorieTyp.Einnahme) {
 					zeilenEinnahmen.add(Util.nf.format(wert));
 
 					anfangsbestand += wert;
-				}
-				else {
+				} else {
 					anfangsbestand -= wert;
 
 					zeilenAusgaben.add(Util.nf.format(wert));
@@ -173,22 +166,23 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 			x += 1;
 
 			salden.add(anfangsbestand);
-			
+
 			endbestand = anfangsbestand;
 
 			tempvonDatum = (Calendar) aktDatum.clone();
-			
+
 			spalteEinnahmen.add(zeilenEinnahmen);
 			spalteAusgaben.add(zeilenAusgaben);
 
 		} while (aktDatum.before(bisDatum));
-		
+
 		return true;
 	}
 
 	private boolean pruefeDatumAufTurnus(Calendar aktDatum, Plandatum plandatum) {
-		 if (ddf.format(aktDatum.getTime()).equals(ddf.format(plandatum.getWertstellung())))
-		 return true;
+		if (ddf.format(aktDatum.getTime()).equals(
+				ddf.format(plandatum.getWertstellung())))
+			return true;
 
 		final Date plandatumDatum = plandatum.getWertstellung();
 
@@ -249,10 +243,6 @@ public class LiquiplanServiceImpl implements LiquiplanService {
 
 		return taga == tagb;
 
-		// return Math.abs(a.get(Calendar.MONDAY) - b.get(Calendar.MONTH)) % 2
-		// == 0;
-
-		// return matchByMonth(a, b, 1);
 	}
 
 	private boolean matchByMonth(Calendar a, Calendar b, int dauer) {

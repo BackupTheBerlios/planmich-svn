@@ -31,38 +31,38 @@ public class LiquiplanTag extends UIComponentTag {
 				final Application app = context.getApplication();
 				final ValueBinding vb = app.createValueBinding(header);
 				component.setValueBinding("header", vb);
-			} 
-	
+			}
+
 		if (einnahmen != null)
 			if (isValueReference(einnahmen)) {
 				final FacesContext context = FacesContext.getCurrentInstance();
 				final Application app = context.getApplication();
 				final ValueBinding vb = app.createValueBinding(einnahmen);
 				component.setValueBinding("einnahmen", vb);
-			} 
-		
+			}
+
 		if (ausgaben != null)
 			if (isValueReference(ausgaben)) {
 				final FacesContext context = FacesContext.getCurrentInstance();
 				final Application app = context.getApplication();
 				final ValueBinding vb = app.createValueBinding(ausgaben);
 				component.setValueBinding("ausgaben", vb);
-			} 
-		
+			}
+
 		if (salden != null)
 			if (isValueReference(salden)) {
 				final FacesContext context = FacesContext.getCurrentInstance();
 				final Application app = context.getApplication();
 				final ValueBinding vb = app.createValueBinding(salden);
 				component.setValueBinding("salden", vb);
-			} 
-		
+			}
+
 		if (rowClasses != null)
 			component.getAttributes().put("rowClasses", rowClasses);
-		
+
 		if (styleClass != null)
 			component.getAttributes().put("styleClass", styleClass);
-	
+
 		if (headerClass != null)
 			component.getAttributes().put("headerClass", headerClass);
 
@@ -84,35 +84,35 @@ public class LiquiplanTag extends UIComponentTag {
 	public void setHeader(String header) {
 		this.header = header;
 	}
-	
+
 	public void setEinnahmen(String einnahmen) {
 		this.einnahmen = einnahmen;
 	}
-	
+
 	public void setSalden(String salden) {
 		this.salden = salden;
 	}
-	
+
 	public void setAusgaben(String ausgaben) {
 		this.ausgaben = ausgaben;
 	}
+
 	public void setRowClasses(String rowClasses) {
 		this.rowClasses = rowClasses;
 	}
-	
+
 	public void setStyleClass(String styleClass) {
 		this.styleClass = styleClass;
 	}
 
 	public void setHeaderClass(String headerClass) {
-		this.headerClass =headerClass;
+		this.headerClass = headerClass;
 	}
-	
 
 	public void setSaldoClass(String saldoClass) {
 		this.saldoClass = saldoClass;
 	}
-	
+
 	@Override
 	public String getComponentType() {
 

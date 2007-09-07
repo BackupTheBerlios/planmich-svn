@@ -91,7 +91,10 @@ public class PlandatumBakingBean extends BaseBean {
 	 * Erzeugt eine Liste mit SelectItems zur Auswahl der Kategorie
 	 */
 	public List getKategorieListe() {
-		List categories = ((Mandant)getFromSession("Mandant")).getKategorien();
+		Mandant m = (Mandant)getFromSession("Mandant");
+		mandantDAO.attach(m);
+		
+		List categories = m.getKategorien();
 		List<SelectItem> ret = new ArrayList<SelectItem>();
 
 		// erster Eintrag ist leer
@@ -143,6 +146,7 @@ public class PlandatumBakingBean extends BaseBean {
 		p.setTurnus(turnusAuswahl);
 
 		final Mandant m = (Mandant)getFromSession("Mandant");
+		mandantDAO.attach(m);
 		m.addPlandatum(p);
 		mandantDAO.save(m);
 
@@ -267,6 +271,9 @@ public class PlandatumBakingBean extends BaseBean {
 
 	
 	public List<Plandatum> getPlandaten() {
-		return plandatumService.getAll();
+		Mandant m = (Mandant)getFromSession("Mandant");
+		mandantDAO.attach(m);
+		
+		return m.getPlandaten();
 	}
 }

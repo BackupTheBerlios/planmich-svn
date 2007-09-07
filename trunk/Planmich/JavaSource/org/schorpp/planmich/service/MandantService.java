@@ -62,4 +62,5 @@ public interface MandantService {
 
 	@Transactional(readOnly = false)
 	public void update(Mandant m);
+
 }

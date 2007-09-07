@@ -33,7 +33,7 @@ public class Mandant {
 	private List<Kategorie> kategorien = new ArrayList<Kategorie>();
 
 	private double anfangsbestand;
-	
+
 	/* Default-Konstruktor */
 	public Mandant() {
 	}

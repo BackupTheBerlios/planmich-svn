@@ -18,4 +18,6 @@ public interface MandantDAO {
 
 	public void save(Mandant m);
 
+	public void attach(Mandant m);
+
 }

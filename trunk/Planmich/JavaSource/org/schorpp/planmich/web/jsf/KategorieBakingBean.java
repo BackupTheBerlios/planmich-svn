@@ -110,6 +110,10 @@ public class KategorieBakingBean extends BaseBean {
 
 		Mandant m = (Mandant) getFromSession("Mandant");
 		
+		mandantDAO.attach(m);
+		
+		try {
+		
 		k = new Kategorie();
 
 		k.setName(name);
@@ -118,6 +122,10 @@ public class KategorieBakingBean extends BaseBean {
 
 		m.addKategorie(k);
 		mandantService.update(m);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		displayInfo("Kategorie " + name + " wurde hinzugefügt.");
 	}
@@ -182,7 +190,10 @@ public class KategorieBakingBean extends BaseBean {
 	}
 	
 	public List<Kategorie> getKategorien() {
-		return kategorieService.getAll();
+		Mandant m = (Mandant)getFromSession("Mandant");
+		mandantDAO.attach(m);
+		
+		return m.getKategorien();
 	}
 
 }
