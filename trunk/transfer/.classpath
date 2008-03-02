@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Dokumente und Einstellungen/Markus/Eigene Dateien/bltransfer-1.0.3/bin/bltransfer.jar"/>
+	<classpathentry kind="lib" path="C:/Dokumente und Einstellungen/Markus/Eigene Dateien/bltransfer-1.0.3/bin/iText-1.2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Dokumente und Einstellungen/Markus/Eigene Dateien/bltransfer-1.0.3/bin/bcprov-jdk14-130.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
